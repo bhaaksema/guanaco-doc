@@ -8,6 +8,10 @@ description: Bottom-up Syntactic Proof Guide
 
 # Logical Aspects of Multi-Agent Systems
 
-Inline math:\\(\models\lambda\to\alpha\\)
+Inline math:
 
-Displayed math: $$\models\lambda\to\alpha$$
+\\(\models\lambda\to\alpha\\)
+
+Displayed math:
+
+$$\models\lambda\to\alpha$$
