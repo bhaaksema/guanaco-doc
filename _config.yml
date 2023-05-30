@@ -1,6 +1,6 @@
 title: Logical Aspects of Multi-agent Systems
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-show_downloads: false
+show_downloads: true
 
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
