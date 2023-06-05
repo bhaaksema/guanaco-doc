@@ -18,6 +18,7 @@ Writing syntactical proofs can be very hard, especially when one hasn't seen the
 
 Let \\(\mathbf{P}\\) be a set of propositional atoms; \\(\mathbf{P} = \lbrace p_n : n \in \mathbb{N} \rbrace \\). Let \\(\mathbf{A}\\) be a set of m 'agents'; \\(\mathbf{A} = \lbrace 1, \dots, m \rbrace \\). The set \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P})\\) of epistemic formulas \\(\varphi, \psi, \dots\\) over \\(\mathbf{A}\\) is the smallest set closed under:
 
+<!--- Op een of andere manier kan het niet meer \mathcal{L}_etcetera aan, dan blijft de code gewoon staan --->
 1. If \\( p \in \mathbf{P}\\), then \\(p \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P})\\).
 2. If \\( \varphi, \psi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) \\), then \\( (\varphi \land \psi), \lnot \varphi \in \mathcal{L} \\).
 3. If \\( \varphi \in \mathcal{L} \\), then \\( K_i\varphi \in \mathcal{L} \\), for all \\(i \in \mathbf{A}\\).
