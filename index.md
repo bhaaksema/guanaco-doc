@@ -31,6 +31,7 @@ The axiom system \\(\mathbf{K(m)}\\), with respect to a set of agents \\(\mathbf
 - A1. All (instances of) propositional tautologies.
 - A2. \\((K_i \varphi \land K_i(\varphi \rightarrow \psi) \rightarrow K_i \psi\\) for \\(i = 1, \dots, m\\).
 - A2'. \\(K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi \rightarrow K_i \psi)\\)
+
 *Derivation Rules*
 - R1. \\(\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi} \quad \\) *Modus Ponens*.
 - R2. \\(\dfrac{\varphi}{K_i\varphi}\\( \\((i = 1,\dots, m) \quad \\) *Necessitation*.
