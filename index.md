@@ -66,8 +66,9 @@ In addition to the axioms (A1), (A2) and rules (R1), (R2) from \\(\mathbf{K(m)}\
 - R3. \dfrac{\varphi}{C\varphi}}
 
 Then, we define 
-\mathbf{KEC(m)} &= \mathbf{K(m)} + (A6)-(A10) + (R3)\\
-\mathbf{S5EC(m)} &= \mathbf{S5(m)} + (A6)-(A10) + (R3)
+
+\\(\mathbf{KEC(m)} = \mathbf{K(m)} + (A6)-(A10) + (R3)\\)
+\\(\mathbf{S5EC(m)} = \mathbf{S5(m)} + (A6)-(A10) + (R3)\\)
 
 Furthermore, we extend the system with two more derived rules, both of which are provable in \\(\mathbf{KEC(m)}\\):
 
