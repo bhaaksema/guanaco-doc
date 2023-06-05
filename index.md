@@ -28,8 +28,9 @@ The axiom system \\(\mathbf{K(m)}\\), with respect to a set of agents \\(\mathbf
 - A2. \\((K_i \varphi \land K_i(\varphi \rightarrow \psi) \rightarrow K_i \psi\\) for \\(i = 1, \dots, m\\).
 - A2'. \\(K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi \rightarrow K_i \psi)\\)
 \textit{Derivation Rules}
-- R1. \makebox[9em][l]{$\inferrule{\varphi \quad \varphi \rightarrow \psi}{\psi}$} \quad \textit{Modus Ponens}.
-- R2. \makebox[9em][l]{$\inferrule{\varphi}{K_i\varphi}$ $(i = 1,\dots, m)$ } \quad \textit{Necessitation}.
+- R1. \\(\inferrule{\varphi \quad \varphi \rightarrow \psi}{\psi}\\) \quad \textit{Modus Ponens}.
+- R2. \\(\inferrule{\varphi}{K_i\varphi}\\( \\((i = 1,\dots, m)\\) \quad \textit{Necessitation}.
+Using these axioms and derivation rules, we are able to derive all provable formulas in \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P})\\). However, in order to make these type of proofs both shorter and easier, we've implemented some extra rules, which are all derivable in \\(\mathbf{K(m)}\\).
 
 
 
