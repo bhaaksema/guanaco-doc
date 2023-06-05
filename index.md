@@ -21,6 +21,10 @@ Let \\(\mathbf{P}\\) be a set of propositional atoms; \\(\mathbf{P} = \lbrace p_
 
 Moreover, let \\(\varphi \lor \psi, \varphi \rightarrow \psi\\) and \\(\varphi \leftrightarrow \psi\\) be abbreviations for \\(\lnot(\lnot\varphi \land \lnot \psi)\\), \\(\lnot \varphi \lor \psi\\) and \\((\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)\\) respectively. Additionally, we use the abbreviation \\(M_i\varphi\\) for \\(\lnot K_i \lnot \varphi\\).
 
+### The Axiom System K(m)
+The axiom system \\(\mathbf{K(m)}\\), with respect to a set of agents \\(\mathbf{A} = \rbrace 1, \dots, m \lbrace \\), consists of:
+
+
 
 Inline math:
 
