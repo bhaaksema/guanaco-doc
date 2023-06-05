@@ -34,7 +34,7 @@ The axiom system \\(\mathbf{K(m)}\\), with respect to a set of agents \\(\mathbf
 
 *Derivation Rules*
 - R1. \\(\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi} \quad \\) *Modus Ponens*.
-- R2. \\(\dfrac{\varphi}{K_i\varphi}\\( \\((i = 1,\dots, m) \quad \\) *Necessitation*.
+- R2. \\(\dfrac{\varphi}{K_i\varphi}\\) \\((i = 1,\dots, m) \quad \\) *Necessitation*.
 
 Using these axioms and derivation rules, we are able to derive all provable formulas in \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P})\\). However, in order to make these type of proofs both shorter and easier, we've implemented some extra rules, which are all derivable in \\(\mathbf{K(m)}\\).
 
