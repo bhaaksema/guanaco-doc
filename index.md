@@ -70,6 +70,29 @@ Then, we define
 
 Furthermore, we extend the system with two more derived rules, both of which are provable in \\(\mathbf{KEC(m)}\\):
 
+<!--- Hier de twee rules voor E en C --->
+
+## Public Announcement: The Logics S5\[\](m) and KEC\[\](m) <!---Hier nog betere namen voor verzinnen
+We hebben hier ook een iets andere definitie voor common knowledge, aangezien het hier ook per agent kan verschillen, dus daar moeten we nog even naar kijken --->
+
+We can extend our logics \\(\mathbf{S5(m)}\\) and \\(\mathbf{S5EC(m)}\\) with one more operator: public announcement. The languages \\(\mathcal{L}_\mathbf{S5}^m(\mathbf{P})\\) and \\(\mathcal{L}_\mathbf{S5EC}^m(\mathbf{P})\\) extended by the operator \\(\[\]\\) are denoted \\(\mathcal{L}_\mathbf{S5[]}^m(\mathbf{P})\\) and \\(\mathcal{L}_\mathbf{S5EC[]}^m(\mathbf{P})\\) respectively. They are the smallest sets closed under the rules discussed for \\(\mathbf{S5(m)}\\) and \\(\mathbf{S5EC(m)}\\) and additionally:
+5. If \\(\varphi, \psi \in \mathcal{L}_{\mathbf{S5\[\]}}^m(\mathbf{P})/\mathcal{L}_\mathbf{S5EC\[\]}^m(\mathbf{P})\\), then \\(\[\varphi\]\psi \in \mathcal{L}_\mathbf{S5\[\]}^m(\mathbf{P})/\mathcal{L}_\mathbf{S5EC\[\]}^m(\mathbf{P})\\) 
+
+For the axiom system \\(\mathbf{S5\[\](m)}\\), in addition to the axioms (A1)-(A5) and rules (R1), (R2) from \\(\mathbf{S5(m)}\\) we have the following axioms for the \[\]-operator:
+- A11. \\(\[\varphi\]p \leftrightarrow (\varphi \rightarrow p)\\)
+- A12. \\(\[\varphi\]\lnot\psi \leftrightarrow (\varphi \ra \lnot\[\varphi\]\psi)\\)
+- A13. \\(\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi)\\)
+- A14. \\(\[\varphi\]K_i\psi \leftrightarrow (\varphi \ra K_i\[\varphi\]\psi)\\)
+- A15 \\(\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi\\)
+<!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
+
+For the axiom system \\(\mathbf{S5EC\[\](m)}\\), in addition to the axioms (A1)-(A5) and rules (R1), (R2) from \\(\mathbf{S5(m)}\\), the axioms (A6)-(A10) from \\(\mathbf{S5EC(m)}\\) and the axioms (A11)-(A15) from \\(\mathbf{S5\[\](m)}\\) we have the following axioms and rules for the \[\]-operator:
+- A16. \\(C_i(\varphi \rightarrow \psi) \rightarrow (C_i \varphi \ra C_i \psi)\\)
+- A17. \\(C_i\varphi \rightarrow (\varphi \land E_iC_i\varphi)\\)
+- A18. \\(C_i(\varphi \rightarrow E_i\varphi) \rightarrow (\varphi \ra C_i\varphi)\\)
+- R4. \dfrac{\varphi}{\[\psi\]\varphi}
+- R5. <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
+
 Inline math:
 
 \\(\models\lambda\to\alpha\\)
