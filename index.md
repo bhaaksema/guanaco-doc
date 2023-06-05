@@ -38,6 +38,14 @@ The axiom system \\(\mathbf{K(m)}\\), with respect to a set of agents \\(\mathbf
 
 Using these axioms and derivation rules, we are able to derive all provable formulas in \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P})\\). However, in order to make these type of proofs both shorter and easier, we've implemented some extra rules, which are all derivable in \\(\mathbf{K(m)}\\).
 
+<!--- En dan hier die hele lijst, maar dat weet ik echt niet hoe ik dat mooi hierin krijg --->
+
+## The Logic S5(m)
+
+First note that \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P}) = \mathcal{L}_\mathbf{S5}^m(\mathbf{P})\\). In order to have a more complete image of knowledge and its properties, we extend the logic \\(\mathbf{K(m)}\\) with some more axioms and rules. This gives us the axiom system \\(\mathbf{S5(m)}\\), consisting of the axioms (A1),(A2), the rules (R1), (R2) and:
+- A3. \\(K_i\varphi \ra \varphi \quad (i=1, \dots m)\\)
+- A4. \\(K_i\varphi \ra K_iK_i\varphi \quad (i=1, \dots m)\\)
+- A5. \\(\lnot K_i \varphi \ra K_i \lnot K_i\varphi \quad (i=1, \dots m)\\)
 
 
 Inline math:
