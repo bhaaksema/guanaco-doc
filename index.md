@@ -54,9 +54,9 @@ First note that $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) = \mathcal{L}^m_{\mathbf
 
 ## Common Knowledge: The logics KEC(m) and S5EC(m)
 
-We can extend the logics $\mathbf{K(m)}$ and $\mathbf{S5(m)}$ with two more operators, E and C. The languages $\mathcal{L}_\mathbf{K}^m(\mathbf{P})$ and $\mathcal{L}^m_{\mathbf{S5}}(\mathbf{P})$ extended by the operators E and C are denoted $\mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$ and $\mathcal{L}^m_{\mathbf{S5EC}}(\mathbf{P})$ respectively. They are the smallest sets closed under:
+We can extend the logics $\mathbf{K(m)}$ and $\mathbf{S5(m)}$ with two more operators, E and C. The languages $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$ and $\mathcal{L}^m_{\mathbf{S5}}(\mathbf{P})$ extended by the operators E and C are denoted $\mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$ and $\mathcal{L}^m_{\mathbf{S5EC}}(\mathbf{P})$ respectively. They are the smallest sets closed under:
 
-1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}^m_{\mathbf{KEC}}^m(\mathbf{P})$.
+1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$.
 2. If $ \varphi, \psi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P}) $.
 3. If $ \varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, then $ K_i\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
 4. If $\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$$, then $E\varphi, C\varphi \in \mathcal{L}^m_\mathbf{KEC}(\mathbf{P})$.
