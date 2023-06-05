@@ -28,6 +28,7 @@ Moreover, let \\(\varphi \lor \psi, \varphi \rightarrow \psi\\) and \\(\varphi \
 ### The Axiom System K(m)
 
 The axiom system \\(\mathbf{K(m)}\\), with respect to a set of agents \\(\mathbf{A} = \lbrace 1, \dots, m \rbrace \\), consists of:
+
 *Axioms*
 - A1. All (instances of) propositional tautologies.
 - A2. \\((K_i \varphi \land K_i(\varphi \rightarrow \psi) \rightarrow K_i \psi\\) for \\(i = 1, \dots, m\\).
