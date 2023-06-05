@@ -23,7 +23,7 @@ Writing syntactical proofs can be very hard, especially when one hasn't seen the
 Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n \in \mathbb{N} \rbrace $. Let $\mathbf{A}$ be a set of m 'agents'; $\mathbf{A} = \lbrace 1, \dots, m \rbrace $. The set $\mathcal{L}_\mathbf{K}^m(\mathbf{P})$ of epistemic formulas $\varphi, \psi, \dots$ over $\mathbf{A}$ is the smallest set closed under:
 
 1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P})$.
-2. If $ \varphi, \psi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) $, then $ (\varphi \land \psi), \lnot \varphi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) $.
+2. If $ \varphi, \psi \in \mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) $, then $ (\varphi \land \psi), \lnot \varphi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) $.
 3. If $ \varphi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P})$, then $ K_i\varphi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P})$, for all $i \in \mathbf{A}$.
 
 Moreover, let $\varphi \lor \psi, \varphi \rightarrow \psi$ and $\varphi \leftrightarrow \psi$ be abbreviations for $\lnot(\lnot\varphi \land \lnot \psi)$, $\lnot \varphi \lor \psi$ and $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$ respectively. Additionally, we use the abbreviation $M_i\varphi$ for $\lnot K_i \lnot \varphi$.
@@ -79,7 +79,7 @@ Furthermore, we extend the system with two more derived rules, both of which are
 
 <!--- Hier de twee rules voor E en C --->
 
-## Public Announcement: The Logics $S5[](m)$ and KEC$[]$(m) 
+## Public Announcement: The Logics S5\[\](m) and KEC\[\](m) 
 <!---Hier nog betere namen voor verzinnen. We hebben hier ook een iets andere definitie voor common knowledge, aangezien het hier ook per agent kan verschillen, dus daar moeten we nog even naar kijken --->
 
 We can extend our logics $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ with one more operator: public announcement. The languages $\mathcal{L}_\mathbf{S5}^m(\mathbf{P})$ and $\mathcal{L}_\mathbf{S5EC}^m(\mathbf{P})$ extended by the operator $\[\]$ are denoted $\mathcal{L}_\mathbf{S5[]}^m(\mathbf{P})$ and $\mathcal{L}_\mathbf{S5EC[]}^m(\mathbf{P})$ respectively. They are the smallest sets closed under the rules discussed for $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ and additionally:
