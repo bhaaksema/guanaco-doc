@@ -67,7 +67,7 @@ In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ a
 - A8. $C\varphi \rightarrow EC\varphi$
 - A9. $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$
 - A10. $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$
-- R3. $\dfrac{\varphi}{C\varphi}}$
+- R3. $\dfrac{\varphi}{C\varphi}$
 
 Then, we define 
 
