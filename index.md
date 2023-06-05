@@ -4,7 +4,7 @@ description: Bottom-up Syntactic Proof Guide
 ---
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/@3/es5/tex-mml-chtml.js"></script>
 
 # Logical Aspects of Multi-Agent Systems
 
@@ -44,9 +44,9 @@ Using these axioms and derivation rules, we are able to derive all provable form
 ## The Logic S5(m)
 
 First note that \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P}) = \mathcal{L}_\mathbf{S5}^m(\mathbf{P})\\). In order to have a more complete image of knowledge and its properties, we extend the logic \\(\mathbf{K(m)}\\) with some more axioms and rules. This gives us the axiom system \\(\mathbf{S5(m)}\\), consisting of the axioms (A1),(A2), the rules (R1), (R2) and:
-- A3. \\(K_i\varphi \ra \varphi \quad (i=1, \dots m)\\)
-- A4. \\(K_i\varphi \ra K_iK_i\varphi \quad (i=1, \dots m)\\)
-- A5. \\(\lnot K_i \varphi \ra K_i \lnot K_i\varphi \quad (i=1, \dots m)\\)
+- A3. \\(K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)\\)
+- A4. \\(K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)\\)
+- A5. \\(\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)\\)
 
 ## Common Knowledge: The logics KEC(m) and S5EC(m)
 
@@ -59,10 +59,10 @@ We can extend the logics \\(\mathbf{K(m)}\\) and \\(\mathbf{S5(m)}\\) with two m
 
 In addition to the axioms (A1), (A2) and rules (R1), (R2) from \\(\mathbf{K(m)}\\) and the axioms (A3)-(A5) from \\(\mathbf{S5(m)}\\), we have the following axioms and rule for the E- and C- operators:
 - A6. \\(E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)\\)
-- A7. \\(C\varphi \ra \varphi\\)
-- A8. \\(C\varphi \ra EC\varphi\\)
-- A9. \\((C\varphi \land C(\varphi \ra \psi)) \ra C\psi\\)
-- A10. \\(C(\varphi \ra E\varphi) \ra (\varphi \ra C\varphi)\\)
+- A7. \\(C\varphi \rightarrow \varphi\\)
+- A8. \\(C\varphi \rightarrow EC\varphi\\)
+- A9. \\((C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi\\)
+- A10. \\(C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)\\)
 - R3. \dfrac{\varphi}{C\varphi}}
 
 Then, we define 
@@ -81,9 +81,9 @@ We can extend our logics \\(\mathbf{S5(m)}\\) and \\(\mathbf{S5EC(m)}\\) with on
 
 For the axiom system \\(\mathbf{S5\[\](m)}\\), in addition to the axioms (A1)-(A5) and rules (R1), (R2) from \\(\mathbf{S5(m)}\\) we have the following axioms for the \[\]-operator:
 - A11. \\(\[\varphi\]p \leftrightarrow (\varphi \rightarrow p)\\)
-- A12. \\(\[\varphi\]\lnot\psi \leftrightarrow (\varphi \ra \lnot\[\varphi\]\psi)\\)
+- A12. \\(\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi)\\)
 - A13. \\(\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi)\\)
-- A14. \\(\[\varphi\]K_i\psi \leftrightarrow (\varphi \ra K_i\[\varphi\]\psi)\\)
+- A14. \\(\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi)\\)
 - A15 \\(\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi\\)
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
