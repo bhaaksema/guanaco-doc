@@ -59,7 +59,7 @@ We can extend the logics $\mathbf{K(m)}$ and $\mathbf{S5(m)}$ with two more oper
 1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$.
 2. If $ \varphi, \psi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P}) $.
 3. If $ \varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, then $ K_i\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
-4. If $\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$$, then $E\varphi, C\varphi \in \mathcal{L}^m_\mathbf{KEC}(\mathbf{P})$.
+4. If $\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, then $E\varphi, C\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$.
 
 In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ and the axioms (A3)-(A5) from $\mathbf{S5(m)}$, we have the following axioms and rule for the E- and C- operators:
 - A6. $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$
@@ -67,7 +67,7 @@ In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ a
 - A8. $C\varphi \rightarrow EC\varphi$
 - A9. $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$
 - A10. $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$
-- R3. \dfrac{\varphi}{C\varphi}}
+- R3. $\dfrac{\varphi}{C\varphi}}$
 
 Then, we define 
 
