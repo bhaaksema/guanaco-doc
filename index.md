@@ -22,10 +22,9 @@ Writing syntactical proofs can be very hard, especially when one hasn't seen the
 
 Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n \in \mathbb{N} \rbrace $. Let $\mathbf{A}$ be a set of m 'agents'; $\mathbf{A} = \lbrace 1, \dots, m \rbrace $. The set $\mathcal{L}_\mathbf{K}^m(\mathbf{P})$ of epistemic formulas $\varphi, \psi, \dots$ over $\mathbf{A}$ is the smallest set closed under:
 
-<!--- Op een of andere manier kan het niet meer \mathcal{L}_etcetera aan, dan blijft de code gewoon staan --->
 1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P})$.
-2. If $ \varphi, \psi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) $, then $ (\varphi \land \psi), \lnot \varphi \in \mathcal{L} $.
-3. If $ \varphi \in \mathcal{L} $, then $ K_i\varphi \in \mathcal{L} $, for all $i \in \mathbf{A}$.
+2. If $ \varphi, \psi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) $, then $ (\varphi \land \psi), \lnot \varphi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) $.
+3. If $ \varphi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P})$, then $ K_i\varphi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P})$, for all $i \in \mathbf{A}$.
 
 Moreover, let $\varphi \lor \psi, \varphi \rightarrow \psi$ and $\varphi \leftrightarrow \psi$ be abbreviations for $\lnot(\lnot\varphi \land \lnot \psi)$, $\lnot \varphi \lor \psi$ and $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$ respectively. Additionally, we use the abbreviation $M_i\varphi$ for $\lnot K_i \lnot \varphi$.
 
@@ -48,7 +47,7 @@ Using these axioms and derivation rules, we are able to derive all provable form
 
 ## The Logic S5(m)
 
-First note that $\mathcal{L}_\mathbf{K}^m(\mathbf{P}) = \mathcal{L}_\mathbf{S5}^m(\mathbf{P})$. In order to have a more complete image of knowledge and its properties, we extend the logic $\mathbf{K(m)}$ with some more axioms and rules. This gives us the axiom system $\mathbf{S5(m)}$, consisting of the axioms (A1),(A2), the rules (R1), (R2) and:
+First note that $\mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) = \mathcal{L}_{\mathbf{S5}}^m(\mathbf{P})$. In order to have a more complete image of knowledge and its properties, we extend the logic $\mathbf{K(m)}$ with some more axioms and rules. This gives us the axiom system $\mathbf{S5(m)}$, consisting of the axioms (A1),(A2), the rules (R1), (R2) and:
 - A3. $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$
 - A4. $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$
 - A5. $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$
@@ -57,10 +56,10 @@ First note that $\mathcal{L}_\mathbf{K}^m(\mathbf{P}) = \mathcal{L}_\mathbf{S5}^
 
 We can extend the logics $\mathbf{K(m)}$ and $\mathbf{S5(m)}$ with two more operators, E and C. The languages $\mathcal{L}_\mathbf{K}^m(\mathbf{P})$ and $\mathcal{L}_\mathbf{S5}^m(\mathbf{P})$ extended by the operators E and C are denoted $\mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$ and $\mathcal{L}_\mathbf{S5EC}^m(\mathbf{P})$ respectively. They are the smallest sets closed under:
 
-1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$.
-2. If $\varphi, \psi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$.
-3. If $\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$, then $K_i\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$, for all $i \in \mathbf{A}$.
-4. If $\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$, then $E\varphi, C\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$.
+1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}_{\mathbf{KEC}}^m(\mathbf{P})$.
+2. If $ \varphi, \psi \in \mathcal{L}_{\mathbf{KEC}}^m(\mathbf{P}) $, then $ (\varphi \land \psi), \lnot \varphi \in \mathcal{L}_{\mathbf{KEC}}^m(\mathbf{P}) $.
+3. If $ \varphi \in \mathcal{L}_{\mathbf{KEC}}^m(\mathbf{P})$, then $ K_i\varphi \in \mathcal{L}_{\mathbf{KEC}}^m(\mathbf{P})$, for all $i \in \mathbf{A}$.
+4. If $\varphi \in \mathcal{L}_{\mathbf{KEC}}^m(\mathbf{P})$$, then $E\varphi, C\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})$.
 
 In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ and the axioms (A3)-(A5) from $\mathbf{S5(m)}$, we have the following axioms and rule for the E- and C- operators:
 - A6. $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$
@@ -73,6 +72,7 @@ In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ a
 Then, we define 
 
 $\mathbf{KEC(m)} = \mathbf{K(m)} + (A6)-(A10) + (R3)$
+
 $\mathbf{S5EC(m)} = \mathbf{S5(m)} + (A6)-(A10) + (R3)$
 
 Furthermore, we extend the system with two more derived rules, both of which are provable in $\mathbf{KEC(m)}$:
@@ -94,8 +94,8 @@ For the axiom system $ \mathbf{S5\[\](m)} $, in addition to the axioms (A1)-(A5)
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
 For the axiom system $\mathbf{S5EC\[\](m)}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{S5\[\](m)}$ we have the following axioms and rules for the \[\]-operator:
-- A16. $C_i(\varphi \rightarrow \psi) \rightarrow (C_i \varphi \ra C_i \psi)$
+- A16. $C_i(\varphi \rightarrow \psi) \rightarrow (C_i \varphi \rightarrow C_i \psi)$
 - A17. $C_i\varphi \rightarrow (\varphi \land E_iC_i\varphi)$
-- A18. $C_i(\varphi \rightarrow E_i\varphi) \rightarrow (\varphi \ra C_i\varphi)$
+- A18. $C_i(\varphi \rightarrow E_i\varphi) \rightarrow (\varphi \rightarrow C_i\varphi)$
 - R4. \dfrac{\varphi}{\[\psi\]\varphi}
 - R5. <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
