@@ -16,13 +16,13 @@ Writing syntactical proofs can be very hard, especially when one hasn't seen the
 Let \\(\mathbf{P}\\) be a set of propositional atoms; \\(\mathbf{P} = \lbrace p_n : n \in \mathbb{N} \rbrace \\). Let \\(\mathbf{A}\\) be a set of m 'agents'; \\(\mathbf{A} = \lbrace 1, \dots, m \rbrace \\). The set \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P})\\) of epistemic formulas \\(\varphi, \psi, \dots\\) over \\(\mathbf{A}\\) is the smallest set closed under:
 
 1. If \\( p \in \mathbf{P}\\), then \\(p \in \mathcal{L}_\mathbf{K}^m(\mathbf{P})\\).
-2. If \\( \varphi, \psi \in \mathcal{L}_\mathbf{K}^m(\mathbf{P}) \\), then \\( (\varphi \land \psi), \lnot \varphi \in \mathcal{L}_\mathbf{K}^m(\mathbf{P})\\).
-3. If \\( \varphi \in \mathcal{L}_\mathbf{K}^m(\mathbf{P})\\), then \\( K_i\varphi \in \mathcal{L}_\mathbf{K}^m(\mathbf{P}) \\), for all \\(i \in \mathbf{A}\\).
+2. If \\( \varphi, \psi \in \\), then \\( (\varphi \land \psi), \lnot \varphi \in \\).
+3. If \\( \varphi \in \\), then \\( K_i\varphi \in \\), for all \\(i \in \mathbf{A}\\).
 
 Moreover, let \\(\varphi \lor \psi, \varphi \rightarrow \psi\\) and \\(\varphi \leftrightarrow \psi\\) be abbreviations for \\(\lnot(\lnot\varphi \land \lnot \psi)\\), \\(\lnot \varphi \lor \psi\\) and \\((\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)\\) respectively. Additionally, we use the abbreviation \\(M_i\varphi\\) for \\(\lnot K_i \lnot \varphi\\).
 
 ### The Axiom System K(m)
-The axiom system \\(\mathbf{K(m)}\\), with respect to a set of agents \\(\mathbf{A} = \rbrace 1, \dots, m \lbrace \\), consists of:
+The axiom system \\(\mathbf{K(m)}\\), with respect to a set of agents \\(\mathbf{A} = \lbrace 1, \dots, m \rbrace \\), consists of:
 
 
 
