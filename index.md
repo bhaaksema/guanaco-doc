@@ -75,8 +75,8 @@ Furthermore, we extend the system with two more derived rules, both of which are
 
 <!--- Hier de twee rules voor E en C --->
 
-## Public Announcement: The Logics S5\[\](m) and KEC\[\](m) <!---Hier nog betere namen voor verzinnen
-We hebben hier ook een iets andere definitie voor common knowledge, aangezien het hier ook per agent kan verschillen, dus daar moeten we nog even naar kijken --->
+## Public Announcement: The Logics S5\[\](m) and KEC\[\](m) 
+<!---Hier nog betere namen voor verzinnen. We hebben hier ook een iets andere definitie voor common knowledge, aangezien het hier ook per agent kan verschillen, dus daar moeten we nog even naar kijken --->
 
 We can extend our logics \\(\mathbf{S5(m)}\\) and \\(\mathbf{S5EC(m)}\\) with one more operator: public announcement. The languages \\(\mathcal{L}_\mathbf{S5}^m(\mathbf{P})\\) and \\(\mathcal{L}_\mathbf{S5EC}^m(\mathbf{P})\\) extended by the operator \\(\[\]\\) are denoted \\(\mathcal{L}_\mathbf{S5[]}^m(\mathbf{P})\\) and \\(\mathcal{L}_\mathbf{S5EC[]}^m(\mathbf{P})\\) respectively. They are the smallest sets closed under the rules discussed for \\(\mathbf{S5(m)}\\) and \\(\mathbf{S5EC(m)}\\) and additionally:
 5. If \\(\varphi, \psi \in \mathcal{L}_{\mathbf{S5\[\]}}^m(\mathbf{P})/\mathcal{L}_\mathbf{S5EC\[\]}^m(\mathbf{P})\\), then \\(\[\varphi\]\psi \in \mathcal{L}_\mathbf{S5\[\]}^m(\mathbf{P})/\mathcal{L}_\mathbf{S5EC\[\]}^m(\mathbf{P})\\) 
