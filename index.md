@@ -47,6 +47,28 @@ First note that \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P}) = \mathcal{L}_\mathbf{S5
 - A4. \\(K_i\varphi \ra K_iK_i\varphi \quad (i=1, \dots m)\\)
 - A5. \\(\lnot K_i \varphi \ra K_i \lnot K_i\varphi \quad (i=1, \dots m)\\)
 
+## Common Knowledge: The logics KEC(m) and S5EC(m)
+
+We can extend the logics \\(\mathbf{K(m)}\\) and \\(\mathbf{S5(m)}\\) with two more operators, E and C. The languages \\(\mathcal{L}_\mathbf{K}^m(\mathbf{P})\\) and \\(\mathcal{L}_\mathbf{S5}^m(\mathbf{P})\\) extended by the operators E and C are denoted \\(\mathcal{L}_\mathbf{KEC}^m(\mathbf{P})\\) and \\(\mathcal{L}_\mathbf{S5EC}^m(\mathbf{P})\\) respectively. They are the smallest sets closed under:
+
+1. If \\(p \in \mathbf{P}\\), then \\(p \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})\\).
+2. If \\(\varphi, \psi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})\\), then \\((\varphi \land \psi), \lnot \varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})\\).
+3. If \\(\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})\\), then \\(K_i\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})\\), for all \\(i \in \mathbf{A}\\).
+4. If \\(\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})\\), then \\(E\varphi, C\varphi \in \mathcal{L}_\mathbf{KEC}^m(\mathbf{P})\\).
+
+In addition to the axioms (A1), (A2) and rules (R1), (R2) from \\(\mathbf{K(m)}\\) and the axioms (A3)-(A5) from \\(\mathbf{S5(m)}\\), we have the following axioms and rule for the E- and C- operators:
+- A6. \\(E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)\\)
+- A7. \\(C\varphi \ra \varphi\\)
+- A8. \\(C\varphi \ra EC\varphi\\)
+- A9. \\((C\varphi \land C(\varphi \ra \psi)) \ra C\psi\\)
+- A10. \\(C(\varphi \ra E\varphi) \ra (\varphi \ra C\varphi)\\)
+- R3. \dfrac{\varphi}{C\varphi}}
+
+Then, we define 
+\mathbf{KEC(m)} &= \mathbf{K(m)} + (A6)-(A10) + (R3)\\
+\mathbf{S5EC(m)} &= \mathbf{S5(m)} + (A6)-(A10) + (R3)
+
+Furthermore, we extend the system with two more derived rules, both of which are provable in \\(\mathbf{KEC(m)}\\):
 
 Inline math:
 
