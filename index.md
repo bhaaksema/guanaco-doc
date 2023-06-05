@@ -80,12 +80,12 @@ We hebben hier ook een iets andere definitie voor common knowledge, aangezien he
 We can extend our logics \\(\mathbf{S5(m)}\\) and \\(\mathbf{S5EC(m)}\\) with one more operator: public announcement. The languages \\(\mathcal{L}_\mathbf{S5}^m(\mathbf{P})\\) and \\(\mathcal{L}_\mathbf{S5EC}^m(\mathbf{P})\\) extended by the operator \\(\[\]\\) are denoted \\(\mathcal{L}_\mathbf{S5[]}^m(\mathbf{P})\\) and \\(\mathcal{L}_\mathbf{S5EC[]}^m(\mathbf{P})\\) respectively. They are the smallest sets closed under the rules discussed for \\(\mathbf{S5(m)}\\) and \\(\mathbf{S5EC(m)}\\) and additionally:
 5. If \\(\varphi, \psi \in \mathcal{L}_{\mathbf{S5\[\]}}^m(\mathbf{P})/\mathcal{L}_\mathbf{S5EC\[\]}^m(\mathbf{P})\\), then \\(\[\varphi\]\psi \in \mathcal{L}_\mathbf{S5\[\]}^m(\mathbf{P})/\mathcal{L}_\mathbf{S5EC\[\]}^m(\mathbf{P})\\) 
 
-For the axiom system \\(\mathbf{S5\[\](m)}\\), in addition to the axioms (A1)-(A5) and rules (R1), (R2) from \\(\mathbf{S5(m)}\\) we have the following axioms for the \[\]-operator:
-- A11. \\(\[\varphi\]p \leftrightarrow (\varphi \rightarrow p)\\)
-- A12. \\(\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi)\\)
-- A13. \\(\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi)\\)
-- A14. \\(\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi)\\)
-- A15 \\(\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi\\)
+For the axiom system \\( \mathbf{S5\[\](m)} \\), in addition to the axioms (A1)-(A5) and rules (R1), (R2) from \\(\mathbf{S5(m)}\\) we have the following axioms for the \[\]-operator:
+- A11. \\( \[\varphi\]p \leftrightarrow (\varphi \rightarrow p) \\)
+- A12. \\( \[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) \\)
+- A13. \\( \[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) \\)
+- A14. \\( \[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) \\)
+- A15 \\( \[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi \\)
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
 For the axiom system \\(\mathbf{S5EC\[\](m)}\\), in addition to the axioms (A1)-(A5) and rules (R1), (R2) from \\(\mathbf{S5(m)}\\), the axioms (A6)-(A10) from \\(\mathbf{S5EC(m)}\\) and the axioms (A11)-(A15) from \\(\mathbf{S5\[\](m)}\\) we have the following axioms and rules for the \[\]-operator:
