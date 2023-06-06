@@ -20,7 +20,7 @@ Writing syntactical proofs can be very hard, especially when one hasn't seen the
 
 ## Syntactic proofs
 
-Syntactic proofs are done using axiom systems. An axiom system S is a set of axioms and derivation rules. Given a formula $\varphi$, if we want to show that $\varphi$ is S-provable, we have to give a derivation. A derivation of a formula $\varphi$ is a finite sequence of formulas $\varphi_1, \varphi_2, \dots, \varphi_n=\varphi$, where each $\varphi_i$, for $1 \leq i \leq n$, is either an instance of one of the axioms, or the conclusion of a derivation rule, of which the premises have been derived already, i.e. they appear as $\varphi_j$ in the sequence with $j < i$. When we can deriva an epsitemic formula $\varphi$ using the axioms and derivation rules of S, we write $S \vdash \varphi$. In this case, $\varphi$ is called an S-theorem. In this section, we discuss the axiom sytsems K, S5, KEC, S5EC, and moreover the latter two extended with public announcement.
+Syntactic proofs are done using axiom systems. An axiom system $\Gamma$ is a set of axioms and derivation rules. Given a formula $\varphi$, if we want to show that $\varphi$ is $\Gamma$-provable, we have to give a derivation. A derivation of a formula $\varphi$ is a finite sequence of formulas $\varphi_1, \varphi_2, \dots, \varphi_n=\varphi$, where each $\varphi_i$, for $1 \leq i \leq n$, is either an instance of one of the axioms, or the conclusion of a derivation rule, of which the premises have been derived already, i.e. they appear as $\varphi_j$ in the sequence with $j < i$. When we can deriva an epsitemic formula $\varphi$ using the axioms and derivation rules of $\Gamma$, we write $\Gamma \vdash \varphi$. In this case, $\varphi$ is called a $\Gamma$-theorem. In this section, we discuss the axiom sytsems K, S5, KEC, S5EC, and moreover the latter two extended with public announcement.
 
 ### The logic K(m)
 
@@ -47,7 +47,7 @@ The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = 
 - R1. $\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi} \quad $ *Modus Ponens*.
 - R2. $\dfrac{\varphi}{K_i\varphi}$ $(i = 1,\dots, m) \quad $ *Necessitation*.
 
-Using these axioms and derivation rules, we are able to derive all provable formulas in $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$. However, in order to make these type of proofs both shorter and easier, we've implemented some extra rules, which are all derivable in $\mathbf{K(m)}$.
+Using these axioms and derivation rules, we are able to derive all provable formulas in $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$. However, in order to make these types of proofs both shorter and easier, we've implemented some extra rules, which are all derivable in $\mathbf{K(m)}$.
 
 <!--- En dan hier die hele lijst, maar dat weet ik echt niet hoe ik dat mooi hierin krijg --->
 
