@@ -20,6 +20,8 @@ Writing syntactical proofs can be very hard, especially when one hasn't seen the
 
 ## Syntactic proofs
 
+Syntactic proofs are done using axiom systems. An axiom system S is a set of axioms and derivation rules. Given a formula $\varphi$, if we want to show that $\varphi$ is S-provable, we have to give a derivation. A derivation of a formula $\varphi$ is a finite sequence of formulas $\varphi_1, \varphi_2, \dots, \varphi_n=\varphi$, where each $\varphi_i$, for $1 \leq i \leq n$, is either an instance of one of the axioms, or the conclusion of a derivation rule, of which the premises have been derived already, i.e. they appear as $\varphi_j$ in the sequence with $j < i$. When we can deriva an epsitemic formula $\varphi$ using the axioms and derivation rules of S, we write $S \vdash \varphi$. In this case, $\varphi$ is called an S-theorem. In this section, we discuss the axiom sytsems K, S5, KEC, S5EC, and moreover the latter two extended with public announcement.
+
 ### The logic K(m)
 
 #### The language: Epistemic Formulas
