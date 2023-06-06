@@ -14,29 +14,15 @@ description: Bottom-up Syntactic Proof Guide
 
 ## Introduction
 
+Writing syntactical proofs can be very hard, especially when one hasn't seen them before. Students are having a hard time coming up with which axioms to start off their proof, and since there are a lot of different rules you can apply after each line, this creates endless possible derivations. A good tactic for these kinds of proofs is to work from the desired formula up to see which rules could have been applied to get to the desired formula. The tool we've created helps people to determine which rules can be applied and to decide whether these rules have been applied correctly.
+
 ## Overview
 
 ## Syntactic proofs
 
-## Implementation
+### The logic K(m)
 
-## User's Guide
-
-## Results
-
-## Conclusion
-
-## Discussion
-
-## References
-
-## The Syntactic Proof Guide
-
-Writing syntactical proofs can be very hard, especially when one hasn't seen them before. Students are having a hard time coming up with which axioms to start off their proof, and since there are a lot of different rules you can apply after each line, this creates endless possible derivations. A good tactic for these kinds of proofs is to work from the desired formula up to see which rules could have been applied to get to the desired formula. The tool we've created helps people to determine which rules can be applied and to decide whether these rules have been applied correctly.
-
-## The logic K(m)
-
-### The language: Epistemic Formulas
+#### The language: Epistemic Formulas
 
 Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n \in \mathbb{N} \rbrace $. Let $\mathbf{A}$ be a set of m 'agents'; $\mathbf{A} = \lbrace 1, \dots, m \rbrace $. The set $\mathcal{L}_\mathbf{K}^m(\mathbf{P})$ of epistemic formulas $\varphi, \psi, \dots$ over $\mathbf{A}$ is the smallest set closed under:
 
@@ -46,7 +32,7 @@ Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n 
 
 Moreover, let $\varphi \lor \psi, \varphi \rightarrow \psi$ and $\varphi \leftrightarrow \psi$ be abbreviations for $\lnot(\lnot\varphi \land \lnot \psi)$, $\lnot \varphi \lor \psi$ and $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$ respectively. Additionally, we use the abbreviation $M_i\varphi$ for $\lnot K_i \lnot \varphi$.
 
-### The Axiom System K(m)
+#### The Axiom System K(m)
 
 The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
 
@@ -63,14 +49,14 @@ Using these axioms and derivation rules, we are able to derive all provable form
 
 <!--- En dan hier die hele lijst, maar dat weet ik echt niet hoe ik dat mooi hierin krijg --->
 
-## The Logic S5(m)
+### The Logic S5(m)
 
 First note that $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) = \mathcal{L}^m_{\mathbf{S5}}(\mathbf{P})$. In order to have a more complete image of knowledge and its properties, we extend the logic $\mathbf{K(m)}$ with some more axioms and rules. This gives us the axiom system $\mathbf{S5(m)}$, consisting of the axioms (A1),(A2), the rules (R1), (R2) and:
 - A3. $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$
 - A4. $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$
 - A5. $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$
 
-## Common Knowledge: The logics KEC(m) and S5EC(m)
+### Common Knowledge: The logics KEC(m) and S5EC(m)
 
 We can extend the logics $\mathbf{K(m)}$ and $\mathbf{S5(m)}$ with two more operators, E and C. The languages $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$ and $\mathcal{L}^m_{\mathbf{S5}}(\mathbf{P})$ extended by the operators E and C are denoted $\mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$ and $\mathcal{L}^m_{\mathbf{S5EC}}(\mathbf{P})$ respectively. They are the smallest sets closed under:
 
@@ -97,7 +83,7 @@ Furthermore, we extend the system with two more derived rules, both of which are
 
 <!--- Hier de twee rules voor E en C --->
 
-## Public Announcement: The Logics S5\[\](m) and KEC\[\](m) 
+### Public Announcement: The Logics S5\[\](m) and KEC\[\](m) 
 <!---Hier nog betere namen voor verzinnen. We hebben hier ook een iets andere definitie voor common knowledge, aangezien het hier ook per agent kan verschillen, dus daar moeten we nog even naar kijken --->
 
 We can extend our logics $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ with one more operator: public announcement. The languages $\mathcal{L}^m_\mathbf{S5}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC}(\mathbf{P})$ extended by the operator $\[\]$ are denoted $\mathcal{L}^m_\mathbf{S5[]}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC[]}(\mathbf{P})$ respectively. They are the smallest sets closed under the rules discussed for $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ and additionally:
@@ -117,3 +103,21 @@ For the axiom system $\mathbf{S5EC\[\](m)}$, in addition to the axioms (A1)-(A5)
 - A18. $C_i(\varphi \rightarrow E_i\varphi) \rightarrow (\varphi \rightarrow C_i\varphi)$
 - R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
 - R5. <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
+
+## Implementation
+
+## User's Guide
+
+## Results
+
+## Conclusion
+
+## Discussion
+
+## References
+
+## The Syntactic Proof Guide
+
+
+
+
