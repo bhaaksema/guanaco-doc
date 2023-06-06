@@ -99,10 +99,10 @@ For the axiom system $ \mathbf{S5\[\](m)} $, in addition to the axioms (A1)-(A5)
 - A15 $ \[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
-For the axiom system $\mathbf{S5EC\[\](m)}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{S5\[\](m)}$ we have the following axioms and rules for the \[\]-operator:
-- A16. $C_i(\varphi \rightarrow \psi) \rightarrow (C_i \varphi \rightarrow C_i \psi)$
-- A17. $C_i\varphi \rightarrow (\varphi \land E_iC_i\varphi)$
-- A18. $C_i(\varphi \rightarrow E_i\varphi) \rightarrow (\varphi \rightarrow C_i\varphi)$
+For the axiom system $\mathbf{S5EC\[\](m)}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{S5\[\](m)}$ we have the following axioms and rules for the \[\]-operator, where $I \subseteq \lbrace 1, \dots, n \rbrace$:
+- A16. $C_I(\varphi \rightarrow \psi) \rightarrow (C_I \varphi \rightarrow C_I \psi)$
+- A17. $C_I\varphi \rightarrow (\varphi \land E_IC_I\varphi)$
+- A18. $C_I(\varphi \rightarrow E_I\varphi) \rightarrow (\varphi \rightarrow C_I\varphi)$
 - R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
 - R5. <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
 
