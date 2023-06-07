@@ -88,13 +88,13 @@ Furthermore, we extend the system with two more derived rules, both of which are
 
 <!--- Hier de twee rules voor E en C --->
 
-### Public Announcement: The Logics S5\[\](m) and KEC\[\](m) 
+### Public Announcement: The Logics PA and PAC 
 <!---Hier nog betere namen voor verzinnen. We hebben hier ook een iets andere definitie voor common knowledge, aangezien het hier ook per agent kan verschillen, dus daar moeten we nog even naar kijken --->
 
-We can extend our logics $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ with one more operator: public announcement. The languages $\mathcal{L}^m_\mathbf{S5}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC}(\mathbf{P})$ extended by the operator $\[\]$ are denoted $\mathcal{L}^m_\mathbf{S5[]}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC[]}(\mathbf{P})$ respectively. They are the smallest sets closed under the rules discussed for $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ and additionally:
-5. If $\varphi, \psi \in \mathcal{L}^m_{\mathbf{S5\[\]}}(\mathbf{P})/\mathcal{L}^m_\mathbf{S5EC\[\]}(\mathbf{P})$, then $\[\varphi\]\psi \in \mathcal{L}^m_\mathbf{S5\[\]}(\mathbf{P})/\mathcal{L}^m_\mathbf{S5EC\[\]}(\mathbf{P})$ 
+We can extend our logics $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ with one more operator: public announcement. The languages $\mathcal{L}^m_\mathbf{S5}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC}(\mathbf{P})$ extended by the operator $\[\]$ are denoted $\mathcal{L}^m_]mathbf{PA}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$ respectively. They are the smallest sets closed under the rules discussed for $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ and additionally:
+5. If $\varphi, \psi \in \mathcal{L}^m_\mathbf{PA}(\mathbf{P})/\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$, then $\[\varphi\]\psi \in \mathcal{L}^m_\mathbf{PA}(\mathbf{P})/\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$ 
 
-For the axiom system $ \mathbf{S5\[\](m)} $, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$ we have the following axioms for the \[\]-operator:
+For the axiom system $ \mathbf{PA} $, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$ we have the following axioms for the \[\]-operator:
 - A11. $ \[\varphi\]p \leftrightarrow (\varphi \rightarrow p) $
 - A12. $ \[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $
 - A13. $ \[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $
@@ -102,7 +102,7 @@ For the axiom system $ \mathbf{S5\[\](m)} $, in addition to the axioms (A1)-(A5)
 - A15 $ \[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
-For the axiom system $\mathbf{S5EC\[\](m)}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{S5\[\](m)}$ we have the following axioms and rules for the \[\]-operator, where $I \subseteq \lbrace 1, \dots, n \rbrace$:
+For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}}$ we have the following axioms and rules for the \[\]-operator, where $I \subseteq \lbrace 1, \dots, m \rbrace$:
 - A16. $C_I(\varphi \rightarrow \psi) \rightarrow (C_I \varphi \rightarrow C_I \psi)$
 - A17. $C_I\varphi \rightarrow (\varphi \land E_IC_I\varphi)$
 - A18. $C_I(\varphi \rightarrow E_I\varphi) \rightarrow (\varphi \rightarrow C_I\varphi)$
