@@ -56,7 +56,7 @@ Using these axioms and derivation rules, we are able to derive all provable form
 
 ### The Logic S5(m)
 
-First note that $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) = \mathcal{L}^m_{\mathbf{S5}}(\mathbf{P})$. In order to have a more complete image of knowledge and its properties, we extend the logic $\mathbf{K(m)}$ with some more axioms and rules. This gives us the axiom system $\mathbf{S5(m)}$, consisting of the axioms (A1),(A2), the rules (R1), (R2) and:
+In order to have a more complete image of knowledge and its properties, we extend the logic $\mathbf{K(m)}$ with some more axioms and rules. Since $\mathbf{S5(m)}$ does not contain more operators than $\mathbf{K(m)}, we have that $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) = \mathcal{L}^m_{\mathbf{S5}}(\mathbf{P})$. These new axioms and rules give us the axiom system $\mathbf{S5(m)}$, consisting of the axioms (A1),(A2), the rules (R1), (R2) and:
 - A3. $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$
 - A4. $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$
 - A5. $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$
