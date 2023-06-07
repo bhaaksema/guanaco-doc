@@ -4,9 +4,20 @@ import { useState } from 'react'
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 
+import { parse } from './Parser'
+
 function App() {
   const rules = ["A1", "A2", "A3"]
-  const [rows, setRows] = useState(["hello", "world"])
+  const [rows, setRows] = useState([])
+  if (rows.length === 0) setRows(["hello", "world"])
+
+  // DEBUG
+  try {
+    parse("p & (K{1} q)")
+    console.log("success")
+  } catch (e) {
+    console.log(e)
+  }
 
   return (
     <Container className="d-flex justify-content-center">

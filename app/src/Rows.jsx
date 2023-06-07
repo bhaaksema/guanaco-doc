@@ -8,7 +8,7 @@ export default function Rows({ rows, rules }) {
       {rows.map((formula, index) => (
         <InputGroup as="li" key={index} className="mb-1">
           <InputGroup.Text id="line-number">{index + 1}.</InputGroup.Text>
-          <Form.Control id="formula" placeholder={formula} className="w-50" />
+          <Form.Control id="formula" placeholder="enter formula" defaultValue={formula} className="w-50" />
           <Form.Select className="w-10">
             <option>Rule</option>
             {rules.map((rule) => (<option key={rule}>{rule}</option>))}
