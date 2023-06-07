@@ -1,27 +1,17 @@
-import Rows from './Rows'
-
 import { useState } from 'react'
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 
-import { parse } from './Parser'
+import Rows from './Rows'
 
 function App() {
   const rules = ["A1", "A2", "A3"]
   const [rows, setRows] = useState([])
-  if (rows.length === 0) setRows(["hello", "world"])
-
-  // DEBUG
-  try {
-    parse("p & (K{1} q)")
-    console.log("success")
-  } catch (e) {
-    console.log(e)
-  }
+  if (rows.length === 0) setRows([""])
 
   return (
     <Container className="d-flex justify-content-center">
-      <Card className="mt-5" style={{ width: '25rem' }}>
+      <Card className="mt-5" style={{ width: '30rem' }}>
         <Card.Body>
           <Card.Title>Bottom-up Syntactic Proof Guide</Card.Title>
           <Card.Text>

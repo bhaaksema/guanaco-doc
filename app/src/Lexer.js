@@ -6,6 +6,7 @@ const FormVar = createToken({ name: "FormVar", pattern: /[A-Z]\w*/ })
 
 // Operators
 const And = createToken({ name: "And", pattern: /&/ })
+const Or = createToken({ name: "Or", pattern: /\|/ })
 const Not = createToken({ name: "Not", pattern: /!/ })
 const K = createToken({ name: "K", pattern: /K/, longer_alt: FormVar })
 const LparAgent = createToken({ name: "LparAgent", pattern: /{/ })
@@ -25,6 +26,7 @@ let tokensByPriority = [
   K,
   Agent,
   And,
+  Or,
   Not,
   Lpar,
   Rpar,
