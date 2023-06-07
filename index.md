@@ -102,7 +102,7 @@ For the axiom system $ \mathbf{PA} $, in addition to the axioms (A1)-(A5) and ru
 - A15 $ \[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
-For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}}$ we have the following axioms and rules for the \[\]-operator, where $I \subseteq \lbrace 1, \dots, m \rbrace$:
+For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following axioms and rules for the \[\]-operator, where $I \subseteq \lbrace 1, \dots, m \rbrace$:
 - A16. $C_I(\varphi \rightarrow \psi) \rightarrow (C_I \varphi \rightarrow C_I \psi)$
 - A17. $C_I\varphi \rightarrow (\varphi \land E_IC_I\varphi)$
 - A18. $C_I(\varphi \rightarrow E_I\varphi) \rightarrow (\varphi \rightarrow C_I\varphi)$
