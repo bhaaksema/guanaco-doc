@@ -7,8 +7,11 @@ const FormVar = createToken({ name: "FormVar", pattern: /[A-Z]\w*/ })
 // Operators
 const And = createToken({ name: "And", pattern: /&/ })
 const Or = createToken({ name: "Or", pattern: /\|/ })
+const To = createToken({ name: "To", pattern: /->/ })
+const Equiv = createToken({ name: "Equiv", pattern: /<->/ })
 const Not = createToken({ name: "Not", pattern: /!/ })
 const K = createToken({ name: "K", pattern: /K/, longer_alt: FormVar })
+const M = createToken({ name: "M", pattern: /M/, longer_alt: FormVar })
 const LparAgent = createToken({ name: "LparAgent", pattern: /{/ })
 const Agent = createToken({ name: "Agent", pattern: /0|[1-9]\d*/ })
 const RparAgent = createToken({ name: "RparAgent", pattern: /}/ })
@@ -23,17 +26,10 @@ const WhiteSpace = createToken({ name: "WhiteSpace", pattern: /\s+/, group: Lexe
 // Whitespace first increases lexer speed
 let tokensByPriority = [
   WhiteSpace,
-  K,
-  Agent,
-  And,
-  Or,
-  Not,
-  Lpar,
-  Rpar,
-  LparAgent,
-  RparAgent,
-  FormVar,
-  PropConst
+  K, M, Agent,
+  Not, And, Or, To, Equiv,
+  Lpar, Rpar, LparAgent, RparAgent,
+  FormVar, PropConst
 ]
 
 const FormulaLexer = new Lexer(tokensByPriority, {
