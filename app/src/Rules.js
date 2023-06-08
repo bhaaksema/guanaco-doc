@@ -53,24 +53,30 @@ function checkRuleFormula(formula, rule, agents, holes) {
   }
 }
 
-// (K{0} Phi & K{0} (Phi -> Psi)) -> K{0} Psi
-let A2 = {
-  name: "A2", type: "axiom", agents: 1, holes: 2,
-  formula: {
-    type: "implication",
-    left: {
-      type: "conjunction",
-      formulas: [
-        { type: "K", agent: 0, formula: { type: "hole", hole: 0 } },
-        {
-          type: "K", agent: 0, formula: {
-            type: "implication", left: { type: "hole", hole: 0 }, right: { type: "hole", hole: 1 }
+export let rulesList = [
+  // (K{0} Phi & K{0} (Phi -> Psi)) -> K{0} Psi
+  {
+    name: "A2", type: "axiom", agents: 1, holes: 2,
+    formula: {
+      type: "implication",
+      left: {
+        type: "conjunction",
+        formulas: [
+          { type: "K", agent: 0, formula: { type: "hole", hole: 0 } },
+          {
+            type: "K", agent: 0, formula: {
+              type: "implication", left: { type: "hole", hole: 0 }, right: { type: "hole", hole: 1 }
+            }
           }
-        }
-      ]
-    },
-    right: { type: "K", agent: 0, formula: { type: "hole", hole: 1 } }
+        ]
+      },
+      right: { type: "K", agent: 0, formula: { type: "hole", hole: 1 } }
+    }
+  },
+  {
+    name: "R1", type: "rule", agents: 0, holes: 2
+  },
+  {
+    name: "R2", type: "rule", agents: 1, holes: 1
   }
-}
-
-export let rulesList = [A2]
+]

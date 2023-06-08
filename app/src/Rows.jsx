@@ -1,49 +1,53 @@
 import { useState } from 'react';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import { parse } from './Parser'
 import { checkRule, rulesList } from './Rules';
 
-export default function Rows({ rows, rules }) {
-  const [validated, setValidated] = useState(false);
+export default function Rows() {
+  const [validated, setValidated] = useState(false)
+  let rows = [""]
 
-  function ruleHandler(event, ast) {
-    event.target.nextSibling.setCustomValidity("")
-
-    if (!checkRule(ast, rulesList[0])) {
-      event.target.nextSibling.setCustomValidity("invalid rule")
-    }
-  }
-
-  function handler(event) {
+  function textHandler(event) {
     if (event.target.value === "") {
-      setValidated(false)
-      return
+      setValidated(false); return
     }
 
     try {
-      let ast = parse(event.target.value)
-      ruleHandler(event, ast)
+      parse(event.target.value)
       event.target.setCustomValidity("")
     } catch (e) {
       event.target.setCustomValidity("invalid formula")
-      event.target.nextSibling.setCustomValidity("invalid formula")
     }
     setValidated(true)
   }
 
+  function ruleHandler(event) {
+    try {
+      const ast = parse(event.target.previousSibling.value)
+      if (checkRule(ast, rulesList[0])) {
+        event.target.setCustomValidity("")
+      } else {
+        event.target.setCustomValidity("invalid rule")
+      }
+    } catch (e) {
+      event.target.setCustomValidity("invalid formula")
+    }
+  }
+
   return (
-    <ListGroup as="ol" >
+    <ListGroup as="ol" style={{ listStyleType: "none" }} >
       {rows.map((formula, index) => (
         <Form as="li" key={index} className="mb-1" validated={validated} >
           <InputGroup>
             <InputGroup.Text id="line-number">{index + 1}.</InputGroup.Text>
-            <Form.Control id="formula" placeholder="enter formula" defaultValue={formula} onChange={handler} className="w-50" />
-            <Form.Select className="w-10">
-              <option>Rule</option>
-              {rules.map((rule) => (<option key={rule}>{rule}</option>))}
+            <Form.Control id="formula" placeholder="enter formula"
+              defaultValue={formula} onChange={textHandler} className="w-50" />
+            <Form.Select onChange={ruleHandler} defaultValue={0}>
+              <option disabled value={0}>Rule</option>
+              {rulesList.map((rule, index) => (<option key={index}>{rule.name}</option>))}
             </Form.Select>
           </InputGroup>
         </Form>
