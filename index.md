@@ -63,20 +63,21 @@ In order to have a more complete image of knowledge and its properties, we exten
 
 ### Common Knowledge: The logics KEC(m) and S5EC(m)
 
-We can extend the logics $\mathbf{K(m)}$ and $\mathbf{S5(m)}$ with two more operators, E and C. The languages $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$ and $\mathcal{L}^m_{\mathbf{S5}}(\mathbf{P})$ extended by the operators E and C are denoted $\mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$ and $\mathcal{L}^m_{\mathbf{S5EC}}(\mathbf{P})$ respectively. They are the smallest sets closed under:
+We can extend the logics $\mathbf{K_{(m)}}$ and $\mathbf{S5_{(m)}}$ with two more operators, E and C. We define them as follows: For any group B of agents from $\mathbf{A}$, "Everybody in B knows $\varphi$", written $E_B\varphi$, is defined as the conjunction of all individuals in B knowing $\varphi$, i.e. $E_B\varphi = \bigwedge_{b \in B} K_b\varphi$. If $B=\mathbf{A}$, we just write $E$. We then define common knowledge of a formula $\varphi$ for a subset $B \subseteq \mathbf{A}$ as $C_B\varphi = \varphi \land E_B\varphi \land E_BE_B\varphi \land \dots = \bigwedge_{n=0}^{\infty} E_B^n\varphi$. Again, if $B=\mathbf{A}$, we just write $C$.
 
+The languages $\mathcal{L}^m_\mathbf{K}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5}(\mathbf{P})$ extended by the operators E and C are denoted $\mathcal{L}^m_\mathbf{KEC}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC}(\mathbf{P})$ respectively. They are the smallest sets closed under:
 1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$.
 2. If $ \varphi, \psi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P}) $.
 3. If $ \varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, then $ K_i\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
-4. If $\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, then $E\varphi, C\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$.
+4. If $\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, then $E_B\varphi, C_B\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$.
 
 In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ and the axioms (A3)-(A5) from $\mathbf{S5(m)}$, we have the following axioms and rule for the E- and C- operators:
 - A6. $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$
-- A7. $C\varphi \rightarrow \varphi$
-- A8. $C\varphi \rightarrow EC\varphi$
-- A9. $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$
-- A10. $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$
-- R3. $\dfrac{\varphi}{C\varphi}$
+- A7. $C_B\varphi \rightarrow \varphi$
+- A8. $C_B\varphi \rightarrow E_BC_B\varphi$
+- A9. $(C_B\varphi \land C_B(\varphi \rightarrow \psi)) \rightarrow C_B\psi$
+- A10. $C_B(\varphi \rightarrow E_B\varphi) \rightarrow (\varphi \rightarrow C_B\varphi)$
+- R3. $\dfrac{\varphi}{C_B\varphi}$
 
 Then, we define 
 
@@ -89,7 +90,6 @@ Furthermore, we extend the system with two more derived rules, both of which are
 <!--- Hier de twee rules voor E en C --->
 
 ### Public Announcement: The Logics PA and PAC 
-<!---Hier nog betere namen voor verzinnen. We hebben hier ook een iets andere definitie voor common knowledge, aangezien het hier ook per agent kan verschillen, dus daar moeten we nog even naar kijken --->
 
 We can extend our logics $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ with one more operator: public announcement. The languages $\mathcal{L}^m_\mathbf{S5}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC}(\mathbf{P})$ extended by the operator $\[\]$ are denoted $\mathcal{L}^m_]mathbf{PA}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$ respectively. They are the smallest sets closed under the rules discussed for $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ and additionally:
 5. If $\varphi, \psi \in \mathcal{L}^m_\mathbf{PA}(\mathbf{P})/\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$, then $\[\varphi\]\psi \in \mathcal{L}^m_\mathbf{PA}(\mathbf{P})/\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$ 
@@ -102,10 +102,7 @@ For the axiom system $ \mathbf{PA} $, in addition to the axioms (A1)-(A5) and ru
 - A15 $ \[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
-For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following axioms and rules for the \[\]-operator, where $I \subseteq \lbrace 1, \dots, m \rbrace$:
-- A16. $C_I(\varphi \rightarrow \psi) \rightarrow (C_I \varphi \rightarrow C_I \psi)$
-- A17. $C_I\varphi \rightarrow (\varphi \land E_IC_I\varphi)$
-- A18. $C_I(\varphi \rightarrow E_I\varphi) \rightarrow (\varphi \rightarrow C_I\varphi)$
+For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following rules for the \[\]-operator, where $I \subseteq \lbrace 1, \dots, m \rbrace$:
 - R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
 - R5. <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
 
