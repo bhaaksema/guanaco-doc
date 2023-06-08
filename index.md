@@ -102,7 +102,7 @@ For the axiom system $ \mathbf{PA} $, in addition to the axioms (A1)-(A5) and ru
 - A15 $ \[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
-For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following rules for the \[\]-operator, where $I \subseteq \lbrace 1, \dots, m \rbrace$:
+For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following rules for the \[\]-operator:
 - R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
 - R5. <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
 
