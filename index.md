@@ -1,16 +1,9 @@
 ---
 title: Guanaco
-description: Bottom-up Syntactic Proof Guide
+description: Logical Aspects of Multi-Agent Systems
 ---
 
-<script>
-  MathJax = { tex: { inlineMath: [['$', '$']] } };
-</script>
-<script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
-
-# Logical Aspects of Multi-Agent Systems
+# Guanaco: A Syntactic Proof Guide
 
 ## Introduction
 
@@ -18,32 +11,26 @@ In this project, we present a program that helps users write syntactic proofs. W
 
 The strategy that Guanaco employs is building proofs _bottom-up_. This means that users start with the formula that they wish to derive. If this formula can only be derive by a rule, then Guanaco exploits the properties of this formula to extract new formulas the relevant rule is applied to. If the formula is an instantiation of an axiom, no new formulas are extracted. The same process is then applied until each formula has a justification and no new ones are produced. At that point, the proof is complete. We explain this bottom-up strategy in detail further on this website.
 
+The intended goal of this program is mostly educational. We hope that students will be able to use the tool to guide them with making syntactic proofs correctly, and we hope that the tool aids teachers with teaching syntactic proofs. To fully facilitate this kind of use, we may need to revise the program in the future with usability in mind. For now, we aim to make the tool work correctly for the variety of logics taught in the course _Logical Aspects of Multi-Agent Systems_.
+
 ### Overview
 The website is structured as follows. Under _Syntactic Proofs_, we briefly explain syntactic proofs and what they look like. We discuss the rules and axioms of the logics $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. We also explain how the axiomatization of $\mathbf{PA}$ and $\mathbf{PAC}$ in Van Ditmarsch et al. (2008) can be used in the syntactic proof style of Meyer \& Hoek (1995). Under _Implementation_, we discuss Guanaco in detail. We explain the bottom-up strategy that Guanaco employs. We then discuss the technical details of the program. We end with a short demonstration. Under _User's Guide_, we provide a concise guide to Guanaco. Under _Results_, we provide multiple examples of derivations made with Guanaco. Moreover, we test Guanaco by entering syntactic proofs provided in Meyer \& Hoek (1995) to show that they are indeed correct. Finally, we wrap up our presentation under _Conclusion_, discuss Guanaco's limitations and perspectives for further research under _Discussion_ and provide a list of the relevant literature under _References_.
 
 ## Syntactic proofs
 
-Syntactic proofs are done using axiom systems. An axiom system $\Gamma$ is a set of axioms and derivation rules. Given a formula $\varphi$, if we want to show that $\varphi$ is $\Gamma$-provable, we have to give a derivation. A derivation of a formula $\varphi$ is a finite sequence of formulas $\varphi_1, \varphi_2, \dots, \varphi_n=\varphi$, where each $\varphi_i$, for $1 \leq i \leq n$, is either an instance of one of the axioms or the conclusion of a derivation rule, of which the premises have been derived already, i.e. they appear as $\varphi_j$ in the sequence with $j < i$. When we can derive an epistemic formula $\varphi$ using the axioms and derivation rules of $\Gamma$, we write $\Gamma \vdash \varphi$. In this case, $\varphi$ is called a $\Gamma$-theorem.
+Syntactic proofs are done using axiom systems. An axiom system $\Gamma$ is a set of axioms and derivation rules. Given a formula $\varphi$, if we want to show that $\varphi$ is $\Gamma$-provable, we have to give a derivation. A derivation of a formula $\varphi$ is a finite sequence of formulas $\varphi_1, \varphi_2, \dots, \varphi_n=\varphi$, where each $\varphi_i$ for $1 \leq i \leq n$ is either an instance of one of the axioms or the conclusion of a derivation rule of which the premises have been derived already, i.e. the premises appear as $\varphi_j$ in the sequence with $j < i$. When we can derive an epistemic formula $\varphi$ using the axioms and derivation rules of $\Gamma$, we write $\Gamma \vdash \varphi$. In this case, $\varphi$ is called a $\Gamma$-theorem.
 
-Here is a table test.
+Visually, a syntactic proof is presented like this:
 
-<style>
-table {
-    border-collapse: collapse;
-}
-table, th, td {
-   border: 1px solid black;
-}
-blockquote {
-    border-left: solid blue;
-    padding-left: 10px;
-}
-</style>
+| Line number    | Axiom system  |          | Formula     | Justification |
+| :------------: | :-----------: | :------: | :---------: | :-----------: |  
+| $1$            | $\Gamma$      | $\vdash$ | $\varphi_1$ | $An$ / $Rn$   | 
+| $...$          | $\Gamma$      | $\vdash$ | $...$       | $An$ / $Rn$   |
+| $i$            | $\Gamma$      | $\vdash$ | $\varphi_i$ | $An$ / $Rn$   |
+| $...$          | $\Gamma$      | $\vdash$ | $...$       | $An$ / $Rn$   |
+| $n$            | $\Gamma$      | $\vdash$ | $\varphi_n$ | $An$ / $Rn$   |
 
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
+So each member of the sequence of formulas has its own line, specifying the used axiom system $\Gamma$, the formula itself and the justification for that formula (an axiom $An$ or rule $Rn$ of $\Gamma$). If the justification is a rule, then the premises to which the rule is applied are cited too.
 
 ### The logic K(m)
 
