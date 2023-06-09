@@ -27,6 +27,19 @@ Syntactic proofs are done using axiom systems. An axiom system $\Gamma$ is a set
 
 Here is a table test.
 
+<style>
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+   border: 1px solid black;
+}
+blockquote {
+    border-left: solid blue;
+    padding-left: 10px;
+}
+</style>
+
 | Syntax | Description |
 | ----------- | ----------- |
 | Header | Title |
