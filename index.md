@@ -31,27 +31,52 @@ Visually, a syntactic proof is presented like this:
 
 | Line number    | Axiom system  |          | Formula     | Justification |
 | :------------: | :-----------: | :------: | :---------: | :-----------: |  
-| $1$            | $\Gamma$      | $\vdash$ | $\varphi_1$ | $An$ / $Rn$   | 
-| $...$          | $\Gamma$      | $\vdash$ | $...$       | $An$ / $Rn$   |
-| $i$            | $\Gamma$      | $\vdash$ | $\varphi_i$ | $An$ / $Rn$   |
-| $...$          | $\Gamma$      | $\vdash$ | $...$       | $An$ / $Rn$   |
-| $n$            | $\Gamma$      | $\vdash$ | $\varphi_n$ | $An$ / $Rn$   |
+| $1$            | $\Gamma$      | $\vdash$ | $\varphi_1$ | $Ak$ / $Rk$   | 
+| $...$          | $\Gamma$      | $\vdash$ | $...$       | $Ak$ / $Rk$   |
+| $i$            | $\Gamma$      | $\vdash$ | $\varphi_i$ | $Ak$ / $Rk$   |
+| $...$          | $\Gamma$      | $\vdash$ | $...$       | $Ak$ / $Rk$   |
+| $n$            | $\Gamma$      | $\vdash$ | $\varphi_n$ | $Ak$ / $Rk$   |
 
-So each member of the sequence of formulas has its own line, specifying the used axiom system $\Gamma$, the formula itself and the justification for that formula (an axiom $An$ or rule $Rn$ of $\Gamma$). If the justification is a rule, then the premises to which the rule is applied are cited too.
+So each member of the sequence of formulas has its own line, specifying the used axiom system $\Gamma$, the formula itself and the justification for that formula (an axiom $Ak$ or rule $Rk$ of $\Gamma$, where $k$ is a natural number). If the justification is a rule, then the premises to which the rule is applied are cited too.
 
-### The logic K(m)
+### The language: Epistemic Formulas
 
-#### The language: Epistemic Formulas
+In syntactic proofs, each formula $\varphi$ is a formula of a _language_. In Guanaco, there are four available languages: $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$, $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$, $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ and $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$. When we present axiom systems later, we specify for which language it is an axiom system.
 
-Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n \in \mathbb{N} \rbrace $. Let $\mathbf{A}$ be a set of m 'agents'; $\mathbf{A} = \lbrace 1, \dots, m \rbrace $. The set $\mathcal{L}_\mathbf{K}^m(\mathbf{P})$ of epistemic formulas $\varphi, \psi, \dots$ over $\mathbf{A}$ is the smallest set closed under:
+Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n \in \mathbb{N} \rbrace $. Let $\mathbf{A}$ be a set of $m$ agents; $\mathbf{A} = \lbrace 1, \dots, m \rbrace $. The set $\mathcal{L}\_\mathbf{K}^m(\mathbf{P})$ of epistemic formulas $\varphi, \psi, \dots$ over $\mathbf{A}$ is the smallest set closed under:
 
-1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P})$.
-2. If $ \varphi, \psi \in \mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) $, then $ (\varphi \land \psi), \lnot \varphi \in \mathcal{L}_{\mathbf{K}}^m(\mathbf{P}) $.
-3. If $ \varphi \in \mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$, then $ K_i\varphi \in \mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
+1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$.
+2. If $\varphi, \psi \in \mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$.
+3. If $\varphi \in \mathcal{L}^m\_{\mathbf{K}}(\mathbf{P})$, then $K\_{i}\varphi \in \mathcal{L}^m\_{\mathbf{K}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
 
 Moreover, let $\varphi \lor \psi, \varphi \rightarrow \psi$ and $\varphi \leftrightarrow \psi$ be abbreviations for $\lnot(\lnot\varphi \land \lnot \psi)$, $\lnot \varphi \lor \psi$ and $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$ respectively. Additionally, we use the abbreviation $M_i\varphi$ for $\lnot K_i \lnot \varphi$.
 
-#### The Axiom System K(m)
+The language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operators $E$ and $C$. We define this language as follows: for any group B of agents from $\mathbf{A}$, "Everybody in B knows $\varphi$", written $E\_B\varphi$, is defined as the conjunction of all individuals in B knowing $\varphi$, i.e. $E\_B\varphi = \bigwedge\_{b \in B} K_b\varphi$. If $B=\mathbf{A}$, we just write $E$. We then define common knowledge of a formula $\varphi$ for a subset $B \subseteq \mathbf{A}$ as $C\_B\varphi = \varphi \land E_B\varphi \land E\_BE\_B\varphi \land \dots = {\bigwedge} \_{n=0} ^{\infty} E\_B^n\varphi$. Again, if $B=\mathbf{A}$, we just write $C$.
+
+So the language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is the smallest set closed under:
+1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$.
+2. If $\varphi, \psi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P}) $.
+3. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $K\_i\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
+4. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $E\_B\varphi, C\_B\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$.
+
+The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operator $[\phi]$. A formula $[\phi]\psi$ means "after a public announcement of $\phi$, $\psi$ holds". The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is the smallest set closed under:
+1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$.
+2. If $\varphi, \psi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P}) $.
+3. If $\varphi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, then $K\_i\varphi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
+4. If $\varphi,\psi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, then $[\phi]\psi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
+
+Now, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is an extension of $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$; it also contains the operators $E$ and $C$ as defined before. So the language $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is the smallest set closed under:
+1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$.
+2. If $\varphi, \psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$.
+3. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $K\_i\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
+4. If $\varphi,\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $[\phi]\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
+5. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $E\_B\varphi, C\_B\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$.
+
+## Axiom Systems
+
+In Guanaco, there are five logics $\Gamma$ available: $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. We present the axioms system of each of these logics below.
+
+### The logic $\mathbf{K(m)}$
 
 The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
 
@@ -61,8 +86,8 @@ The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = 
 - A2'. $K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi \rightarrow K_i \psi)$
 
 *Derivation Rules*
-- R1. $\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi} \quad $ *Modus Ponens*.
-- R2. $\dfrac{\varphi}{K_i\varphi}$ $(i = 1,\dots, m) \quad $ *Necessitation*.
+- R1. $\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi} \quad$ *Modus Ponens*.
+- R2. $\dfrac{\varphi}{K_i\varphi}$ $(i = 1,\dots, m) \quad$ *Necessitation*.
 
 Using these axioms and derivation rules, we are able to derive all provable formulas in $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$. However, in order to make these types of proofs both shorter and easier, we've implemented some extra rules, which are all derivable in $\mathbf{K(m)}$.
 
@@ -70,22 +95,14 @@ Using these axioms and derivation rules, we are able to derive all provable form
 
 ### The Logic S5(m)
 
-In order to have a more complete image of knowledge and its properties, we extend the logic $\mathbf{K(m)}$ with some more axioms. Since $\mathbf{S5(m)}$ does not contain more operators than $\mathbf{K(m)}$, we have that $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) = \mathcal{L}^m_{\mathbf{S5}}(\mathbf{P})$. These new axiom give us the axiom system $\mathbf{S5(m)}$, consisting of the axioms (A1),(A2), the rules (R1), (R2) and:
+The axiom system $\mathbf{S5(m)}$ is an extension of $\mathbf{K(m)}$. The axiom system $\mathbf{S5(m)}$ consists of the axioms $(A1)$, $(A2)$, the rules $(R1)$, $(R2)$ and:
 - A3. $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$
 - A4. $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$
 - A5. $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$
 
-### Common Knowledge: The logics KEC(m) and S5EC(m)
+### Common Knowledge: The logics $\mathbf{KEC(m)}$ and $\mathbf{S5EC(m)}$
 
-We can extend the logics $\mathbf{K{(m)}}$ and $\mathbf{S5{(m)}}$ with two more operators, E and C. We define them as follows: For any group B of agents from $\mathbf{A}$, "Everybody in B knows $\varphi$", written $E_B\varphi$, is defined as the conjunction of all individuals in B knowing $\varphi$, i.e. $E_B\varphi = \bigwedge_{b \in B} K_b\varphi$. If $B=\mathbf{A}$, we just write $E$. We then define common knowledge of a formula $\varphi$ for a subset $B \subseteq \mathbf{A}$ as $C_B\varphi = \varphi \land E_B\varphi \land E_BE_B\varphi \land \dots = \bigwedge_{n=0}^{\infty} E_B^n\varphi$. Again, if $B=\mathbf{A}$, we just write $C$.
-
-The languages $\mathcal{L}^m_\mathbf{K}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5}(\mathbf{P})$ extended by the operators E and C are denoted $\mathcal{L}^m_\mathbf{KEC}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC}(\mathbf{P})$ respectively. They are the smallest sets closed under:
-1. If $ p \in \mathbf{P}$, then $p \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$.
-2. If $ \varphi, \psi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P}) $.
-3. If $ \varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, then $ K_i\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
-4. If $\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$, then $E_B\varphi, C_B\varphi \in \mathcal{L}^m_{\mathbf{KEC}}(\mathbf{P})$.
-
-In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ and the axioms (A3)-(A5) from $\mathbf{S5(m)}$, we have the following axioms and rule for the E- and C- operators:
+In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ and the axioms (A3)-(A5) from $\mathbf{S5(m)}$, we have the following axioms and rule for the $E$- and $C$- operators:
 - A6. $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$
 - A7. $C_B\varphi \rightarrow \varphi$
 - A8. $C_B\varphi \rightarrow E_BC_B\varphi$
@@ -103,22 +120,21 @@ Furthermore, we extend the system with two more derived rules, both of which are
 
 <!--- Hier de twee rules voor E en C --->
 
-### Public Announcement: The Logics PA and PAC 
+### Public Announcement Logic: The Logics $\mathbf{PA}$ and $\mathbf{PAC}$ 
 
-We can extend our logics $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ with one more operator: public announcement. The languages $\mathcal{L}^m_\mathbf{S5}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{S5EC}(\mathbf{P})$ extended by the operator $\[\]$ are denoted $\mathcal{L}^m_]mathbf{PA}(\mathbf{P})$ and $\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$ respectively. They are the smallest sets closed under the rules discussed for $\mathbf{S5(m)}$ and $\mathbf{S5EC(m)}$ and additionally:
-5. If $\varphi, \psi \in \mathcal{L}^m_\mathbf{PA}(\mathbf{P})/\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$, then $\[\varphi\]\psi \in \mathcal{L}^m_\mathbf{PA}(\mathbf{P})/\mathcal{L}^m_\mathbf{PAC}(\mathbf{P})$ 
-
-For the axiom system $ \mathbf{PA} $, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$ we have the following axioms for the \[\]-operator:
-- A11. $ \[\varphi\]p \leftrightarrow (\varphi \rightarrow p) $
-- A12. $ \[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $
-- A13. $ \[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $
-- A14. $ \[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) $
-- A15 $ \[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $
+For the axiom system $\mathbf{PA} $, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$ we have the following axioms for the \[\]-operator:
+- A11. $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p) $
+- A12. $\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $
+- A13. $\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $
+- A14. $\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) $
+- A15 $\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $
 <!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
 
 For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following rules for the \[\]-operator:
 - R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
-- R5. <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
+- R5. $\dfrac{\chi\to[\phi]\psi, \chi \wedge \phi \to E\_{B}\chi}{\chi\to[\phi]C\_B\psi}$
+
+<!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
 
 ## Implementation
 
