@@ -187,6 +187,10 @@ Note also that in Meyer & Hoek (1998), the HS rule allows for more than two prem
 But this is not problematic. If we can use HS with $n$ premises, we can also use HS with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from $\varphi \to \chi$, and $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once to all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\phi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
 So to keep things simple, we do not facilitate HS with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available.
 
+Below is a table with the rules that we aim to implement. Formulas $\chi$ are (sub)formulas of premises that need user input as described above.
+
+Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user.
+
 ### Other implementation details
 
 ### Generating syntactic proofs
