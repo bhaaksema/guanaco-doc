@@ -21,9 +21,9 @@ class FormulaParser extends EmbeddedActionsParser {
       return this.OR([
         {
           ALT: () => {
-            this.CONSUME(tv.Lpar)
+            this.CONSUME(tv.LPar)
             let formula = this.SUBRULE(this.binary)
-            this.CONSUME(tv.Rpar)
+            this.CONSUME(tv.RPar)
             return formula
           }
         },
@@ -45,7 +45,9 @@ class FormulaParser extends EmbeddedActionsParser {
     this.RULE("unary", () => {
       return this.OR([
         { ALT: () => { return this.SUBRULE(this.negation) } },
-        { ALT: () => { return this.SUBRULE(this.knowledge) } }
+        { ALT: () => { return this.SUBRULE(this.knowledge) } },
+        // { ALT: () => { return this.SUBRULE(this.common) } },
+        // { ALT: () => { return this.SUBRULE(this.announcement) } }
       ])
     })
 
@@ -87,16 +89,16 @@ class FormulaParser extends EmbeddedActionsParser {
         { ALT: () => { this.CONSUME(tv.K); return "K" } },
         { ALT: () => { this.CONSUME(tv.M); return "M" } }
       ])
-      this.CONSUME(tv.LparAgent)
+      this.CONSUME(tv.LA)
       let agent = parseInt(this.CONSUME(tv.Agent).image)
-      this.CONSUME(tv.RparAgent)
+      this.CONSUME(tv.RA)
       return { type: type, agent: agent, formula: this.SUBRULE(this.subformula) }
     })
 
     this.RULE("atom", () => {
       return this.OR([
-        { ALT: () => { return { type: "proposition", value: this.CONSUME(tv.PropConst).image } } },
-        { ALT: () => { return { type: "variable", value: this.CONSUME(tv.FormVar).image } } },
+        { ALT: () => { return { type: "proposition", value: this.CONSUME(tv.Proposition).image } } },
+        { ALT: () => { return { type: "variable", value: this.CONSUME(tv.Formula).image } } },
       ])
     })
 

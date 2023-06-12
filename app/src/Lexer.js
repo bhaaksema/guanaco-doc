@@ -1,35 +1,43 @@
 import { createToken, Lexer } from 'chevrotain';
 
-// Variables and constants
-const PropConst = createToken({ name: "PropConst", pattern: /[a-z]\w*/ })
-const FormVar = createToken({ name: "FormVar", pattern: /[A-Z]\w*/ })
+// Whitespace
+const WhiteSpace = createToken({ name: "WhiteSpace", pattern: /\s+/, group: Lexer.SKIPPED })
 
-// Operators
+// Binary operators
 const And = createToken({ name: "And", pattern: /&/ })
 const Or = createToken({ name: "Or", pattern: /\|/ })
 const To = createToken({ name: "To", pattern: /->/ })
 const Equiv = createToken({ name: "Equiv", pattern: /<->/ })
+
+// Unary operators
 const Not = createToken({ name: "Not", pattern: /!/ })
-const K = createToken({ name: "K", pattern: /K/, longer_alt: FormVar })
-const M = createToken({ name: "M", pattern: /M/, longer_alt: FormVar })
-const LparAgent = createToken({ name: "LparAgent", pattern: /{/ })
-const Agent = createToken({ name: "Agent", pattern: /0|[1-9]\d*/ })
-const RparAgent = createToken({ name: "RparAgent", pattern: /}/ })
+const K = createToken({ name: "K", pattern: /K/ })
+const M = createToken({ name: "M", pattern: /M/ })
+const E = createToken({ name: "E", pattern: /E/ })
+const C = createToken({ name: "C", pattern: /C/ })
 
 // Parentheses
-const Lpar = createToken({ name: "Lpar", pattern: /\(/ })
-const Rpar = createToken({ name: "Rpar", pattern: /\)/ })
+const LPar = createToken({ name: "LPar", pattern: /\(/ })
+const RPar = createToken({ name: "RPar", pattern: /\)/ })
+const LA = createToken({ name: "LA", pattern: /{/ })
+const RA = createToken({ name: "RA", pattern: /}/ })
+const LSay = createToken({ name: "LSay", pattern: /\[/ })
+const RSay = createToken({ name: "RSay", pattern: /]/ })
+const LHear = createToken({ name: "LHear", pattern: /</ })
+const RHear = createToken({ name: "RHear", pattern: />/ })
 
-// Whitespace
-const WhiteSpace = createToken({ name: "WhiteSpace", pattern: /\s+/, group: Lexer.SKIPPED })
+// Variables and constants
+const Proposition = createToken({ name: "Proposition", pattern: /p(0|[1-9]\d*)?/ })
+const Formula = createToken({ name: "Formula", pattern: /f(0|[1-9]\d*)?/ })
+const Agent = createToken({ name: "Agent", pattern: /[1-9]\d*|a(0|[1-9]\d*)?/ })
 
 // Whitespace first increases lexer speed
 let tokensByPriority = [
   WhiteSpace,
-  K, M, Agent,
-  Not, And, Or, To, Equiv,
-  Lpar, Rpar, LparAgent, RparAgent,
-  FormVar, PropConst
+  And, Or, To, Equiv,
+  Not, K, M, E, C,
+  LPar, RPar, LA, RA, LSay, RSay, LHear, RHear,
+  Proposition, Formula, Agent
 ]
 
 const FormulaLexer = new Lexer(tokensByPriority, {
