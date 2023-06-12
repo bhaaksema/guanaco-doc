@@ -1,6 +1,6 @@
 ---
 title: Guanaco
-description: Logical Aspects of Multi-Agent Systems
+description: Final Projcet for Logical Aspects of Multi-Agent Systems
 ---
 
 <script>
@@ -137,6 +137,44 @@ For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rul
 <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
 
 ## Implementation
+
+In this section, we cover the important details of the implementation strategy. We first present the parsing process of our program, followed by our employed strategies for the implementation of axioms and rules.
+
+### Input parsing
+
+When a user provides an input on a line, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output.
+
+| Input    | Parser interpretation                                     | Formula of the relevant language      |
+| -------- | --------------------------------------------              | --------------------------            |
+| pn       | propositional atom $n$, where $n$ is an integer           | $p$                                   |
+| fn       | formula $n$, where $n$ is an integer                      | $\varphi$                             |
+| !x       | negation of the formula $x$                               | $\neg\varphi$                         |
+| x & y    | conjunction of the formulas $x$ and $y$                   | $\varphi\wedge\psi$                   |
+| x \| y   | disjunction of the formulas $x$ and $y$                   | $\varphi\wedge\psi$                   |
+| x -> y   | implication of $x$ to $y$                                 | $\varphi\to\psi$                      |
+| x <-> y  | biimplication of $x$ and $y$                              | $\varphi\leftrightarrow\psi$          |
+| K{an}x   | agent $a\_n$ (where $n$ is an integer) knows formula $x$  | $K\_i\varphi$                         |
+| Ex       | everybody knows formula $x$                               | $C\varphi$                            |
+| Cx       | there is common knowledge of formula $x$                  | $E\varphi$                            |
+| [x]y     | announcement of $x$ followed by y                         | $\[\varphi\]\psi$                     |
+
+In order to facilitate infinitely many possible inputs, the parser is able to distinguish between inputs for all integers. For example, the parser recognizes that p1 and p2 are two different propositional atoms, that f1 and f2 are two different formulas, and that a1 and a2 are different agents.
+
+To avoid ambiguity, the user is required to place brackets around binary operators if and only if the binary operator is part of a _subformula_. For example, the parser does not recognize the input 'f1 & f2 \| f3', but it does recognize '(f1 & f2) \| f3' and 'f1 & (f2 \| f3)'.
+
+White spaces are ignored, so users may use white spaces in the way they like.
+
+### Axioms
+
+The axioms of the available logics are _schemes_; they represent not one tautology, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom A3 ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a tautology. For example, $K\_ip\to p$ is a tautology, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of A3, even though it is a scheme.
+
+Our parser recognizes this flexibility of axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line 'K{a1}!!f1 -> !!f1' as an input, when it encounters '!!f1' in the first hole, it checks whether '!!f1' is also in the second hole. In this case, it is, so the parses recognizes it as an instantiation of A3.
+
+### Rules
+
+In many cases, syntactic proofs are finished by applying rules. For example, suppose we try to derive $K\_i(p\wedge q)\to K\_ip$. We may then start with the propositional tautology $(p\wedge q)\to p$ and apply $K$-distribution (KD) to it. In our program, we do it the opposite way. We start with the formula we aim to derive, $K\_i(p\wedge q)\to K\_ip$, and then we generate the premise on which we would apply KD to get to this formula. We call this strategy a _bottom-up strategy_. So, in this case, applying KD to a line means that (1) the line is a conditional and (2) the result is the same formula but with $K\_i$ before both the antecedent and consequent. 
+
+### Generating syntactic proofs
 
 ## User's Guide
 
