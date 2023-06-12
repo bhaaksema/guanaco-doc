@@ -12,7 +12,7 @@ description: Final Project for Logical Aspects of Multi-Agent Systems
 
 # Guanaco: A Syntactic Proof Guide
 
-You can find the current version of the program here: https://github.com/bhaaksema/rug-lamas/tree/main.
+You can find the current version of the program [here](https://github.com/bhaaksema/rug-lamas).
 
 ## Introduction
 
