@@ -1,6 +1,6 @@
 ---
 title: Guanaco
-description: Final Projcet for Logical Aspects of Multi-Agent Systems
+description: Final Project for Logical Aspects of Multi-Agent Systems
 ---
 
 <script>
@@ -146,17 +146,20 @@ When a user provides an input on a line, the program needs to know what formula 
 
 | Input    | Parser interpretation                                     | Formula of the relevant language      |
 | -------- | --------------------------------------------              | --------------------------            |
-| pn       | propositional atom $n$, where $n$ is an integer           | $p$                                   |
-| fn       | formula $n$, where $n$ is an integer                      | $\varphi$                             |
+| pn       | propositional atom $n$, where $n$ is an integer           | $p\_n$                                |
+| fn       | formula $n$, where $n$ is an integer                      | $\varphi\_n$                          |
 | !x       | negation of the formula $x$                               | $\neg\varphi$                         |
 | x & y    | conjunction of the formulas $x$ and $y$                   | $\varphi\wedge\psi$                   |
 | x \| y   | disjunction of the formulas $x$ and $y$                   | $\varphi\wedge\psi$                   |
 | x -> y   | implication of $x$ to $y$                                 | $\varphi\to\psi$                      |
 | x <-> y  | biimplication of $x$ and $y$                              | $\varphi\leftrightarrow\psi$          |
-| K{an}x   | agent $a\_n$ (where $n$ is an integer) knows formula $x$  | $K\_i\varphi$                         |
+| K{an}x   | agent $a\_n$ (where $n$ is an integer) knows formula $x$  | $K\_{i}\varphi$                       |
+| K{n}x    | the agent $n\in \mathbf{A}$ knows formula $x$             | $K\_{n}\varphi$                       |
 | Ex       | everybody knows formula $x$                               | $C\varphi$                            |
 | Cx       | there is common knowledge of formula $x$                  | $E\varphi$                            |
-| [x]y     | announcement of $x$ followed by y                         | $\[\varphi\]\psi$                     |
+| [x]y     | announcement of $x$ followed by $y$                       | $\[\varphi\]\psi$                     |
+
+If only one atom, formula or agent is needed in the user's proof, the user can omit the integer $n$ without issue.
 
 In order to facilitate infinitely many possible inputs, the parser is able to distinguish between inputs for all integers. For example, the parser recognizes that p1 and p2 are two different propositional atoms, that f1 and f2 are two different formulas, and that a1 and a2 are different agents.
 
@@ -172,11 +175,19 @@ Our parser recognizes this flexibility of axioms. For all axioms, it treats the 
 
 ### Rules
 
-In many cases, syntactic proofs are finished by applying rules. For example, suppose we try to derive $K\_i(p\wedge q)\to K\_ip$. We may then start with the propositional tautology $(p\wedge q)\to p$ and apply $K$-distribution (KD) to it. In our program, we do it the opposite way. We start with the formula we aim to derive, $K\_i(p\wedge q)\to K\_ip$, and then we generate the premise on which we would apply KD to get to this formula. We call this strategy a _bottom-up strategy_. So, in this case, applying KD to a line means that (1) the line is a conditional and (2) the result is the same formula but with $K\_i$ before both the antecedent and consequent. 
+In many cases, syntactic proofs are finished by applying rules. For example, suppose we try to derive $K\_i(p\wedge q)\to K\_ip$. We may then start with the propositional tautology $(p\wedge q)\to p$ and apply $K$-distribution (KD) to it. In our program, we do it the opposite way. We start with the formula we aim to derive ($K\_i(p\wedge q)\to K\_ip$) and then we generate the premise on which we would apply KD to get to this formula. We call this strategy a _bottom-up strategy_. So, in this case, justifying a line with KD means that (1) the line is a conditional, (2) the conditional has $K\_i$ before both the antecedent and consequent, and (3) its premise is the same conditional without the $K\_i$ before the antecedent and consequent.
+
+We apply this strategy in general. For any formula $\varphi$ of the relevant language, there is a set of rules of which the conclusion has the same formula structure as $\varphi$. Only those rules are available to justify $\varphi$.
+
+There are a few exceptions here. In some cases, the premises of a given rule contain formulas that are not in the conclusion. For example, consider Hypothetical Syllogism (HS). If we try to derive $\phi \to \psi$ with HS, then we would generate two premises: $\varphi \to \chi$ and $\chi \to \psi$. But what should $\chi$ be? Our program cannot determine this by itself. The user has to provide input for $\chi$ to make the rule work. 
+
+Note also that in Meyer & Hoek (1998), the HS rule allows for more than two premises. But the program cannot determine how many premises HS should generate. For example, we can justify $\phi \to \psi$ with HS with two premises, but also three, four or more. For example, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
+But this is not problematic. If we can use HS with $n$ premises, we can also use HS with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from $\varphi \to \chi$, and $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once to all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\phi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
+So to keep things simple, we do not facilitate HS with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available.
+
+### Other implementation details
 
 ### Generating syntactic proofs
-
-## User's Guide
 
 ## Results
 
@@ -185,8 +196,6 @@ In many cases, syntactic proofs are finished by applying rules. For example, sup
 ## Discussion
 
 ## References
-
-## The Syntactic Proof Guide
 
 
 
