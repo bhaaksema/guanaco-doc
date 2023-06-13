@@ -208,8 +208,11 @@ Below is a table with the rules that we aim to implement. Formulas $\chi$ are (s
 | $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                  | ED                     | No          |
 | $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                  | CD                     | No          |
 
+So if a rule $\dfrac{\phi}{\psi}$ is used as a justifcation for some line with $\varphi$, then Guanaco prints one or two new lines above (depending on whether the chosen justification has one or two premises) and prints the relevant premise formula(s) $\psi$. If a rule requires user input, then Guanaco still prints the parts of $\psi$ that are determined by the application of the rule. For example, if one uses HS to justify $\varphi\to\psi$, then Guanaco prints $\varphi\to\dots$ and $\dots\to\psi$ on two new lines above. The user has to fill in the dots.
 
-Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user.
+Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user. The user _can_ edit the formulas in the generated lines. 
+
+Note that Guanaco always prints the premises in order. For example, if the user uses HS, then Guanaco prints $\varphi\to\dots$ and $\dots\to\psi$ in that order, but _not_ $\dots\to\psi$ and $\varphi\to\dots$. Guanaco also evaluates the justification HS in that order. So if the user edits the lines with these premises and turns around the order of the premises, Guanaco will say that the justification is incorrectly applied. This is a limitation of Guanaco, which we can solve if we work on this project in the future.
 
 ### Other implementation details
 
