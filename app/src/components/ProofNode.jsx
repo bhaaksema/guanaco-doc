@@ -3,24 +3,26 @@ import InputGroup from "react-bootstrap/InputGroup";
 import PropTypes from "prop-types";
 
 import { parse } from "../scripts/Parser";
-import { checkRule, rulesList } from "../scripts/Rules";
+import { check } from "../scripts/Engine";
+import { axiomsList } from "../objects/Axioms";
+import { rulesList } from "../objects/Rules";
 
 ProofNode.propTypes = {
-  row: PropTypes.shape({
+  node: PropTypes.shape({
     formula: PropTypes.string.isRequired,
-    rule: PropTypes.string.isRequired,
+    base: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
   setValidated: PropTypes.func.isRequired,
-  setRows: PropTypes.func.isRequired,
+  setNodes: PropTypes.func.isRequired,
 };
 
-export default function ProofNode({ row, index, setValidated, setRows }) {
+export default function ProofNode({ node, index, setValidated, setNodes }) {
   function handleTyping(target) {
-    setRows((rows) => {
-      const newRows = [...rows];
-      newRows[index].formula = target.value;
-      return newRows;
+    setNodes((nodes) => {
+      const newNodes = [...nodes];
+      newNodes[index].formula = target.value;
+      return newNodes;
     });
 
     if (target.value === "") {
@@ -40,30 +42,27 @@ export default function ProofNode({ row, index, setValidated, setRows }) {
   }
 
   function handleSelect(target) {
-    setRows((rows) => {
-      const newRows = [...rows];
-      newRows[index].rule = target.value;
-      return newRows;
+    setNodes((nodes) => {
+      const newNodes = [...nodes];
+      newNodes[index].base = target.value;
+      return newNodes;
     });
-
-    let rule = rulesList[target.selectedIndex];
-
-    if (index !== 0) {
-      // remove all previous rows
-      setRows((rows) => rows.slice(index));
-    }
-
-    if (rule.name !== "A2") {
-      // append new row
-      setRows((rows) => [{ formula: "", rule: "A1" }, ...rows]);
-    }
 
     try {
       const ast = parse(target.previousSibling.value);
-      if (checkRule(ast, rule)) {
+      // find base in axioms
+      let base = axiomsList.find((axiom) => axiom.name === target.value);
+      const isAxiom = base !== undefined;
+
+      if (!isAxiom) {
+        // find base in rules
+        base = rulesList.find((rule) => rule.name === target.value);
+      }
+
+      if (check(ast, base, isAxiom)) {
         target.setCustomValidity("");
       } else {
-        target.setCustomValidity("invalid rule");
+        target.setCustomValidity("invalid " + (isAxiom ? "axiom" : "rule"));
       }
     } catch (e) {
       target.setCustomValidity("invalid formula");
@@ -76,11 +75,15 @@ export default function ProofNode({ row, index, setValidated, setRows }) {
       <Form.Control
         id="formula"
         placeholder="enter formula"
-        value={row.formula}
+        value={node.formula}
         onChange={(e) => handleTyping(e.target)}
         className="w-50"
       />
-      <Form.Select onChange={(e) => handleSelect(e.target)} value={row.rule}>
+      <Form.Select onChange={(e) => handleSelect(e.target)} value={node.base}>
+        {axiomsList.map((axiom) => (
+          <option key={axiom.name}>{axiom.name}</option>
+        ))}
+        <option disabled>──────────</option>
         {rulesList.map((rule) => (
           <option key={rule.name}>{rule.name}</option>
         ))}

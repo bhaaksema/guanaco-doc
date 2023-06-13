@@ -55,22 +55,42 @@ class FormulaParser extends EmbeddedActionsParser {
       return this.OR([
         {
           ALT: () => {
-            return this.SUBRULE(this.conjunction, { ARGS: [left] });
+            this.CONSUME(tv.And);
+            return {
+              type: "conjunction",
+              left: left,
+              right: this.SUBRULE1(this.subformula),
+            };
           },
         },
         {
           ALT: () => {
-            return this.SUBRULE(this.disjunction, { ARGS: [left] });
+            this.CONSUME(tv.Or);
+            return {
+              type: "disjunction",
+              left: left,
+              right: this.SUBRULE2(this.subformula),
+            };
           },
         },
         {
           ALT: () => {
-            return this.SUBRULE(this.implication, { ARGS: [left] });
+            this.CONSUME(tv.To);
+            return {
+              type: "implication",
+              left: left,
+              right: this.SUBRULE3(this.subformula),
+            };
           },
         },
         {
           ALT: () => {
-            return this.SUBRULE(this.equivalence, { ARGS: [left] });
+            this.CONSUME(tv.Equiv);
+            return {
+              type: "equivalence",
+              left: left,
+              right: this.SUBRULE4(this.subformula),
+            };
           },
         },
       ]);
@@ -80,83 +100,39 @@ class FormulaParser extends EmbeddedActionsParser {
       return this.OR([
         {
           ALT: () => {
-            return this.SUBRULE(this.negation);
+            this.CONSUME(tv.Not);
+            return { type: "negation", formula: this.SUBRULE(this.subformula) };
           },
         },
         {
           ALT: () => {
-            return this.SUBRULE(this.knowledge);
+            let type = this.OR1([
+              {
+                ALT: () => {
+                  this.CONSUME(tv.K);
+                  return "K";
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(tv.M);
+                  return "M";
+                },
+              },
+            ]);
+            this.CONSUME(tv.LA);
+            let agent = parseInt(this.CONSUME(tv.Agent).image);
+            this.CONSUME(tv.RA);
+            return {
+              type: type,
+              agent: agent,
+              formula: this.SUBRULE1(this.subformula),
+            };
           },
         },
         // { ALT: () => { return this.SUBRULE(this.common) } },
         // { ALT: () => { return this.SUBRULE(this.announcement) } }
       ]);
-    });
-
-    this.RULE("conjunction", (first) => {
-      let formulas = [first];
-      this.AT_LEAST_ONE(() => {
-        this.CONSUME(tv.And);
-        formulas.push(this.SUBRULE(this.subformula));
-      });
-      return { type: "conjunction", formulas: formulas };
-    });
-
-    this.RULE("disjunction", (first) => {
-      let formulas = [first];
-      this.AT_LEAST_ONE(() => {
-        this.CONSUME(tv.Or);
-        formulas.push(this.SUBRULE(this.subformula));
-      });
-      return { type: "disjunction", formulas: formulas };
-    });
-
-    this.RULE("implication", (left) => {
-      this.CONSUME(tv.To);
-      return {
-        type: "implication",
-        left: left,
-        right: this.SUBRULE(this.subformula),
-      };
-    });
-
-    this.RULE("equivalence", (left) => {
-      this.CONSUME(tv.Equiv);
-      return {
-        type: "equivalence",
-        left: left,
-        right: this.SUBRULE(this.subformula),
-      };
-    });
-
-    this.RULE("negation", () => {
-      this.CONSUME(tv.Not);
-      return { type: "negation", formula: this.SUBRULE(this.subformula) };
-    });
-
-    this.RULE("knowledge", () => {
-      let type = this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(tv.K);
-            return "K";
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(tv.M);
-            return "M";
-          },
-        },
-      ]);
-      this.CONSUME(tv.LA);
-      let agent = parseInt(this.CONSUME(tv.Agent).image);
-      this.CONSUME(tv.RA);
-      return {
-        type: type,
-        agent: agent,
-        formula: this.SUBRULE(this.subformula),
-      };
     });
 
     this.RULE("atom", () => {

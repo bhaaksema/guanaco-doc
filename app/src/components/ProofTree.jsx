@@ -2,17 +2,17 @@ import { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Form from "react-bootstrap/Form";
 
-import ProofRow from "./ProofNode";
+import ProofNode from "./ProofNode";
 
 export default function ProofTree() {
   const [validated, setValidated] = useState(false);
-  const [rows, setRows] = useState([{ formula: "", rule: "A1" }]);
+  const [nodes, setNodes] = useState([{ formula: "", base: "A1" }]);
 
   return (
     <ListGroup as="ol" style={{ listStyleType: "none" }}>
-      {rows.map((row, index) => (
+      {nodes.map((node, index) => (
         <Form as="li" key={index} className="mb-1" validated={validated}>
-          <ProofRow {...{ row, index, setValidated, setRows }} />
+          <ProofNode {...{ node, index, setValidated, setNodes }} />
         </Form>
       ))}
     </ListGroup>
