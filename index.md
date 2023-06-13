@@ -138,17 +138,24 @@ For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rul
 
 The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
 
-| Axiom or rule name             | Rule or axiom | Abbreviation |
-| :------------:                 | :-----------: | :------:     |
-| Propositional tautologies      | $\Gamma$      | $A1$         |
-| Modus ponens for knowledge     | $\Gamma$      | $A2$         |
-| Distribution over implication  | $\Gamma$      | $A2'$        |
-| Knowledge implies truth        | $\Gamma$      | $A3$         |
-| Positive introspection         | $\Gamma$      | $A4$         |
-| Negative introspection         |               | $A5$         |
-| Definition of $E$              |               | $A6$         |
-| Common knowledge implies truth |               | $A7$         |
-| Induction axiom                |               | $A8$         |
+| Axiom or rule name                    | Rule or axiom | Abbreviation |
+|  ------------                         | :-----------: | :------:     |
+| Propositional tautologies             | $\Gamma$      | $A1$         |
+| Modus ponens for knowledge            | $\Gamma$      | $A2$         |
+| Distribution of $K$ over implication  | $\Gamma$      | $A2'$        |
+| Knowledge implies truth               | $\Gamma$      | $A3$         |
+| Positive introspection                | $\Gamma$      | $A4$         |
+| Negative introspection                |               | $A5$         |
+| Definition of $E$                     |               | $A6$         |
+| Common knowledge implies truth        |               | $A7$         |
+| Induction axiom                       |               | $A8$         |
+| Common knowledge through $E$-paths    |               | $A9$         |
+| Distribution of $C$ over implication  |               | $A10$        |
+| Announcement reduction axiom          |               | $A11$        |
+| Negation reduction axiom              |               | $A12$        |
+| Conjunction reduction axiom           |               | $A13$        |
+| Knowledge reduction axiom             |               | $A14$        |
+| Announcement sequence reduction axiom |               | $A15$        |
 
 
 ## Implementation
