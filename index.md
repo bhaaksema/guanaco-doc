@@ -203,8 +203,8 @@ Below is a table with the rules that we aim to implement. Formulas $\chi$ are (s
 | No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\phi\to\psi}$                                        | NC                     | No          |
 | Combining                                  | $\dfrac{\phi\_1\to\psi\_1 \quad \phi\_2\to\psi\_2}{(\phi\_1\wedge\phi_2)\to(\psi\_1\wedge\psi_2)}$   | CO             | No          |
 | Combining  ($\leftrightarrow$)             | $\dfrac{\phi\_1\leftrightarrow\psi\_1 \quad \phi\_2\leftrightarrow\psi\_2}{(\phi\_1\wedge\phi_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$ | CO $\leftrightarrow$       | No            |
-| Substitution                               | $\dfrac{\phi\_1\leftrightarrow\phi_2}{\psi\leftrightarrow\psi\[\phi\_1/\phi\_2\]             | SUB                    | Yes         |
-| No contradiction                           | $\dfrac{(\phi\wedge\psi)\to\bot}{\psi\to\neg\varphi}                                         | NC'                    | 
+| Substitution                               | $\dfrac{\phi\_1\leftrightarrow\phi_2}{\psi\leftrightarrow\psi\[\phi\_1/\phi\_2\]$            | SUB                    | Yes         |
+| No contradiction                           | $\dfrac{(\phi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                        | NC'                    | No          |
 
 
 Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user.
