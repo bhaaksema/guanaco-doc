@@ -95,7 +95,7 @@ Using these axioms and derivation rules, we are able to derive all provable form
 
 <!--- En dan hier die hele lijst, maar dat weet ik echt niet hoe ik dat mooi hierin krijg --->
 
-### The Logic S5(m)
+### The Logic \mathbf{S5(m)}
 
 The axiom system $\mathbf{S5(m)}$ is an extension of $\mathbf{K(m)}$. The axiom system $\mathbf{S5(m)}$ consists of the axioms $(A1)$, $(A2)$, the rules $(R1)$, $(R2)$ and:
 - A3. $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$
@@ -188,6 +188,18 @@ But this is not problematic. If we can use HS with $n$ premises, we can also use
 So to keep things simple, we do not facilitate HS with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available.
 
 Below is a table with the rules that we aim to implement. Formulas $\chi$ are (sub)formulas of premises that need user input as described above.
+
+| Rule name                                  | Rule                                                                                         | Abbreviation           | User input? |
+| ---------                                  | :----------------------------------------------------:                                       | ---------------------- | ----------- |
+| $K$-distribution                           | $\dfrac{\varphi\to\psi}{K\_i\varphi\to K\_i\psi}$                                            | KD                     | No          |
+| Equivalence-introduction                   | $\dfrac{\varphi\to\psi \quad \psi \to \varphi}{\varphi\leftrightarrow\psi}$                  | EI                     | No          |
+| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\varphi\to\psi}$                                         | EE                     | No          |
+| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                         | EE                     | No          |
+| $K$-distribution ($\leftrightarrow$)       | $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                    | KD $\leftrightarrow$    | No          |
+| Hypothetical syllogism                     | $\dfrac{\varphi\to\chi \quad \chi \to \psi}{\varphi\to\psi}$                                 | HS                     | Yes         |
+| Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$ | HS $\leftrightarrow$     | Yes         |
+| Left-right strengthening                   | $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                             | LR                     | No          |
+
 
 Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user.
 
