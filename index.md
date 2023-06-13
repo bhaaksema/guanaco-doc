@@ -4,7 +4,7 @@ description: Final Project for Logical Aspects of Multi-Agent Systems
 ---
 
 <script>
-  MathJax = { tex: { inlineMath: [['$', '$']] } };
+  MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
 </script>
 <script id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
@@ -194,11 +194,17 @@ Below is a table with the rules that we aim to implement. Formulas $\chi$ are (s
 | $K$-distribution                           | $\dfrac{\varphi\to\psi}{K\_i\varphi\to K\_i\psi}$                                            | KD                     | No          |
 | Equivalence-introduction                   | $\dfrac{\varphi\to\psi \quad \psi \to \varphi}{\varphi\leftrightarrow\psi}$                  | EI                     | No          |
 | Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\varphi\to\psi}$                                         | EE                     | No          |
-| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                         | EE                     | No          |
-| $K$-distribution ($\leftrightarrow$)       | $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                    | KD $\leftrightarrow$    | No          |
+| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                         | EE'                    | No          |
+| $K$-distribution ($\leftrightarrow$)       | $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                    | KD $\leftrightarrow$   | No          |
 | Hypothetical syllogism                     | $\dfrac{\varphi\to\chi \quad \chi \to \psi}{\varphi\to\psi}$                                 | HS                     | Yes         |
-| Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$ | HS $\leftrightarrow$     | Yes         |
+| Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$ | HS $\leftrightarrow$   | Yes         |
 | Left-right strengthening                   | $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                             | LR                     | No          |
+| Contra-position                            | $\dfrac{\varphi\to\psi}{\neg\psi\to\neg\varphi}$                                             | CP                     | No          |
+| No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\phi\to\psi}$                                        | NC                     | No          |
+| Combining                                  | $\dfrac{\phi\_1\to\psi\_1 \quad \phi\_2\to\psi\_2}{(\phi\_1\wedge\phi_2)\to(\psi\_1\wedge\psi_2)}$   | CO             | No          |
+| Combining  ($\leftrightarrow$)             | $\dfrac{\phi\_1\leftrightarrow\psi\_1 \quad \phi\_2\leftrightarrow\psi\_2}{(\phi\_1\wedge\phi_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$ | CO $\leftrightarrow$       | No            |
+| Substitution                               | $\dfrac{\phi\_1\leftrightarrow\phi_2}{\psi\leftrightarrow\psi\[\phi\_1/\phi\_2\]             | SUB                    | Yes         |
+| No contradiction                           | $\dfrac{(\phi\wedge\psi)\to\bot}{\psi\to\neg\varphi}                                         | NC'                    | 
 
 
 Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user.
