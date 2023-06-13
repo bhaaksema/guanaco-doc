@@ -146,26 +146,26 @@ In this section, we cover the important details of the implementation strategy. 
 
 When a user provides an input on a line, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output.
 
-| Input    | Parser interpretation                                     | Formula of the relevant language      |
-| -------- | --------------------------------------------              | --------------------------            |
-| pn       | propositional atom $n$, where $n$ is an integer           | $p\_n$                                |
-| fn       | formula $n$, where $n$ is an integer                      | $\varphi\_n$                          |
-| !x       | negation of the formula $x$                               | $\neg\varphi$                         |
-| x & y    | conjunction of the formulas $x$ and $y$                   | $\varphi\wedge\psi$                   |
-| x \| y   | disjunction of the formulas $x$ and $y$                   | $\varphi\wedge\psi$                   |
-| x -> y   | implication of $x$ to $y$                                 | $\varphi\to\psi$                      |
-| x <-> y  | biimplication of $x$ and $y$                              | $\varphi\leftrightarrow\psi$          |
-| K{an}x   | agent $a\_n$ (where $n$ is an integer) knows formula $x$  | $K\_{i}\varphi$                       |
-| K{n}x    | the agent $n\in \mathbf{A}$ knows formula $x$             | $K\_{n}\varphi$                       |
-| Ex       | everybody knows formula $x$                               | $C\varphi$                            |
-| Cx       | there is common knowledge of formula $x$                  | $E\varphi$                            |
-| [x]y     | announcement of $x$ followed by $y$                       | $\[\varphi\]\psi$                     |
+| Input      | Parser interpretation                                     | Formula of the relevant language      |
+| --------   | --------------------------------------------              | --------------------------            |
+| `pn`       | propositional atom `n`, where `n` is an integer           | $p\_n$                                |
+| `fn`       | formula `n`, where `n` is an integer                      | $\varphi\_n$                          |
+| `!x`       | negation of the formula `x`                               | $\neg\varphi$                         |
+| `x & y`    | conjunction of the formulas `x` and `y`                   | $\varphi\wedge\psi$                   |
+| `x \| y`   | disjunction of the formulas `x` and `y`                   | $\varphi\wedge\psi$                   |
+| `x -> y`   | implication of `x` to `y`                                 | $\varphi\to\psi$                      |
+| `x <-> y`  | biimplication of `x` and `y`                              | $\varphi\leftrightarrow\psi$          |
+| `K{an}x`   | agent `an` (where `n` is an integer) knows formula `x`    | $K\_{i}\varphi$                       |
+| `K{n}x`    | the agent `n`$\in \mathbf{A}$ knows formula `x`           | $K\_{n}\varphi$                       |
+| `Ex`       | everybody knows formula `x`                               | $C\varphi$                            |
+| `Cx`       | there is common knowledge of formula `x`                  | $E\varphi$                            |
+| `[x]y`     | announcement of `x` followed by `y`                       | $\[\varphi\]\psi$                     |
 
-If only one atom, formula or agent is needed in the user's proof, the user can omit the integer $n$ without issue.
+If only one atom, formula or agent is needed in the user's proof, the user can omit the integer `n` without issue.
 
-In order to facilitate infinitely many possible inputs, the parser is able to distinguish between inputs for all integers. For example, the parser recognizes that p1 and p2 are two different propositional atoms, that f1 and f2 are two different formulas, and that a1 and a2 are different agents.
+In order to facilitate infinitely many possible inputs, the parser is able to distinguish between inputs for all integers. For example, the parser recognizes that `p1` and `p2` are two different propositional atoms, that `f1` and `f2` are two different formulas, and that `a1` and `a2` are different agents.
 
-To avoid ambiguity, the user is required to place brackets around binary operators if and only if the binary operator is part of a _subformula_. For example, the parser does not recognize the input 'f1 & f2 \| f3', but it does recognize '(f1 & f2) \| f3' and 'f1 & (f2 \| f3)'.
+To avoid ambiguity, the user is required to place brackets around binary operators if and only if the binary operator is part of a _subformula_. For example, the parser does not recognize the input `f1 & f2 | f3`, but it does recognize `(f1 & f2) | f3` and `f1 & (f2 | f3)`.
 
 White spaces are ignored, so users may use white spaces in the way they like.
 
@@ -173,7 +173,7 @@ White spaces are ignored, so users may use white spaces in the way they like.
 
 The axioms of the available logics are _schemes_; they represent not one tautology, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom A3 ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a tautology. For example, $K\_ip\to p$ is a tautology, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of A3, even though it is a scheme.
 
-Our parser recognizes this flexibility of axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line 'K{a1}!!f1 -> !!f1' as an input, when it encounters '!!f1' in the first hole, it checks whether '!!f1' is also in the second hole. In this case, it is, so the parses recognizes it as an instantiation of A3.
+Our parser recognizes this flexibility of axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `K{a1}!!f1 -> !!f1` as an input, when it encounters `!!f1` in the first hole, it checks whether `!!f1` is also in the second hole. In this case, it is, so the parses recognizes it as an instantiation of A3.
 
 ### Rules
 
