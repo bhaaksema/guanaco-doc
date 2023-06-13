@@ -80,8 +80,6 @@ In Guanaco, there are five logics $\Gamma$ available: $\mathbf{K(m)}$, $\mathbf{
 
 ### The logic $\mathbf{K(m)}$
 
-The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
-
 *Axioms*
 - A1. All (instances of) propositional tautologies.
 - A2. $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$.
@@ -95,7 +93,7 @@ Using these axioms and derivation rules, we are able to derive all provable form
 
 <!--- En dan hier die hele lijst, maar dat weet ik echt niet hoe ik dat mooi hierin krijg --->
 
-### The Logic \mathbf{S5(m)}
+### The Logic $\mathbf{S5(m)}$
 
 The axiom system $\mathbf{S5(m)}$ is an extension of $\mathbf{K(m)}$. The axiom system $\mathbf{S5(m)}$ consists of the axioms $(A1)$, $(A2)$, the rules $(R1)$, $(R2)$ and:
 - A3. $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$
@@ -137,6 +135,21 @@ For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rul
 - R5. $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\_{B}\chi}{\chi\to[\varphi]C\_B\psi}$
 
 <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
+
+The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
+
+| Axiom or rule name             | Rule or axiom | Abbreviation |
+| :------------:                 | :-----------: | :------:     |
+| Propositional tautologies      | $\Gamma$      | $A1$         |
+| Modus ponens for knowledge     | $\Gamma$      | $A2$         |
+| Distribution over implication  | $\Gamma$      | $A2'$        |
+| Knowledge implies truth        | $\Gamma$      | $A3$         |
+| Positive introspection         | $\Gamma$      | $A4$         |
+| Negative introspection         |               | $A5$         |
+| Definition of $E$              |               | $A6$         |
+| Common knowledge implies truth |               | $A7$         |
+| Induction axiom                |               | $A8$         |
+
 
 ## Implementation
 
