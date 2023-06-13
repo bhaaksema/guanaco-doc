@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { parse } from "../scripts/Parser";
 import { checkRule, rulesList } from "../scripts/Rules";
 
-ProofRow.propTypes = {
+ProofNode.propTypes = {
   row: PropTypes.shape({
     formula: PropTypes.string.isRequired,
     rule: PropTypes.string.isRequired,
@@ -15,7 +15,7 @@ ProofRow.propTypes = {
   setRows: PropTypes.func.isRequired,
 };
 
-export default function ProofRow({ row, index, setValidated, setRows }) {
+export default function ProofNode({ row, index, setValidated, setRows }) {
   function handleTyping(target) {
     setRows((rows) => {
       const newRows = [...rows];

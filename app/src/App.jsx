@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 
-import Proof from "./components/Proof";
+import ProofTree from "./components/ProofTree";
 
 export default function App() {
   const A2 = "(K{1} f1 & K{1} (f1 -> f2)) -> K{1} f2";
@@ -17,7 +17,7 @@ export default function App() {
             <br /> <br />
             Example: <code>{A2}</code>
           </Card.Text>
-          <Proof />
+          <ProofTree />
         </Card.Body>
       </Card>
     </Container>
