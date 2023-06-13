@@ -1,4 +1,4 @@
-export let rulesList = [
+const rulesList = [
   // Modus Ponens
   {
     name: "R1",
@@ -27,3 +27,5 @@ export let rulesList = [
     },
   },
 ];
+
+export default rulesList;

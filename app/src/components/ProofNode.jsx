@@ -2,10 +2,11 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import PropTypes from "prop-types";
 
-import { parse } from "../scripts/Parser";
-import { check } from "../scripts/Engine";
-import { axiomsList } from "../objects/Axioms";
-import { rulesList } from "../objects/Rules";
+import parse from "../scripts/Parser";
+import check from "../scripts/Engine";
+import pretty from "../scripts/Pretty";
+import axiomsList from "../objects/Axioms";
+import rulesList from "../objects/Rules";
 
 ProofNode.propTypes = {
   node: PropTypes.shape({
@@ -33,9 +34,11 @@ export default function ProofNode({ node, index, setValidated, setNodes }) {
     handleSelect(target.nextSibling);
 
     try {
-      parse(target.value);
+      let ast = parse(target.value);
       target.setCustomValidity("");
+      console.log(pretty(ast));
     } catch (e) {
+      console.log(e);
       target.setCustomValidity("invalid formula");
     }
     setValidated(true);

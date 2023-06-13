@@ -1,5 +1,6 @@
 import { createToken, Lexer } from "chevrotain";
 
+// List of tokens, ordered by priority
 let tokensByPriority = [
   // Whitespace (first increases lexer speed)
   createToken({ name: "WhiteSpace", pattern: /\s+/, group: Lexer.SKIPPED }),
@@ -33,26 +34,24 @@ let tokensByPriority = [
   createToken({ name: "Agent", pattern: /[1-9]\d*|a(0|[1-9]\d*)?/ }),
 ];
 
+// Constant reuseable lexer instance
 const FormulaLexer = new Lexer(tokensByPriority, {
   ensureOptimizations: true,
 });
 
-const tokenVocabulary = {};
+// Export tokens
+export const tokens = Object.fromEntries(
+  tokensByPriority.map((token) => [token.name, token])
+);
 
-tokensByPriority.forEach((tokenType) => {
-  tokenVocabulary[tokenType.name] = tokenType;
-});
+// Export lexing function
+export function lex(inputText) {
+  // Invoke lexer on input text
+  const lexingResult = FormulaLexer.tokenize(inputText);
 
-export default {
-  tokenVocabulary: tokenVocabulary,
+  // Throw an error if there are any lexing errors
+  if (lexingResult.errors.length > 0) throw Error("Lexing errors detected");
 
-  lex: function (inputText) {
-    const lexingResult = FormulaLexer.tokenize(inputText);
-
-    if (lexingResult.errors.length > 0) {
-      throw Error("Lexing errors detected");
-    }
-
-    return lexingResult;
-  },
-};
+  // Otherwise return lexing result
+  return lexingResult;
+}

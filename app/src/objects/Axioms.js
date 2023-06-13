@@ -1,4 +1,4 @@
-export let axiomsList = [
+const axiomsList = [
   // propositional tautologies
   {
     name: "A1",
@@ -53,3 +53,5 @@ export let axiomsList = [
     },
   },
 ];
+
+export default axiomsList;

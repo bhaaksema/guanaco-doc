@@ -1,11 +1,12 @@
-import lexer from "./Lexer.js";
 import { EmbeddedActionsParser } from "chevrotain";
-const tv = lexer.tokenVocabulary;
+import { tokens, lex } from "./Lexer.js";
 
+// Formula parser class
 class FormulaParser extends EmbeddedActionsParser {
   constructor() {
-    super(tv);
+    super(tokens);
 
+    // formula ::= binary | unary | atom
     this.RULE("formula", () => {
       return this.OR([
         {
@@ -27,13 +28,14 @@ class FormulaParser extends EmbeddedActionsParser {
       ]);
     });
 
+    // subformula ::= ( binary ) | unary | atom
     this.RULE("subformula", () => {
       return this.OR([
         {
           ALT: () => {
-            this.CONSUME(tv.LPar);
+            this.CONSUME(tokens.LPar);
             let formula = this.SUBRULE(this.binary);
-            this.CONSUME(tv.RPar);
+            this.CONSUME(tokens.RPar);
             return formula;
           },
         },
@@ -50,126 +52,120 @@ class FormulaParser extends EmbeddedActionsParser {
       ]);
     });
 
+    // binary ::= subformula ( & | \| | -> | <-> ) subformula
     this.RULE("binary", () => {
-      let left = this.SUBRULE(this.subformula);
-      return this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(tv.And);
-            return {
-              type: "conjunction",
-              left: left,
-              right: this.SUBRULE1(this.subformula),
-            };
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(tv.Or);
-            return {
-              type: "disjunction",
-              left: left,
-              right: this.SUBRULE2(this.subformula),
-            };
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(tv.To);
-            return {
-              type: "implication",
-              left: left,
-              right: this.SUBRULE3(this.subformula),
-            };
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(tv.Equiv);
-            return {
-              type: "equivalence",
-              left: left,
-              right: this.SUBRULE4(this.subformula),
-            };
-          },
-        },
+      const left = this.SUBRULE(this.subformula);
+      const type = this.OR([
+        { ALT: andType },
+        { ALT: orType },
+        { ALT: toType },
+        { ALT: equivType },
       ]);
+
+      const right = this.SUBRULE1(this.subformula);
+      return { type, left, right };
     });
 
+    // unary ::= ( ! | E | C ) subformula | ( K | M ) { agent } subformula
     this.RULE("unary", () => {
-      return this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(tv.Not);
-            return { type: "negation", formula: this.SUBRULE(this.subformula) };
-          },
-        },
-        {
-          ALT: () => {
-            let type = this.OR1([
-              {
-                ALT: () => {
-                  this.CONSUME(tv.K);
-                  return "K";
-                },
-              },
-              {
-                ALT: () => {
-                  this.CONSUME(tv.M);
-                  return "M";
-                },
-              },
-            ]);
-            this.CONSUME(tv.LA);
-            let agent = parseInt(this.CONSUME(tv.Agent).image);
-            this.CONSUME(tv.RA);
-            return {
-              type: type,
-              agent: agent,
-              formula: this.SUBRULE1(this.subformula),
-            };
-          },
-        },
-        // { ALT: () => { return this.SUBRULE(this.common) } },
-        // { ALT: () => { return this.SUBRULE(this.announcement) } }
+      const type = this.OR([
+        { ALT: notType },
+        { ALT: kType },
+        { ALT: mType },
+        { ALT: eType },
+        { ALT: cType },
       ]);
+
+      if (type === "negation" || type === "E" || type === "C") {
+        return { type: type, formula: this.SUBRULE(this.subformula) };
+      }
+
+      this.CONSUME(tokens.LA);
+      const agent = this.CONSUME(tokens.Agent).image;
+      this.CONSUME(tokens.RA);
+      const formula = this.SUBRULE1(this.subformula);
+      return { type, agent, formula };
     });
 
+    // atom ::= proposition | variable
     this.RULE("atom", () => {
-      return this.OR([
-        {
-          ALT: () => {
-            return {
-              type: "proposition",
-              value: this.CONSUME(tv.Proposition).image,
-            };
-          },
-        },
-        {
-          ALT: () => {
-            return { type: "variable", value: this.CONSUME(tv.Formula).image };
-          },
-        },
-      ]);
+      return this.OR([{ ALT: proposition }, { ALT: formula }]);
     });
+
+    function andType() {
+      this.CONSUME(tokens.And);
+      return "conjunction";
+    }
+
+    function orType() {
+      this.CONSUME(tokens.Or);
+      return "disjunction";
+    }
+
+    function toType() {
+      this.CONSUME(tokens.To);
+      return "implication";
+    }
+
+    function equivType() {
+      this.CONSUME(tokens.Equiv);
+      return "equivalence";
+    }
+
+    function notType() {
+      this.CONSUME(tokens.Not);
+      return "negation";
+    }
+
+    function kType() {
+      return this.CONSUME(tokens.K).tokenType.name;
+    }
+
+    function mType() {
+      return this.CONSUME(tokens.M).tokenType.name;
+    }
+
+    function eType() {
+      return this.CONSUME(tokens.E).tokenType.name;
+    }
+
+    function cType() {
+      return this.CONSUME(tokens.C).tokenType.name;
+    }
+
+    function proposition() {
+      const value = this.CONSUME(tokens.Proposition).image;
+      return { type: "proposition", value: value };
+    }
+
+    function formula() {
+      const value = this.CONSUME(tokens.Formula).image;
+      return { type: "formula", value: value };
+    }
 
     this.performSelfAnalysis();
   }
 }
 
-// Reuse parser instance
-export const parser = new FormulaParser();
+// Constant reuseable parser instance
+const parser = new FormulaParser();
 
-export function parse(inputText) {
-  const lexResult = lexer.lex(inputText);
+// Parsing function that returns an Abstract Syntax Tree
+function parse(inputText) {
+  // Set parser input to the tokenized inputText
+  parser.input = lex(inputText).tokens;
 
-  // Reset the parser state
-  parser.input = lexResult.tokens;
+  // Invoke the parser
   const ast = parser.formula();
 
+  // Throw an error if there are any parsing errors
   if (parser.errors.length > 0) {
-    throw Error("Parsing errors detected!\n" + parser.errors[0].message);
+    throw Error("Parsing errors detected!" + parser.errors[0].message);
   }
 
+  // Otherwise, return the AST
   return ast;
 }
+
+// Export the parse function
+export default parse;

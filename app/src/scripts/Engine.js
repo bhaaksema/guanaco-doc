@@ -1,6 +1,6 @@
 import equal from "fast-deep-equal";
 
-export function check(formula, base, isAxiom) {
+function check(formula, base, isAxiom) {
   let [result, agents, holes] = [
     true,
     new Array(base.agents),
@@ -94,3 +94,5 @@ function initPremise(premise, agents, holes) {
       throw new Error("Invalid premise type");
   }
 }
+
+export default check;
