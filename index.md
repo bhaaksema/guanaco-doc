@@ -138,24 +138,24 @@ For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rul
 
 The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
 
-| Axiom or rule name                    | Rule or axiom | Abbreviation |
-|  ------------                         | :-----------: | :------:     |
-| Propositional tautologies             | $\Gamma$      | $A1$         |
-| Modus ponens for knowledge            | $\Gamma$      | $A2$         |
-| Distribution of $K$ over implication  | $\Gamma$      | $A2'$        |
-| Knowledge implies truth               | $\Gamma$      | $A3$         |
-| Positive introspection                | $\Gamma$      | $A4$         |
-| Negative introspection                |               | $A5$         |
-| Definition of $E$                     |               | $A6$         |
-| Common knowledge implies truth        |               | $A7$         |
-| Induction axiom                       |               | $A8$         |
-| Common knowledge through $E$-paths    |               | $A9$         |
-| Distribution of $C$ over implication  |               | $A10$        |
-| Announcement reduction axiom          |               | $A11$        |
-| Negation reduction axiom              |               | $A12$        |
-| Conjunction reduction axiom           |               | $A13$        |
-| Knowledge reduction axiom             |               | $A14$        |
-| Announcement sequence reduction axiom |               | $A15$        |
+| Axiom or rule name                    | Rule or axiom                                                                                  | Abbreviation |
+|  ------------                         | :-----------:                                                                                  | :------:     |
+| Propositional tautologies             | All (instances of) propositional tautologies                                                   | $A1$         |
+| Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$ | $A2$         |
+| Distribution of $K$ over implication  | $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$                                          | $A2'$        |
+| Knowledge implies truth               | $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$                                    | $A3$         |
+| Positive introspection                | $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$                                    | $A4$         |
+| Negative introspection                | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$                      | $A5$         |
+| Definition of $E$                     | $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$                           | $A6$         |
+| Common knowledge implies truth        | $C_B\varphi \rightarrow \varphi$                                                               | $A7$         |
+| Induction axiom                       | $C_B\varphi \rightarrow E_BC_B\varphi$                                                         | $A8$         |
+| Common knowledge through $E$-paths    | $(C_B\varphi \land C_B(\varphi \rightarrow \psi)) \rightarrow C_B\psi$                         | $A9$         |
+| Distribution of $C$ over implication  | $C_B(\varphi \rightarrow E_B\varphi) \rightarrow (\varphi \rightarrow C_B\varphi)$             | $A10$        |
+| Announcement reduction axiom          | $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p) $                                        | $A11$        |
+| Negation reduction axiom              | $\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $             | $A12$        |
+| Conjunction reduction axiom           | $\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $        | $A13$        |
+| Knowledge reduction axiom             | $\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) $                 | $A14$        |
+| Announcement sequence reduction axiom | $\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $               | $A15$        |
 
 
 ## Implementation
