@@ -61,17 +61,17 @@ So the language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is the smallest set 
 3. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $K\_i\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
 4. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $E\_B\varphi, C\_B\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$ for $B \subseteq \mathbf{A}$.
 
-The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operator $[\phi]$. A formula $[\phi]\psi$ means "after a public announcement of $\phi$, $\psi$ holds". The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is the smallest set closed under:
+The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operator $[\varphi]$. A formula $[\varphi]\psi$ means "after a public announcement of $\varphi$, $\psi$ holds". The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is the smallest set closed under:
 1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$.
 2. If $\varphi, \psi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P}) $.
 3. If $\varphi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, then $K\_i\varphi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
-4. If $\varphi,\psi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, then $[\phi]\psi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$.
+4. If $\varphi,\psi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$, then $[\varphi]\psi \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$.
 
 Now, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is an extension of $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$; it also contains the operators $E$ and $C$ as defined before. So the language $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is the smallest set closed under:
 1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$.
 2. If $\varphi, \psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$.
 3. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $K\_i\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
-4. If $\varphi,\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $[\phi]\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
+4. If $\varphi,\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $[\varphi]\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
 5. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $E\_B\varphi, C\_B\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ for $B \subseteq \mathbf{A}$.
 
 ## Axiom Systems
@@ -134,7 +134,7 @@ For the axiom system $\mathbf{PA} $, in addition to the axioms (A1)-(A5) and rul
 
 For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following rules for the \[\]-operator:
 - R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
-- R5. $\dfrac{\chi\to[\phi]\psi, \chi \wedge \phi \to E\_{B}\chi}{\chi\to[\phi]C\_B\psi}$
+- R5. $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\_{B}\chi}{\chi\to[\varphi]C\_B\psi}$
 
 <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
 
@@ -181,10 +181,10 @@ In many cases, syntactic proofs are finished by applying rules. For example, sup
 
 We apply this strategy in general. For any formula $\varphi$ of the relevant language, there is a set of rules of which the conclusion has the same formula structure as $\varphi$. Only those rules are available to justify $\varphi$.
 
-There are a few exceptions here. In some cases, the premises of a given rule contain formulas that are not in the conclusion. For example, consider Hypothetical Syllogism (HS). If we try to derive $\phi \to \psi$ with HS, then we would generate two premises: $\varphi \to \chi$ and $\chi \to \psi$. But what should $\chi$ be? Our program cannot determine this by itself. The user has to provide input for $\chi$ to make the rule work. 
+There are a few exceptions here. In some cases, the premises of a given rule contain formulas that are not in the conclusion. For example, consider Hypothetical Syllogism (HS). If we try to derive $\varphi \to \psi$ with HS, then we would generate two premises: $\varphi \to \chi$ and $\chi \to \psi$. But what should $\chi$ be? Our program cannot determine this by itself. The user has to provide input for $\chi$ to make the rule work. 
 
-Note also that in Meyer & Hoek (1998), the HS rule allows for more than two premises. But the program cannot determine how many premises HS should generate. For example, we can justify $\phi \to \psi$ with HS with two premises, but also three, four or more. For example, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
-But this is not problematic. If we can use HS with $n$ premises, we can also use HS with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from $\varphi \to \chi$, and $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once to all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\phi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
+Note also that in Meyer & Hoek (1998), the HS rule allows for more than two premises. But the program cannot determine how many premises HS should generate. For example, we can justify $\varphi \to \psi$ with HS with two premises, but also three, four or more. For example, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
+But this is not problematic. If we can use HS with $n$ premises, we can also use HS with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from $\varphi \to \chi$, and $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once to all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\varphi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
 So to keep things simple, we do not facilitate HS with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available.
 
 Below is a table with the rules that we aim to implement. Formulas $\chi$ are (sub)formulas of premises that need user input as described above.
@@ -200,11 +200,13 @@ Below is a table with the rules that we aim to implement. Formulas $\chi$ are (s
 | Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$ | HS $\leftrightarrow$   | Yes         |
 | Left-right strengthening                   | $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                             | LR                     | No          |
 | Contra-position                            | $\dfrac{\varphi\to\psi}{\neg\psi\to\neg\varphi}$                                             | CP                     | No          |
-| No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\phi\to\psi}$                                        | NC                     | No          |
-| Combining                                  | $\dfrac{\phi\_1\to\psi\_1 \quad \phi\_2\to\psi\_2}{(\phi\_1\wedge\phi_2)\to(\psi\_1\wedge\psi_2)}$   | CO             | No          |
-| Combining  ($\leftrightarrow$)             | $\dfrac{\phi\_1\leftrightarrow\psi\_1 \quad \phi\_2\leftrightarrow\psi\_2}{(\phi\_1\wedge\phi_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$ | CO $\leftrightarrow$       | No            |
-| Substitution                               | $\dfrac{\phi\_1\leftrightarrow\phi_2}{\psi\leftrightarrow\psi\[\phi\_1/\phi\_2\]}$            | SUB                    | Yes         |
-| No contradiction                           | $\dfrac{(\phi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                        | NC'                    | No          |
+| No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\varphi\to\psi}$                                     | NC                     | No          |
+| Combining                                  | $\dfrac{\varphi\_1\to\psi\_1 \quad \varphi\_2\to\psi\_2}{(\varphi\_1\wedge\varphi\_2)\to(\psi\_1\wedge\psi_2)}$       | CO             | No          |
+| Combining  ($\leftrightarrow$)             | $\dfrac{\varphi\_1\leftrightarrow\psi\_1 \quad \varphi\_2\leftrightarrow\psi\_2}{(\varphi\_1\wedge\varphi\_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$                                                                         | CO $\leftrightarrow$   | No          |
+| Substitution                               | $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$  | SUB                | Yes         |
+| No contradiction                           | $\dfrac{(\varphi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                     | NC'                    | No          |
+| $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                  | ED                     | No          |
+| $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                  | CD                     | No          |
 
 
 Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user.
