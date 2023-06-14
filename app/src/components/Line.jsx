@@ -1,13 +1,14 @@
-import Form from "react-bootstrap/Form";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
 import PropTypes from "prop-types";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Navbar from "react-bootstrap/Navbar";
 
-import check from "../utils/Engine";
-import pretty from "../utils/Pretty";
 import axiomsList from "../data/Axioms";
 import rulesList from "../data/Rules";
 import Tree from "../utils/Tree";
+import check from "../utils/Engine";
+import pretty from "../utils/Pretty";
 
 Line.propTypes = {
   node: PropTypes.instanceOf(Tree).isRequired,
@@ -17,9 +18,6 @@ Line.propTypes = {
 
 function Line({ node, index, setTree }) {
   function handleSelect(event) {
-    // set validation
-    event.target.setCustomValidity("");
-
     // find the selected rule
     const rule = rulesList.find((rule) => rule.name === event.target.value);
     const base = event.target.value;
@@ -37,39 +35,34 @@ function Line({ node, index, setTree }) {
   return (
     <>
       <Navbar>
-        <Container className="border-bottom" fluid>
+        <Container className="border-bottom rounded" fluid>
           <Navbar.Brand>
             {index + 1}&emsp;⊢&ensp;{pretty(node.value)}
           </Navbar.Brand>
         </Container>
-        <Form noValidate validated={node.validated} className="d-flex">
-          <Form.Select onChange={handleSelect} value={node.base}>
-            <option disabled value={0}>
-              Base
-            </option>
-
-            {/* Axioms */}
-            <option disabled>──────</option>
-            {axiomsList.map((axiom) => (
-              <option
-                key={axiom.name}
-                disabled={!check(node.value, axiom, true)}
-              >
-                {axiom.name}
+        <Form className="d-flex w-50">
+          <InputGroup>
+            <Form.Select onChange={handleSelect} value={node.base}>
+              <option disabled value={0}>
+                Base
               </option>
-            ))}
 
-            {/* Rules */}
-            <option disabled>──────</option>
-            {rulesList.map((rule) => (
-              <option
-                key={rule.name}
-                disabled={check(node.value, rule, false).length == 0}
-              >
-                {rule.name}
-              </option>
-            ))}
-          </Form.Select>
+              {/* Axioms */}
+              {axiomsList
+                .filter((axiom) => check(node.value, axiom, true))
+                .map((axiom) => (
+                  <option key={axiom.name}>{axiom.name}</option>
+                ))}
+
+              {/* Rules */}
+              {rulesList
+                .filter((rule) => check(node.value, rule, false).length !== 0)
+                .map((rule) => (
+                  <option key={rule.name}>{rule.name}</option>
+                ))}
+            </Form.Select>
+            <InputGroup.Text>{node.validated ? "✅" : "🟧"}</InputGroup.Text>
+          </InputGroup>
         </Form>
       </Navbar>
     </>

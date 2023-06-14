@@ -23,6 +23,8 @@ function check(formula, base, isAxiom) {
 }
 
 function checkFormula(formula, ref, agents, holes) {
+  if (formula.type === "hole") return [false, agents, holes];
+
   if (ref.type === "hole") {
     if (holes[ref.hole] === undefined) {
       holes[ref.hole] = formula;
