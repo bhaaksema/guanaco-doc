@@ -163,7 +163,18 @@ The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = 
 | Necessitation of announcements        | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                     | $R4$         |
 | Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$                   | $R5$         |
 
-Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$.
+All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2008). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$.
+
+Now, the logics $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in it.
+
+| Axiom system       | Axioms and rules                | Relations between systems            |
+| ----------         | ----------------                | -----------------------              |
+| $\mathbf{K(m)}$    | $A1-A2'$ and $R1-R2$            |                                      |
+| $\mathbf{S5(m)}$   | $A1-A5$ and $R1-R2$             | $\mathbf{K(m)} + A4-A5$              |
+| $\mathbf{KEC(m)}$  | $A1-A2'$, $A6-A10$ and $R1-R3$  | $\mathbf{K(m)} + A6-A10 + R3$        |
+| $\mathbf{S5EC(m)}$ | $A1-A10$ and $R1-R3$            | $\mathbf{S5(m)} + A6-A10 + R3$       |
+| $\mathbf{PA}$      | $A1-A5$, $A11-A15$ and $R1-R2$  | $\mathbf{S5(m)} + A11-A15$           |
+| $\mathbf{PAC}$     | $A1-A15$ and $R1-R5$            | $\mathbf{S5EC(m)} + A11-A15 + R4-R5$ |
 
 
 
@@ -213,7 +224,7 @@ We apply this strategy in general. For any formula $\varphi$ of the relevant lan
 
 There are a few exceptions here. In some cases, the premises of a given rule contain formulas that are not in the conclusion. For example, consider Hypothetical Syllogism (HS). If we try to derive $\varphi \to \psi$ with HS, then we would generate two premises: $\varphi \to \chi$ and $\chi \to \psi$. But what should $\chi$ be? Our program cannot determine this by itself. The user has to provide input for $\chi$ to make the rule work. 
 
-Note also that in Meyer & Hoek (1998), the HS rule allows for more than two premises. But the program cannot determine how many premises HS should generate. For example, we can justify $\varphi \to \psi$ with HS with two premises, but also three, four or more. For example, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
+Note also that in Meyer & Hoek (1995), the HS rule allows for more than two premises. But the program cannot determine how many premises HS should generate. For example, we can justify $\varphi \to \psi$ with HS with two premises, but also three, four or more. For example, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
 But this is not problematic. If we can use HS with $n$ premises, we can also use HS with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from $\varphi \to \chi$, and $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once to all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\varphi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
 So to keep things simple, we do not facilitate HS with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available.
 
