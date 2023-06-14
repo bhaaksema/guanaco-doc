@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Container className="d-flex justify-content-center">
       <Card className="mt-5" style={{ width: "40rem" }}>
-        <Card.Body>
+        <Card.Header>
           <Card.Title>Bottom-up Syntactic Proof Guide</Card.Title>
           <Card.Text>
             This tool helps people to determine which rules can be applied and
@@ -17,6 +17,8 @@ export default function App() {
             <br /> <br />
             Example: <code>{A2}</code>
           </Card.Text>
+        </Card.Header>
+        <Card.Body>
           <ProofTree />
         </Card.Body>
       </Card>

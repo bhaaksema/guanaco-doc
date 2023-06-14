@@ -68,7 +68,7 @@ function checkFormula(formula, ref, agents, holes) {
 function initPremise(premise, agents, holes) {
   switch (premise.type) {
     case "hole":
-      return holes[premise.hole];
+      return (holes[premise.hole] ? holes[premise.hole] : premise);
     case "conjunction":
     case "disjunction":
     case "implication":

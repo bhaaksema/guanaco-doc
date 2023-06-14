@@ -1,5 +1,6 @@
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 import PropTypes from "prop-types";
 
 import check from "../utils/Engine";
@@ -11,51 +12,66 @@ import Tree from "../utils/Tree";
 ProofNode.propTypes = {
   node: PropTypes.instanceOf(Tree).isRequired,
   index: PropTypes.number.isRequired,
+  setTree: PropTypes.func.isRequired,
 };
 
-export default function ProofNode({ node, index }) {
+export default function ProofNode({ node, index, setTree }) {
   function handleSelect(event) {
-    const baseTxt = event.target.value;
+    // set validation
+    event.target.setCustomValidity("");
 
-    // find the selected base
-    let base = rulesList.find((rule) => rule.name === baseTxt);
-    const isAxiom = !base;
+    // find the selected rule
+    const rule = rulesList.find((rule) => rule.name === event.target.value);
+    const base = event.target.value;
 
-    if (isAxiom) {
-      base = axiomsList.find((axiom) => axiom.name === baseTxt);
+    // update the tree
+    if (rule) {
+      const premises = check(node.value, rule, false);
+      const children = premises.map((premise) => new Tree(premise));
+      setTree((tree) => tree.update(node, base, true, children));
+    } else {
+      setTree((tree) => tree.update(node, base, true, node.children));
     }
-
-    console.log(check(node.value, base, isAxiom));
   }
 
   return (
-    <InputGroup size="lg">
-      <InputGroup.Text>{index + 1}.</InputGroup.Text>
-      <InputGroup.Text className="w-60">{pretty(node.value)}</InputGroup.Text>
-      <Form.Select onChange={handleSelect} defaultValue={0}>
-        <option disabled value={0}>
-          Base
-        </option>
+    <>
+      <Navbar>
+        <Container className="border-bottom" fluid>
+          <Navbar.Brand>
+            {index + 1}&emsp;⊢&ensp;{pretty(node.value)}
+          </Navbar.Brand>
+        </Container>
+        <Form noValidate validated={node.validated} className="d-flex">
+          <Form.Select onChange={handleSelect} value={node.base}>
+            <option disabled value={0}>
+              Base
+            </option>
 
-        {/* Axioms */}
-        <option disabled>────────</option>
-        {axiomsList.map((axiom) => (
-          <option key={axiom.name} disabled={!check(node.value, axiom, true)}>
-            {axiom.name}
-          </option>
-        ))}
+            {/* Axioms */}
+            <option disabled>──────</option>
+            {axiomsList.map((axiom) => (
+              <option
+                key={axiom.name}
+                disabled={!check(node.value, axiom, true)}
+              >
+                {axiom.name}
+              </option>
+            ))}
 
-        {/* Rules */}
-        <option disabled>────────</option>
-        {rulesList.map((rule) => (
-          <option
-            key={rule.name}
-            disabled={check(node.value, rule, false).length == 0}
-          >
-            {rule.name}
-          </option>
-        ))}
-      </Form.Select>
-    </InputGroup>
+            {/* Rules */}
+            <option disabled>──────</option>
+            {rulesList.map((rule) => (
+              <option
+                key={rule.name}
+                disabled={check(node.value, rule, false).length == 0}
+              >
+                {rule.name}
+              </option>
+            ))}
+          </Form.Select>
+        </Form>
+      </Navbar>
+    </>
   );
 }

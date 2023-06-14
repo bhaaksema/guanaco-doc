@@ -1,23 +1,21 @@
 import { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import Form from "react-bootstrap/Form";
 
 import ProofNode from "./ProofNode";
 import Goal from "./Goal";
+import Tree from "../utils/Tree";
 
 function ProofTree() {
-  const [tree, setTree] = useState(null);
+  const [tree, setTree] = useState(new Tree({ type: "hole" }));
 
   return (
     <>
-      <ListGroup as="ol" style={{ listStyleType: "none" }}>
-        {tree &&
-          tree.toArray().map((node, index) => (
-            <Form as="li" key={index} className="mb-1">
-              <ProofNode {...{ node, index }} />
-            </Form>
-          ))}
-      </ListGroup>
+      {tree &&
+        tree.toArray().map((node, index) => (
+          <ListGroup.Item as="li" key={index} className="mb-1">
+            <ProofNode {...{ node, index, setTree }} />
+          </ListGroup.Item>
+        ))}
       <Goal {...{ setTree }} />
     </>
   );

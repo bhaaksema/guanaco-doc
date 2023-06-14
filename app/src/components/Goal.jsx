@@ -14,16 +14,14 @@ function Goal({ setTree }) {
   const [validated, setValidated] = useState(false);
 
   function handleTyping(target) {
-    if (target.value !== "") {
-      try {
-        setTree(new Tree(parse(target.value)));
-        console.log(parse(target.value));
-        target.setCustomValidity("");
-      } catch (e) {
-        setTree(null);
-        target.setCustomValidity("invalid formula");
-        console.log(e);
-      }
+    try {
+      setTree(new Tree(parse(target.value)));
+      console.log(parse(target.value));
+      target.setCustomValidity("");
+    } catch (e) {
+      setTree(new Tree({ type: "hole" }));
+      target.setCustomValidity("invalid formula");
+      console.log(e);
     }
     setValidated(target.value !== "");
   }
