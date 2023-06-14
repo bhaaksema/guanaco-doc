@@ -9,13 +9,13 @@ import axiomsList from "../data/Axioms";
 import rulesList from "../data/Rules";
 import Tree from "../utils/Tree";
 
-ProofNode.propTypes = {
+Line.propTypes = {
   node: PropTypes.instanceOf(Tree).isRequired,
   index: PropTypes.number.isRequired,
   setTree: PropTypes.func.isRequired,
 };
 
-export default function ProofNode({ node, index, setTree }) {
+function Line({ node, index, setTree }) {
   function handleSelect(event) {
     // set validation
     event.target.setCustomValidity("");
@@ -75,3 +75,5 @@ export default function ProofNode({ node, index, setTree }) {
     </>
   );
 }
+
+export default Line;

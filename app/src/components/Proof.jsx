@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 
-import ProofNode from "./ProofNode";
+import ProofNode from "./Line";
 import Goal from "./Goal";
 import Tree from "../utils/Tree";
 
-function ProofTree() {
+function Proof() {
   const [tree, setTree] = useState(new Tree({ type: "hole" }));
 
   return (
@@ -21,4 +21,4 @@ function ProofTree() {
   );
 }
 
-export default ProofTree;
+export default Proof;
