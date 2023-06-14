@@ -11,20 +11,10 @@ class FormulaParser extends EmbeddedActionsParser {
       return this.OR([
         {
           GATE: this.BACKTRACK(this.binary),
-          ALT: () => {
-            return this.SUBRULE(this.binary);
-          },
+          ALT: () => { return this.SUBRULE(this.binary); }
         },
-        {
-          ALT: () => {
-            return this.SUBRULE(this.unary);
-          },
-        },
-        {
-          ALT: () => {
-            return this.SUBRULE(this.atom);
-          },
-        },
+        { ALT: () => { return this.SUBRULE(this.unary); } },
+        { ALT: () => { return this.SUBRULE(this.atom); } },
       ]);
     });
 
@@ -39,16 +29,8 @@ class FormulaParser extends EmbeddedActionsParser {
             return formula;
           },
         },
-        {
-          ALT: () => {
-            return this.SUBRULE(this.unary);
-          },
-        },
-        {
-          ALT: () => {
-            return this.SUBRULE(this.atom);
-          },
-        },
+        { ALT: () => { return this.SUBRULE(this.unary); } },
+        { ALT: () => { return this.SUBRULE(this.atom); } },
       ]);
     });
 
@@ -56,10 +38,31 @@ class FormulaParser extends EmbeddedActionsParser {
     this.RULE("binary", () => {
       const left = this.SUBRULE(this.subformula);
       const type = this.OR([
-        { ALT: andType },
-        { ALT: orType },
-        { ALT: toType },
-        { ALT: equivType },
+        {
+          ALT: () => {
+            this.CONSUME(tokens.And);
+            return "conjunction";
+          }
+
+        },
+        {
+          ALT: () => {
+            this.CONSUME(tokens.Or);
+            return "disjunction";
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(tokens.To);
+            return "implication";
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(tokens.Equiv);
+            return "equivalence";
+          }
+        },
       ]);
 
       const right = this.SUBRULE1(this.subformula);
@@ -69,11 +72,16 @@ class FormulaParser extends EmbeddedActionsParser {
     // unary ::= ( ! | E | C ) subformula | ( K | M ) { agent } subformula
     this.RULE("unary", () => {
       const type = this.OR([
-        { ALT: notType },
-        { ALT: kType },
-        { ALT: mType },
-        { ALT: eType },
-        { ALT: cType },
+        {
+          ALT: () => {
+            this.CONSUME(tokens.Not);
+            return "negation";
+          }
+        },
+        { ALT: () => { return this.CONSUME(tokens.K).tokenType.name; } },
+        { ALT: () => { return this.CONSUME(tokens.M).tokenType.name; } },
+        { ALT: () => { return this.CONSUME(tokens.E).tokenType.name; } },
+        { ALT: () => { return this.CONSUME(tokens.C).tokenType.name; } },
       ]);
 
       if (type === "negation" || type === "E" || type === "C") {
@@ -89,59 +97,18 @@ class FormulaParser extends EmbeddedActionsParser {
 
     // atom ::= proposition | variable
     this.RULE("atom", () => {
-      return this.OR([{ ALT: proposition }, { ALT: formula }]);
+      return this.OR([{
+        ALT: () => {
+          const value = this.CONSUME(tokens.Proposition).image;
+          return { type: "proposition", value: value };
+        }
+      }, {
+        ALT: () => {
+          const value = this.CONSUME(tokens.Formula).image;
+          return { type: "formula", value: value };
+        }
+      }]);
     });
-
-    function andType() {
-      this.CONSUME(tokens.And);
-      return "conjunction";
-    }
-
-    function orType() {
-      this.CONSUME(tokens.Or);
-      return "disjunction";
-    }
-
-    function toType() {
-      this.CONSUME(tokens.To);
-      return "implication";
-    }
-
-    function equivType() {
-      this.CONSUME(tokens.Equiv);
-      return "equivalence";
-    }
-
-    function notType() {
-      this.CONSUME(tokens.Not);
-      return "negation";
-    }
-
-    function kType() {
-      return this.CONSUME(tokens.K).tokenType.name;
-    }
-
-    function mType() {
-      return this.CONSUME(tokens.M).tokenType.name;
-    }
-
-    function eType() {
-      return this.CONSUME(tokens.E).tokenType.name;
-    }
-
-    function cType() {
-      return this.CONSUME(tokens.C).tokenType.name;
-    }
-
-    function proposition() {
-      const value = this.CONSUME(tokens.Proposition).image;
-      return { type: "proposition", value: value };
-    }
-
-    function formula() {
-      const value = this.CONSUME(tokens.Formula).image;
-      return { type: "formula", value: value };
-    }
 
     this.performSelfAnalysis();
   }
