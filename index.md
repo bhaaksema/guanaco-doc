@@ -53,7 +53,7 @@ Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n 
 
 Moreover, let $\varphi \lor \psi, \varphi \rightarrow \psi$ and $\varphi \leftrightarrow \psi$ be abbreviations for $\lnot(\lnot\varphi \land \lnot \psi)$, $\lnot \varphi \lor \psi$ and $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$ respectively. Additionally, we use the abbreviation $M_i\varphi$ for $\lnot K_i \lnot \varphi$.
 
-The language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operators $E$ and $C$. We define this language as follows: for any group B of agents from $\mathbf{A}$, "Everybody in B knows $\varphi$", written $E\varphi$, is defined as the conjunction of all individuals in B knowing $\varphi$, i.e. $E\varphi = \bigwedge\_{b \in B} K_b\varphi$. If $B=\mathbf{A}$, we just write $E$. We then define common knowledge of a formula $\varphi$ for a subset $B \subseteq \mathbf{A}$ as $C\varphi = \varphi \land E_B\varphi \land EE\varphi \land \dots = {\bigwedge} \_{n=0} ^{\infty} E^n\varphi$. Again, if $B=\mathbf{A}$, we just write $C$.
+The language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operators $E$ and $C$. We define this language as follows: for any group B of agents from $\mathbf{A}$, "Everybody in B knows $\varphi$", written $E\varphi$, is defined as the conjunction of all individuals in B knowing $\varphi$, i.e. $E\varphi = \bigwedge\_{b \in B} K_b\varphi$. If $B=\mathbf{A}$, we just write $E$. We then define common knowledge of a formula $\varphi$ for a subset $B \subseteq \mathbf{A}$ as $C\varphi = \varphi \land E\varphi \land EE\varphi \land \dots = {\bigwedge} \_{n=0} ^{\infty} E^n\varphi$. Again, if $B=\mathbf{A}$, we just write $C$.
 
 So the language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is the smallest set closed under:
 1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$.
@@ -104,11 +104,11 @@ The axiom system $\mathbf{S5(m)}$ is an extension of $\mathbf{K(m)}$. The axiom 
 
 In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ and the axioms (A3)-(A5) from $\mathbf{S5(m)}$, we have the following axioms and rule for the $E$- and $C$- operators:
 - A6. $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$
-- A7. $C_B\varphi \rightarrow \varphi$
-- A8. $C_B\varphi \rightarrow E_BC_B\varphi$
-- A9. $(C_B\varphi \land C_B(\varphi \rightarrow \psi)) \rightarrow C_B\psi$
-- A10. $C_B(\varphi \rightarrow E_B\varphi) \rightarrow (\varphi \rightarrow C_B\varphi)$
-- R3. $\dfrac{\varphi}{C_B\varphi}$
+- A7. $C\varphi \rightarrow \varphi$
+- A8. $C\varphi \rightarrow EC\varphi$
+- A9. $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$
+- A10. $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$
+- R3. $\dfrac{\varphi}{C\varphi}$
 
 Then, we define 
 
@@ -132,7 +132,7 @@ For the axiom system $\mathbf{PA} $, in addition to the axioms (A1)-(A5) and rul
 
 For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following rules for the \[\]-operator:
 - R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
-- R5. $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\_{B}\chi}{\chi\to[\varphi]C\psi}$
+- R5. $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$
 
 <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
 
@@ -147,10 +147,10 @@ The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = 
 | Positive introspection                | $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$                                    | $A4$         |
 | Negative introspection                | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$                      | $A5$         |
 | Definition of $E$                     | $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$                           | $A6$         |
-| Common knowledge implies truth        | $C_B\varphi \rightarrow \varphi$                                                               | $A7$         |
-| Induction axiom                       | $C_B\varphi \rightarrow E_BC_B\varphi$                                                         | $A8$         |
-| Common knowledge through $E$-paths    | $(C_B\varphi \land C_B(\varphi \rightarrow \psi)) \rightarrow C_B\psi$                         | $A9$         |
-| Distribution of $C$ over implication  | $C_B(\varphi \rightarrow E_B\varphi) \rightarrow (\varphi \rightarrow C_B\varphi)$             | $A10$        |
+| Common knowledge implies truth        | $C\varphi \rightarrow \varphi$                                                                 | $A7$         |
+| Induction axiom                       | $\varphi \rightarrow EC\varphi$                                                                | $A8$         |
+| Common knowledge through $E$-paths    | $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$                               | $A9$         |
+| Distribution of $C$ over implication  | $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$                   | $A10$        |
 | Announcement reduction axiom          | $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p) $                                        | $A11$        |
 | Negation reduction axiom              | $\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $             | $A12$        |
 | Conjunction reduction axiom           | $\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $        | $A13$        |
