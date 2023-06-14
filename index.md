@@ -33,13 +33,13 @@ Visually, a syntactic proof is presented like this:
 
 | Line number    | Axiom system  |          | Formula     | Justification |
 | :------------: | :-----------: | :------: | :---------: | :-----------: |  
-| $1$            | $\Gamma$      | $\vdash$ | $\varphi_1$ | $Ak$ / $Rk$   | 
-| $...$          | $\Gamma$      | $\vdash$ | $...$       | $Ak$ / $Rk$   |
-| $i$            | $\Gamma$      | $\vdash$ | $\varphi_i$ | $Ak$ / $Rk$   |
-| $...$          | $\Gamma$      | $\vdash$ | $...$       | $Ak$ / $Rk$   |
-| $n$            | $\Gamma$      | $\vdash$ | $\varphi_n$ | $Ak$ / $Rk$   |
+| $1$            | $\Gamma$      | $\vdash$ | $\varphi_1$ | $A/R$         | 
+| $...$          | $\Gamma$      | $\vdash$ | $...$       | $A/R$         |
+| $i$            | $\Gamma$      | $\vdash$ | $\varphi_i$ | $A/R$         |
+| $...$          | $\Gamma$      | $\vdash$ | $...$       | $A/R$         |
+| $n$            | $\Gamma$      | $\vdash$ | $\varphi_n$ | $A/R$         |
 
-So each member of the sequence of formulas has its own line, specifying the used axiom system $\Gamma$, the formula itself and the justification for that formula (an axiom $Ak$ or rule $Rk$ of $\Gamma$, where $k$ is a natural number). If the justification is a rule, then the premises to which the rule is applied are cited too.
+So each member of the sequence of formulas has its own line, specifying the used axiom system $\Gamma$, the formula itself and the justification for that formula (an axiom $A$ or rule $R$ of $\Gamma$). If the justification is a rule, then the premises to which the rule is applied are cited too.
 
 ### The language: Epistemic Formulas
 
@@ -51,15 +51,15 @@ Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n 
 2. If $\varphi, \psi \in \mathcal{L}^m_{\mathbf{K}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$.
 3. If $\varphi \in \mathcal{L}^m\_{\mathbf{K}}(\mathbf{P})$, then $K\_{i}\varphi \in \mathcal{L}^m\_{\mathbf{K}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
 
-Moreover, let $\varphi \lor \psi, \varphi \rightarrow \psi$ and $\varphi \leftrightarrow \psi$ be abbreviations for $\lnot(\lnot\varphi \land \lnot \psi)$, $\lnot \varphi \lor \psi$ and $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$ respectively. Additionally, we use the abbreviation $M_i\varphi$ for $\lnot K_i \lnot \varphi$.
+Moreover, let $\varphi \lor \psi, \varphi \rightarrow \psi$, $\varphi \leftrightarrow \psi$ and $\bot$ be abbreviations for $\lnot(\lnot\varphi \land \lnot \psi)$, $\lnot \varphi \lor \psi$, $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$ and $p\wedge\neg p$ (where $p$ is a propositional atom) respectively. Additionally, we use the abbreviation $M_i\varphi$ for $\lnot K_i \lnot \varphi$.
 
-The language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operators $E$ and $C$. We define this language as follows: for any group B of agents from $\mathbf{A}$, "Everybody in B knows $\varphi$", written $E\varphi$, is defined as the conjunction of all individuals in B knowing $\varphi$, i.e. $E\varphi = \bigwedge\_{b \in B} K_b\varphi$. If $B=\mathbf{A}$, we just write $E$. We then define common knowledge of a formula $\varphi$ for a subset $B \subseteq \mathbf{A}$ as $C\varphi = \varphi \land E\varphi \land EE\varphi \land \dots = {\bigwedge} \_{n=0} ^{\infty} E^n\varphi$. Again, if $B=\mathbf{A}$, we just write $C$.
+The language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operators $E$ and $C$. The formula $E\varphi$ means 'Everybody knows $\varphi$' and is defined as the conjunction of all agents in $\mathbf{A}$ knowing $\varphi$, i.e. $E\varphi = \bigwedge\_{b \in \mathbf{A}} K_b\varphi$. The formula $C\varphi$ means that there is common knowledge of a formula $\varphi$ and it is defined as $C\varphi = \varphi \land E\varphi \land EE\varphi \land \dots = {\bigwedge} \_{n=0} ^{\infty} E^n\varphi$.
 
 So the language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is the smallest set closed under:
 1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$.
 2. If $\varphi, \psi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P}) $.
 3. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $K\_i\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
-4. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $E\varphi, C\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$ for $B \subseteq \mathbf{A}$.
+4. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $E\varphi, C\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$.
 
 The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operator $[\varphi]$. A formula $[\varphi]\psi$ means "after a public announcement of $\varphi$, $\psi$ holds". The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is the smallest set closed under:
 1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$.
@@ -76,67 +76,7 @@ Now, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is an extension of $\mathcal{
 
 ## Axiom Systems
 
-In Guanaco, there are five logics $\Gamma$ available: $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. We present the axioms system of each of these logics below.
-
-### The logic $\mathbf{K(m)}$
-
-*Axioms*
-- A1. All (instances of) propositional tautologies.
-- A2. $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$.
-- A2'. $K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi \rightarrow K_i \psi)$ for $i = 1, \dots, m$.
-
-*Derivation Rules*
-- R1. $\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi} \quad$ *Modus Ponens*.
-- R2. $\dfrac{\varphi}{K_i\varphi}$ $(i = 1,\dots, m) \quad$ *Necessitation*.
-
-Using these axioms and derivation rules, we are able to derive all provable formulas in $\mathcal{L}^m_{\mathbf{K}}(\mathbf{P})$. However, in order to make these types of proofs both shorter and easier, we've implemented some extra rules, which are all derivable in $\mathbf{K(m)}$.
-
-<!--- En dan hier die hele lijst, maar dat weet ik echt niet hoe ik dat mooi hierin krijg --->
-
-### The Logic $\mathbf{S5(m)}$
-
-The axiom system $\mathbf{S5(m)}$ is an extension of $\mathbf{K(m)}$. The axiom system $\mathbf{S5(m)}$ consists of the axioms $(A1)$, $(A2)$, the rules $(R1)$, $(R2)$ and:
-- A3. $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$
-- A4. $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$
-- A5. $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$
-
-### Common Knowledge: The logics $\mathbf{KEC(m)}$ and $\mathbf{S5EC(m)}$
-
-In addition to the axioms (A1), (A2) and rules (R1), (R2) from $\mathbf{K(m)}$ and the axioms (A3)-(A5) from $\mathbf{S5(m)}$, we have the following axioms and rule for the $E$- and $C$- operators:
-- A6. $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$
-- A7. $C\varphi \rightarrow \varphi$
-- A8. $C\varphi \rightarrow EC\varphi$
-- A9. $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$
-- A10. $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$
-- R3. $\dfrac{\varphi}{C\varphi}$
-
-Then, we define 
-
-$\mathbf{KEC(m)} = \mathbf{K(m)} + (A6)-(A10) + (R3)$
-
-$\mathbf{S5EC(m)} = \mathbf{S5(m)} + (A6)-(A10) + (R3)$
-
-Furthermore, we extend the system with two more derived rules, both of which are provable in $\mathbf{KEC(m)}$:
-
-<!--- Hier de twee rules voor E en C --->
-
-### Public Announcement Logic: The Logics $\mathbf{PA}$ and $\mathbf{PAC}$ 
-
-For the axiom system $\mathbf{PA} $, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$ we have the following axioms for the \[\]-operator:
-- A11. $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p) $
-- A12. $\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $
-- A13. $\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $
-- A14. $\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) $
-- A15 $\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $
-<!--- In de slides wordt hier al wel rule R4 genoemd, misschien nog even navragen --->
-
-For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following rules for the \[\]-operator:
-- R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
-- R5. $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$
-
-<!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
-
-The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
+In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Each of these logics provides a set of rules and axioms to make syntactic proofs with. Here is a list of all rules and axioms Guanaco knows:
 
 | Axiom or rule name                    | Rule or axiom                                                                                          | Abbreviation |
 | ------------                          | ----------                                                                                             | :------:     |
@@ -165,19 +105,16 @@ The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = 
 
 All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2008). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$.
 
-Now, the logics $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in it.
+Now, the axiom systems $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in them.
 
-| Axiom system       | Axioms and rules                | Relations between systems            |
-| ----------         | ----------------                | -----------------------              |
-| $\mathbf{K(m)}$    | $A1-A2'$ and $R1-R2$            |                                      |
-| $\mathbf{S5(m)}$   | $A1-A5$ and $R1-R2$             | $\mathbf{K(m)} + A4-A5$              |
-| $\mathbf{KEC(m)}$  | $A1-A2'$, $A6-A10$ and $R1-R3$  | $\mathbf{K(m)} + A6-A10 + R3$        |
-| $\mathbf{S5EC(m)}$ | $A1-A10$ and $R1-R3$            | $\mathbf{S5(m)} + A6-A10 + R3$       |
-| $\mathbf{PA}$      | $A1-A5$, $A11-A15$ and $R1-R2$  | $\mathbf{S5(m)} + A11-A15$           |
-| $\mathbf{PAC}$     | $A1-A15$ and $R1-R5$            | $\mathbf{S5EC(m)} + A11-A15 + R4-R5$ |
-
-
-
+| Axiom system       | Axioms and rules                | Relations between systems            | Language                                        |
+| ----------         | ----------------                | -----------------------              | --------                                        |
+| $\mathbf{K(m)}$    | $A1-A2'$ and $R1-R2$            |                                      | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
+| $\mathbf{S5(m)}$   | $A1-A5$ and $R1-R2$             | $\mathbf{K(m)} + A4-A5$              | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
+| $\mathbf{KEC(m)}$  | $A1-A2'$, $A6-A10$ and $R1-R3$  | $\mathbf{K(m)} + A6-A10 + R3$        | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
+| $\mathbf{S5EC(m)}$ | $A1-A10$ and $R1-R3$            | $\mathbf{S5(m)} + A6-A10 + R3$       | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
+| $\mathbf{PA}$      | $A1-A5$, $A11-A15$ and $R1-R2$  | $\mathbf{S5(m)} + A11-A15$           | $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$     | 
+| $\mathbf{PAC}$     | $A1-A15$ and $R1-R5$            | $\mathbf{S5EC(m)} + A11-A15 + R4-R5$ | $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$   |
 
 ## Implementation
 
@@ -187,7 +124,7 @@ In this section, we cover the important details of the implementation strategy. 
 
 When a user provides an input on a line, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output.
 
-| Input      | Parser interpretation                                     | Formula of the relevant language      |
+| Input      | Interpretation                                            | Formula of the relevant language      |
 | --------   | --------------------------------------------              | --------------------------            |
 | `pn`       | propositional atom `n`, where `n` is an integer           | $p\_n$                                |
 | `fn`       | formula `n`, where `n` is an integer                      | $\varphi\_n$                          |
@@ -210,13 +147,13 @@ To avoid ambiguity, the user is required to place brackets around binary operato
 
 White spaces are ignored, so users may use white spaces in the way they like.
 
-### Axioms
+### Schemes
 
-The axioms of the available logics are _schemes_; they represent not one tautology, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom A3 ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a tautology. For example, $K\_ip\to p$ is a tautology, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of A3, even though it is a scheme.
+The rules and axioms of the available logics are _schemes_; they represent not one theorem, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom A3 ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a theorem of $\mathbf{S5(m)}$. For example, $K\_ip\to p$ is a theorem of $\mathbf{S5(m)}$, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of A3, even though it is a scheme.
 
-Our parser recognizes this flexibility of axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `K{a1}!!f1 -> !!f1` as an input, when it encounters `!!f1` in the first hole, it checks whether `!!f1` is also in the second hole. In this case, it is, so the parses recognizes it as an instantiation of A3.
+Our parser recognizes this flexibility of rules and axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `K{a1}!!f1 -> !!f1` as an input, when it encounters `!!f1` in the first hole, it checks whether `!!f1` is also in the second hole. In this case, it is, so the parses recognizes it as an instantiation of A3.
 
-### Rules
+### Bottom-up strategy
 
 In many cases, syntactic proofs are finished by applying rules. For example, suppose we try to derive $K\_i(p\wedge q)\to K\_ip$. We may then start with the propositional tautology $(p\wedge q)\to p$ and apply $K$-distribution (KD) to it. In our program, we do it the opposite way. We start with the formula we aim to derive ($K\_i(p\wedge q)\to K\_ip$) and then we generate the premise on which we would apply KD to get to this formula. We call this strategy a _bottom-up strategy_. So, in this case, justifying a line with KD means that (1) the line is a conditional, (2) the conditional has $K\_i$ before both the antecedent and consequent, and (3) its premise is the same conditional without the $K\_i$ before the antecedent and consequent.
 
@@ -228,7 +165,7 @@ Note also that in Meyer & Hoek (1995), the HS rule allows for more than two prem
 But this is not problematic. If we can use HS with $n$ premises, we can also use HS with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from $\varphi \to \chi$, and $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once to all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\varphi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
 So to keep things simple, we do not facilitate HS with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available.
 
-Below is a table with the rules that we aim to implement. Formulas $\chi$ are (sub)formulas of premises that need user input as described above.
+Below is a table with shortcut rules that Guanaco knows. Each of these rules is available in all logics, except for ED and CD, which are available only in axiom systems for languages with the $E$ and $C$ operators. Formulas $\chi$ are (sub)formulas of premises that need user input as described above.
 
 | Rule name                                  | Rule                                                                                         | Abbreviation           | User input? |
 | ---------                                  | :----------------------------------------------------:                                       | ---------------------- | ----------- |
@@ -244,16 +181,14 @@ Below is a table with the rules that we aim to implement. Formulas $\chi$ are (s
 | No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\varphi\to\psi}$                                     | NC                     | No          |
 | Combining                                  | $\dfrac{\varphi\_1\to\psi\_1 \quad \varphi\_2\to\psi\_2}{(\varphi\_1\wedge\varphi\_2)\to(\psi\_1\wedge\psi_2)}$       | CO             | No          |
 | Combining  ($\leftrightarrow$)             | $\dfrac{\varphi\_1\leftrightarrow\psi\_1 \quad \varphi\_2\leftrightarrow\psi\_2}{(\varphi\_1\wedge\varphi\_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$                                                                         | CO $\leftrightarrow$   | No          |
-| Substitution                               | $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$  | SUB                | Yes         |
+| Substitution                               | $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$  | SUB                | No          |
 | No contradiction                           | $\dfrac{(\varphi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                     | NC'                    | No          |
 | $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                  | ED                     | No          |
 | $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                  | CD                     | No          |
 
-So if a rule $\dfrac{\varphi}{\psi}$ is used as a justifcation for some line with $\varphi$, then Guanaco prints one or two new lines above (depending on whether the chosen justification has one or two premises) and prints the relevant premise formula(s) $\psi$. If a rule requires user input, then Guanaco still prints the parts of $\psi$ that are determined by the application of the rule. For example, if one uses HS to justify $\varphi\to\psi$, then Guanaco prints $\varphi\to\dots$ and $\dots\to\psi$ on two new lines above. The user has to fill in the dots.
+So if a rule $\dfrac{\varphi}{\psi}$ is used as a justifcation for some line with $\psi$, then Guanaco prints one or two new lines above (depending on whether the chosen justification has one or two premises) and prints the relevant premise formula(s) $\varphi$. If a rule requires user input, then Guanaco prints a question mark (?) where user input is required. When the user provides the input, Guanaco replaces the question mark with the provided input. For example, if one uses HS to justify $\varphi\to\psi$, then Guanaco prints $\varphi\to\ ?$ and $? \to \psi$ on two new lines above. If the user provides $\chi$ as input, then it updates the two new lines to $\varphi\to \chi$ and $\chi \to \psi$.
 
-Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user. The user _can_ edit the formulas in the generated lines. 
-
-Note that Guanaco always prints the premises in order. For example, if the user uses HS, then Guanaco prints $\varphi\to\dots$ and $\dots\to\psi$ in that order, but _not_ $\dots\to\psi$ and $\varphi\to\dots$. Guanaco also evaluates the justification HS in that order. So if the user edits the lines with these premises and turns around the order of the premises, Guanaco will say that the justification is incorrectly applied. This is a limitation of Guanaco, which we can solve if we work on this project in the future.
+Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user.
 
 ### Other implementation details
 
