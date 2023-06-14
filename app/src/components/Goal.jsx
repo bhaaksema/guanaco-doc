@@ -32,7 +32,6 @@ function Goal({ setTree }) {
         <Form.Control
           placeholder="enter goal"
           onChange={(e) => handleTyping(e.target)}
-          size="lg"
         />
       </FloatingLabel>
     </Form>

@@ -8,9 +8,9 @@ export default function App() {
 
   return (
     <Container className="d-flex justify-content-center">
-      <Card className="mt-5" style={{ width: "40rem" }}>
+      <Card className="mt-5">
         <Card.Header>
-          <Card.Title>Bottom-up Syntactic Proof Guide</Card.Title>
+          <Card.Title>Syntactic Proof Guide for Epistemic Logic</Card.Title>
           <Card.Text>
             This tool helps people to determine which rules can be applied and
             to decide whether these rules have been applied correctly.
