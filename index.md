@@ -139,7 +139,7 @@ For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rul
 The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
 
 | Axiom or rule name                    | Rule or axiom                                                                                  | Abbreviation |
-|  ------------                         | :-----------:                                                                                  | :------:     |
+|  ------------                         | ----------                                                                                     | :------:     |
 | Propositional tautologies             | All (instances of) propositional tautologies                                                   | $A1$         |
 | Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$ | $A2$         |
 | Distribution of $K$ over implication  | $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$                                          | $A2'$        |
@@ -148,7 +148,7 @@ The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = 
 | Negative introspection                | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$                      | $A5$         |
 | Definition of $E$                     | $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$                           | $A6$         |
 | Common knowledge implies truth        | $C\varphi \rightarrow \varphi$                                                                 | $A7$         |
-| Induction axiom                       | $\varphi \rightarrow EC\varphi$                                                                | $A8$         |
+| Induction axiom                       | $C\varphi \rightarrow EC\varphi$                                                               | $A8$         |
 | Common knowledge through $E$-paths    | $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$                               | $A9$         |
 | Distribution of $C$ over implication  | $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$                   | $A10$        |
 | Announcement reduction axiom          | $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p) $                                        | $A11$        |
