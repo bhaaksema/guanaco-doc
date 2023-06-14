@@ -103,7 +103,7 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 | Necessitation of announcements        | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                     | $R4$         |
 | Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$                   | $R5$         |
 
-All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2008). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$.
+All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2008). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $A1$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. If we work on Guanaco in the future, we can give Guanaco a way to check whether something is a propositional tautology. But for now, this responsibility lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
 
 Now, the axiom systems $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in them.
 
@@ -116,13 +116,34 @@ Now, the axiom systems $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\m
 | $\mathbf{PA}$      | $A1-A5$, $A11-A15$ and $R1-R2$  | $\mathbf{S5(m)} + A11-A15$           | $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$     | 
 | $\mathbf{PAC}$     | $A1-A15$ and $R1-R5$            | $\mathbf{S5EC(m)} + A11-A15 + R4-R5$ | $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$   |
 
+Finally, below is a table with shortcut rules that Guanaco knows. Each of these rules is available in all logics, except for ED and CD, which are available only in axiom systems for languages with the $E$ and $C$ operators.
+
+| Rule name                                  | Rule                                                                                         | Abbreviation           |
+| ---------                                  | :----------------------------------------------------:                                       | ---------------------- |
+| $K$-distribution                           | $\dfrac{\varphi\to\psi}{K\_i\varphi\to K\_i\psi}$                                            | KD                     |
+| Equivalence-introduction                   | $\dfrac{\varphi\to\psi \quad \psi \to \varphi}{\varphi\leftrightarrow\psi}$                  | EI                     |
+| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\varphi\to\psi}$                                         | EE                     |
+| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                         | EE'                    |
+| $K$-distribution ($\leftrightarrow$)       | $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                    | KD $\leftrightarrow$   |
+| Hypothetical syllogism                     | $\dfrac{\varphi\to\chi \quad \chi \to \psi}{\varphi\to\psi}$                                 | HS                     |
+| Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$ | HS $\leftrightarrow$   |
+| Left-right strengthening                   | $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                             | LR                     |
+| Contra-position                            | $\dfrac{\varphi\to\psi}{\neg\psi\to\neg\varphi}$                                             | CP                     |
+| No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\varphi\to\psi}$                                     | NC                     |
+| Combining                                  | $\dfrac{\varphi\_1\to\psi\_1 \quad \varphi\_2\to\psi\_2}{(\varphi\_1\wedge\varphi\_2)\to(\psi\_1\wedge\psi_2)}$       | CO   |
+| Combining  ($\leftrightarrow$)             | $\dfrac{\varphi\_1\leftrightarrow\psi\_1 \quad \varphi\_2\leftrightarrow\psi\_2}{(\varphi\_1\wedge\varphi\_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$                                                                         | CO $\leftrightarrow$   |
+| Substitution                               | $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$  | SUB                |
+| No contradiction                           | $\dfrac{(\varphi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                     | NC'                    |
+| $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                  | ED                     |
+| $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                  | CD                     |
+
 ## Implementation
 
 In this section, we cover the important details of the implementation strategy. We first present the parsing process of our program, followed by our employed strategies for the implementation of axioms and rules.
 
 ### Input parsing
 
-When a user provides an input on a line, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output.
+When a user provides written input, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output.
 
 | Input      | Interpretation                                            | Formula of the relevant language      |
 | --------   | --------------------------------------------              | --------------------------            |
@@ -157,42 +178,21 @@ Our parser recognizes this flexibility of rules and axioms. For all axioms, it t
 
 In many cases, syntactic proofs are finished by applying rules. For example, suppose we try to derive $K\_i(p\wedge q)\to K\_ip$. We may then start with the propositional tautology $(p\wedge q)\to p$ and apply $K$-distribution (KD) to it. In our program, we do it the opposite way. We start with the formula we aim to derive ($K\_i(p\wedge q)\to K\_ip$) and then we generate the premise on which we would apply KD to get to this formula. We call this strategy a _bottom-up strategy_. So, in this case, justifying a line with KD means that (1) the line is a conditional, (2) the conditional has $K\_i$ before both the antecedent and consequent, and (3) its premise is the same conditional without the $K\_i$ before the antecedent and consequent.
 
-We apply this strategy in general. For any formula $\varphi$ of the relevant language, there is a set of rules of which the conclusion has the same formula structure as $\varphi$. Only those rules are available to justify $\varphi$.
+We apply this strategy in general. For any formula $\varphi$ of the relevant language, there is a set of rules of which the conclusion has the same formulaic structure as $\varphi$. Only those rules are available to justify $\varphi$. The premises for these rules can then be automatically generated. Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. If the user wants more lines, they always need to select a rule that generates new lines.
 
-There are a few exceptions here. In some cases, the premises of a given rule contain formulas that are not in the conclusion. For example, consider Hypothetical Syllogism (HS). If we try to derive $\varphi \to \psi$ with HS, then we would generate two premises: $\varphi \to \chi$ and $\chi \to \psi$. But what should $\chi$ be? Our program cannot determine this by itself. The user has to provide input for $\chi$ to make the rule work. 
+There are a few exceptions here. The premises of the rules HS and HS $\leftrightarrow$ contain formulas that are not in the conclusion. For example, if we try to derive $\varphi \to \psi$ with HS, then we would generate two premises: $\varphi \to \chi$ and $\chi \to \psi$. But what should $\chi$ be? Our program cannot determine this by itself. The user has to provide input for $\chi$ to make the rule work.
 
-Note also that in Meyer & Hoek (1995), the HS rule allows for more than two premises. But the program cannot determine how many premises HS should generate. For example, we can justify $\varphi \to \psi$ with HS with two premises, but also three, four or more. For example, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
-But this is not problematic. If we can use HS with $n$ premises, we can also use HS with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from $\varphi \to \chi$, and $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once to all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\varphi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
-So to keep things simple, we do not facilitate HS with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available.
-
-Below is a table with shortcut rules that Guanaco knows. Each of these rules is available in all logics, except for ED and CD, which are available only in axiom systems for languages with the $E$ and $C$ operators. Formulas $\chi$ are (sub)formulas of premises that need user input as described above.
-
-| Rule name                                  | Rule                                                                                         | Abbreviation           | User input? |
-| ---------                                  | :----------------------------------------------------:                                       | ---------------------- | ----------- |
-| $K$-distribution                           | $\dfrac{\varphi\to\psi}{K\_i\varphi\to K\_i\psi}$                                            | KD                     | No          |
-| Equivalence-introduction                   | $\dfrac{\varphi\to\psi \quad \psi \to \varphi}{\varphi\leftrightarrow\psi}$                  | EI                     | No          |
-| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\varphi\to\psi}$                                         | EE                     | No          |
-| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                         | EE'                    | No          |
-| $K$-distribution ($\leftrightarrow$)       | $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                    | KD $\leftrightarrow$   | No          |
-| Hypothetical syllogism                     | $\dfrac{\varphi\to\chi \quad \chi \to \psi}{\varphi\to\psi}$                                 | HS                     | Yes         |
-| Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$ | HS $\leftrightarrow$   | Yes         |
-| Left-right strengthening                   | $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                             | LR                     | No          |
-| Contra-position                            | $\dfrac{\varphi\to\psi}{\neg\psi\to\neg\varphi}$                                             | CP                     | No          |
-| No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\varphi\to\psi}$                                     | NC                     | No          |
-| Combining                                  | $\dfrac{\varphi\_1\to\psi\_1 \quad \varphi\_2\to\psi\_2}{(\varphi\_1\wedge\varphi\_2)\to(\psi\_1\wedge\psi_2)}$       | CO             | No          |
-| Combining  ($\leftrightarrow$)             | $\dfrac{\varphi\_1\leftrightarrow\psi\_1 \quad \varphi\_2\leftrightarrow\psi\_2}{(\varphi\_1\wedge\varphi\_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$                                                                         | CO $\leftrightarrow$   | No          |
-| Substitution                               | $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$  | SUB                | No          |
-| No contradiction                           | $\dfrac{(\varphi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                     | NC'                    | No          |
-| $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                  | ED                     | No          |
-| $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                  | CD                     | No          |
-
-So if a rule $\dfrac{\varphi}{\psi}$ is used as a justifcation for some line with $\psi$, then Guanaco prints one or two new lines above (depending on whether the chosen justification has one or two premises) and prints the relevant premise formula(s) $\varphi$. If a rule requires user input, then Guanaco prints a question mark (?) where user input is required. When the user provides the input, Guanaco replaces the question mark with the provided input. For example, if one uses HS to justify $\varphi\to\psi$, then Guanaco prints $\varphi\to\ ?$ and $? \to \psi$ on two new lines above. If the user provides $\chi$ as input, then it updates the two new lines to $\varphi\to \chi$ and $\chi \to \psi$.
-
-Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user.
+Note also that in Meyer & Hoek (1995), the rules HS, HS $\leftrightrrow$, CO and CO $\leftrightarrow$ allow for more than two premises. But the program cannot determine how many premises they should generate. For example, we can justify $\varphi \to \psi$ with HS with two premises, but also three, four or more. For instance, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
+But this is not problematic. If we can use these rules with $n$ premises, we can also use them with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from the premises $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once using all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\varphi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
+So due to time constraints for this project, we do not facilitate HS, HS $\leftrightrrow$, CO and CO $\leftrightarrow$ with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available. For now, this will not entail issues for the program (except for some user inconvenience).
 
 ### Other implementation details
 
+...
+
 ### Generating syntactic proofs
+
+So if a rule $\dfrac{\varphi}{\psi}$ is used as a justifcation for some line with $\psi$, then Guanaco prints one or two new lines above (depending on whether the chosen justification has one or two premises) and prints the relevant premise formula(s) $\varphi$. If a rule requires user input, then Guanaco prints a question mark (?) where user input is required. When the user provides the input, Guanaco replaces the question mark with the provided input. For example, if one uses HS to justify $\varphi\to\psi$, then Guanaco prints $\varphi\to\ ?$ and $? \to \psi$ on two new lines above. If the user provides $\chi$ as input, then it updates the two new lines to $\varphi\to \chi$ and $\chi \to \psi$.
 
 ## Results
 
