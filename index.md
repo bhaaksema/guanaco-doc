@@ -53,13 +53,13 @@ Let $\mathbf{P}$ be a set of propositional atoms; $\mathbf{P} = \lbrace p_n : n 
 
 Moreover, let $\varphi \lor \psi, \varphi \rightarrow \psi$ and $\varphi \leftrightarrow \psi$ be abbreviations for $\lnot(\lnot\varphi \land \lnot \psi)$, $\lnot \varphi \lor \psi$ and $(\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$ respectively. Additionally, we use the abbreviation $M_i\varphi$ for $\lnot K_i \lnot \varphi$.
 
-The language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operators $E$ and $C$. We define this language as follows: for any group B of agents from $\mathbf{A}$, "Everybody in B knows $\varphi$", written $E\_B\varphi$, is defined as the conjunction of all individuals in B knowing $\varphi$, i.e. $E\_B\varphi = \bigwedge\_{b \in B} K_b\varphi$. If $B=\mathbf{A}$, we just write $E$. We then define common knowledge of a formula $\varphi$ for a subset $B \subseteq \mathbf{A}$ as $C\_B\varphi = \varphi \land E_B\varphi \land E\_BE\_B\varphi \land \dots = {\bigwedge} \_{n=0} ^{\infty} E\_B^n\varphi$. Again, if $B=\mathbf{A}$, we just write $C$.
+The language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operators $E$ and $C$. We define this language as follows: for any group B of agents from $\mathbf{A}$, "Everybody in B knows $\varphi$", written $E\varphi$, is defined as the conjunction of all individuals in B knowing $\varphi$, i.e. $E\varphi = \bigwedge\_{b \in B} K_b\varphi$. If $B=\mathbf{A}$, we just write $E$. We then define common knowledge of a formula $\varphi$ for a subset $B \subseteq \mathbf{A}$ as $C\varphi = \varphi \land E_B\varphi \land EE\varphi \land \dots = {\bigwedge} \_{n=0} ^{\infty} E^n\varphi$. Again, if $B=\mathbf{A}$, we just write $C$.
 
 So the language $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ is the smallest set closed under:
 1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$.
 2. If $\varphi, \psi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P}) $, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P}) $.
 3. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $K\_i\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, for all $i \in \mathbf{A}$.
-4. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $E\_B\varphi, C\_B\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$ for $B \subseteq \mathbf{A}$.
+4. If $\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$, then $E\varphi, C\varphi \in \mathcal{L}^m\_{\mathbf{KEC}}(\mathbf{P})$ for $B \subseteq \mathbf{A}$.
 
 The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is an extension of $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$; it also contains the operator $[\varphi]$. A formula $[\varphi]\psi$ means "after a public announcement of $\varphi$, $\psi$ holds". The language $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ is the smallest set closed under:
 1. If $p \in \mathbf{P}$, then $p \in \mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$.
@@ -72,7 +72,7 @@ Now, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is an extension of $\mathcal{
 2. If $\varphi, \psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $(\varphi \land \psi), \lnot \varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$.
 3. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $K\_i\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
 4. If $\varphi,\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $[\varphi]\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
-5. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $E\_B\varphi, C\_B\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ for $B \subseteq \mathbf{A}$.
+5. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $E\varphi, C\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ for $B \subseteq \mathbf{A}$.
 
 ## Axiom Systems
 
@@ -132,7 +132,7 @@ For the axiom system $\mathbf{PA} $, in addition to the axioms (A1)-(A5) and rul
 
 For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rules (R1), (R2) from $\mathbf{S5(m)}$, the axioms (A6)-(A10) from $\mathbf{S5EC(m)}$ and the axioms (A11)-(A15) from $\mathbf{PA}$ we have the following rules for the \[\]-operator:
 - R4. $\dfrac{\varphi}{\[\psi\]\varphi}$
-- R5. $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\_{B}\chi}{\chi\to[\varphi]C\_B\psi}$
+- R5. $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\_{B}\chi}{\chi\to[\varphi]C\psi}$
 
 <!--- Hier wil ik dus eigenlijk \inferrule gebruiken, maar die hoort bij een package en ik weet nog niet hoe dat precies werkt --->
 
@@ -228,7 +228,7 @@ Below is a table with the rules that we aim to implement. Formulas $\chi$ are (s
 | $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                  | ED                     | No          |
 | $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                  | CD                     | No          |
 
-So if a rule $\dfrac{\phi}{\psi}$ is used as a justifcation for some line with $\varphi$, then Guanaco prints one or two new lines above (depending on whether the chosen justification has one or two premises) and prints the relevant premise formula(s) $\psi$. If a rule requires user input, then Guanaco still prints the parts of $\psi$ that are determined by the application of the rule. For example, if one uses HS to justify $\varphi\to\psi$, then Guanaco prints $\varphi\to\dots$ and $\dots\to\psi$ on two new lines above. The user has to fill in the dots.
+So if a rule $\dfrac{\varphi}{\psi}$ is used as a justifcation for some line with $\varphi$, then Guanaco prints one or two new lines above (depending on whether the chosen justification has one or two premises) and prints the relevant premise formula(s) $\psi$. If a rule requires user input, then Guanaco still prints the parts of $\psi$ that are determined by the application of the rule. For example, if one uses HS to justify $\varphi\to\psi$, then Guanaco prints $\varphi\to\dots$ and $\dots\to\psi$ on two new lines above. The user has to fill in the dots.
 
 Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. The user always needs to select a rule that generates new lines for the user. The user _can_ edit the formulas in the generated lines. 
 
