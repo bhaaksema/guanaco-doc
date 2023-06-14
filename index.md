@@ -138,24 +138,34 @@ For the axiom system $\mathbf{PAC}$, in addition to the axioms (A1)-(A5) and rul
 
 The axiom system $\mathbf{K(m)}$, with respect to a set of agents $\mathbf{A} = \lbrace 1, \dots, m \rbrace $, consists of:
 
-| Axiom or rule name                    | Rule or axiom                                                                                  | Abbreviation |
-|  ------------                         | ----------                                                                                     | :------:     |
-| Propositional tautologies             | All (instances of) propositional tautologies                                                   | $A1$         |
-| Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$ | $A2$         |
-| Distribution of $K$ over implication  | $K_i\varphi \rightarrow \varphi \quad (i=1, \dots m)$                                          | $A2'$        |
-| Knowledge implies truth               | $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$                                    | $A3$         |
-| Positive introspection                | $K_i\varphi \rightarrow K_iK_i\varphi \quad (i=1, \dots m)$                                    | $A4$         |
-| Negative introspection                | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi \quad (i=1, \dots m)$                      | $A5$         |
-| Definition of $E$                     | $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$                           | $A6$         |
-| Common knowledge implies truth        | $C\varphi \rightarrow \varphi$                                                                 | $A7$         |
-| Induction axiom                       | $C\varphi \rightarrow EC\varphi$                                                               | $A8$         |
-| Common knowledge through $E$-paths    | $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$                               | $A9$         |
-| Distribution of $C$ over implication  | $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$                   | $A10$        |
-| Announcement reduction axiom          | $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p) $                                        | $A11$        |
-| Negation reduction axiom              | $\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $             | $A12$        |
-| Conjunction reduction axiom           | $\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $        | $A13$        |
-| Knowledge reduction axiom             | $\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) $                 | $A14$        |
-| Announcement sequence reduction axiom | $\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $               | $A15$        |
+| Axiom or rule name                    | Rule or axiom                                                                                          | Abbreviation |
+| ------------                          | ----------                                                                                             | :------:     |
+| Propositional tautologies             | All (instances of) propositional tautologies                                                           | $A1$         |
+| Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$         | $A2$         |
+| Distribution of $K$ over implication  | $K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi\to K_i \psi)$ for $i = 1, \dots, m$            | $A2'$        |
+| Knowledge implies truth               | $K_i\varphi \rightarrow \varphi$ for $(i=1, \dots m)$                                                  | $A3$         |
+| Positive introspection                | $K_i\varphi \rightarrow K_iK_i\varphi$ for $i = 1, \dots, m$                                           | $A4$         |
+| Negative introspection                | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi$ for $(i=1, \dots m)$                              | $A5$         |
+| Definition of $E$                     | $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$                                   | $A6$         |
+| Common knowledge implies truth        | $C\varphi \rightarrow \varphi$                                                                         | $A7$         |
+| Mix of common knowledge               | $C\varphi \rightarrow EC\varphi$                                                                       | $A8$         |
+| Modus ponens for common knowledge     | $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$                                       | $A9$         |
+| Distribution of $C$ over implication  | $C(\varphi \rightarrow \psi) \rightarrow (C\varphi\to C\psi)$                                          | $A9'$        |
+| Induction of common knowledge         | $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$                           | $A10$        |
+| Atomic permanence                     | $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p)$                                                 | $A11$        |
+| Announcement and negation             | $\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $                     | $A12$        |
+| Announcement and conjunction          | $\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $                | $A13$        |
+| Announcement and knowledge            | $\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) $ for $i = 1, \dots, m$   | $A14$        |
+| Announcement composition              | $\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $                       | $A15$        |
+| Modus ponens                          | $\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi}$                                                 | $R1$         |
+| Necessitation of knowledge            | $\dfrac{\varphi}{K\_i\varphi}$ for $i = 1, \dots, m$                                                   | $R2$         |
+| Necessitation of common knowledge     | $\dfrac{\varphi}{C\varphi}$                                                                            | $R3$         |
+| Necessitation of announcements        | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                     | $R4$         |
+| Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$                   | $R5$         |
+
+Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$.
+
+
 
 
 ## Implementation
