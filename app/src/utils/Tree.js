@@ -1,7 +1,8 @@
 import equal from "fast-deep-equal";
 
-import axiomsList from "../data/Axioms";
-import rulesList from "../data/Rules";
+import axiomsList from "../data/AxiomsKEC";
+import rulesList from "../data/RulesK";
+import shortcuts from "../data/Shortcuts";
 import { check } from "../utils/Engine";
 
 class Tree {
@@ -12,6 +13,8 @@ class Tree {
       .filter((axiom) => check(value, axiom, true))
       .concat(
         rulesList.filter((rule) => check(value, rule, false))
+      ).concat(
+        shortcuts.filter((shortcut) => check(value, shortcut, false))
       );
     this.validated = validated;
     this.children = children;
@@ -25,13 +28,17 @@ class Tree {
   }
 
   update(node, base, validated, children, input) {
-    let newChildren = children
-    if (!equal(this, node)) {
-      newChildren = this.children.map(
+    if (equal(this, node)) {
+      this.base = base;
+      this.validated = validated;
+      this.input = input;
+      this.children = children;
+    } else {
+      this.children = this.children.map(
         (c) => c.update(node, base, validated, children, input)
       );
     }
-    return new Tree(this.value, base, validated, newChildren, input);
+    return new Tree(this.value, this.base, this.validated, this.children, this.input);
   }
 }
 

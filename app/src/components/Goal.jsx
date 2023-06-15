@@ -18,6 +18,7 @@ function Goal({ setTree }) {
       setTree(new Tree(parse(target.value)));
       target.setCustomValidity("");
     } catch (e) {
+      console.error(e);
       setTree(new Tree({ type: "hole" }));
       target.setCustomValidity("invalid formula");
     }
@@ -30,6 +31,7 @@ function Goal({ setTree }) {
         <Form.Control
           placeholder="enter goal"
           onChange={(e) => handleTyping(e.target)}
+          autoFocus
         />
 
         <Form.Control.Feedback type="invalid">

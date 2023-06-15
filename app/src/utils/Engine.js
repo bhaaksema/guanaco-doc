@@ -50,9 +50,10 @@ function checkFormula(formula, ref, agents, holes) {
       if (!result) return [false, agents, holes];
       return checkFormula(formula.right, ref.right, agents, holes);
     case "negation":
+    case "E":
+    case "C":
       return checkFormula(formula.formula, ref.formula, agents, holes);
     case "K":
-    case "M":
       if (agents[ref.agent] === undefined) {
         agents[ref.agent] = formula.agent;
         return checkFormula(formula.formula, ref.formula, agents, holes);
@@ -80,12 +81,13 @@ function initPremise(premise, agents, holes) {
         right: initPremise(premise.right, agents, holes),
       };
     case "negation":
+    case "E":
+    case "C":
       return {
         type: premise.type,
         formula: initPremise(premise.formula, agents, holes),
       };
     case "K":
-    case "M":
       return {
         type: premise.type,
         agent: agents[premise.agent],
@@ -106,9 +108,9 @@ function noHoles(f) {
     case "equivalence":
       return noHoles(f.left) && noHoles(f.right);
     case "negation":
-      return noHoles(f.formula);
     case "K":
-    case "M":
+    case "E":
+    case "C":
       return noHoles(f.formula);
     case "proposition":
     case "formula":
@@ -132,12 +134,13 @@ export function fill(formula, hole) {
         right: fill(formula.right, hole),
       };
     case "negation":
+    case "E":
+    case "C":
       return {
         type: formula.type,
         formula: fill(formula.formula, hole),
       };
     case "K":
-    case "M":
       return {
         type: formula.type,
         agent: formula.agent,

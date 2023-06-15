@@ -5,7 +5,7 @@ const bin = {
   equivalence: "↔",
 };
 
-const un = { negation: "!", K: "K", M: "M" };
+const un = { negation: "!", K: "K", E: "E", C: "C" };
 
 function pretty(formula, top = true) {
   switch (formula.type) {
@@ -17,6 +17,8 @@ function pretty(formula, top = true) {
     case "equivalence":
       return binary(top, formula);
     case "negation":
+    case "E":
+    case "C":
       return `${un[formula.type]} ${pretty(formula.formula, false)}`;
     case "K":
       return knowledge(formula);
