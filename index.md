@@ -145,22 +145,22 @@ In this section, we cover the important details of the implementation strategy. 
 
 ### Input parsing
 
-When a user provides written input, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output.
+When a user provides written input, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output. Whenever Guanaco prints a formula, it uses the unicode symbols for the usual operators and uses subscripts instead of accolades. Our idea here is that entering a formula should be easy, so we chose symbols that are on the keyboard for the input language, but printed formulas should look like the formulas of the books Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). That is why the input language and printing language are different, even though they represent the same formula.
 
-| Input      | Interpretation                                            | Formula of the relevant language      |
-| --------   | --------------------------------------------              | --------------------------            |
-| `pn`       | propositional atom `n`, where `n` is an integer           | $p\_n$                                |
-| `fn`       | formula `n`, where `n` is an integer                      | $\varphi\_n$                          |
-| `!x`       | negation of the formula `x`                               | $\neg\varphi$                         |
-| `x & y`    | conjunction of the formulas `x` and `y`                   | $\varphi\wedge\psi$                   |
-| `x \| y`   | disjunction of the formulas `x` and `y`                   | $\varphi\wedge\psi$                   |
-| `x -> y`   | implication of `x` to `y`                                 | $\varphi\to\psi$                      |
-| `x <-> y`  | biimplication of `x` and `y`                              | $\varphi\leftrightarrow\psi$          |
-| `K{an}x`   | agent `an` (where `n` is an integer) knows formula `x`    | $K\_{i}\varphi$                       |
-| `K{n}x`    | the agent `n`$\in \mathbf{A}$ knows formula `x`           | $K\_{n}\varphi$                       |
-| `Ex`       | everybody knows formula `x`                               | $C\varphi$                            |
-| `Cx`       | there is common knowledge of formula `x`                  | $E\varphi$                            |
-| `[x]y`     | announcement of `x` followed by `y`                       | $\[\varphi\]\psi$                     |
+| Input      | Interpretation                                            | Printed formula  | Formula of the relevant language      |
+| --------   | --------------------------------------------              | ----             | --------------------------            |
+| `pn`       | propositional atom `n`, where `n` is an integer           | p\_n             | $p\_n$                                |
+| `fn`       | formula `n`, where `n` is an integer                      | f\_n             | $\varphi\_n$                          |
+| `!x`       | negation of the formula `x`                               | ¬`x`             | $\neg\varphi$                         |
+| `x & y`    | conjunction of the formulas `x` and `y`                   | `x` ∧&#xFE0E; `y`| $\varphi\wedge\psi$                   |
+| `x \| y`   | disjunction of the formulas `x` and `y`                   | `x` ∨&#xFE0E; `y`| $\varphi\wedge\psi$                   |
+| `x -> y`   | implication of `x` to `y`                                 | `x` →&#xFE0E; `y`| $\varphi\to\psi$                      |
+| `x <-> y`  | biimplication of `x` and `y`                              | `x` ↔&#xFE0E; `y`| $\varphi\leftrightarrow\psi$          |
+| `K{an}x`   | agent `an` (where `n` is an integer) knows formula `x`    | K<sub>an</sub>`x`| $K\_{i}\varphi$                       |
+| `K{n}x`    | the agent `n`$\in \mathbf{A}$ knows formula `x`           | K<sub>n</sub>`x` | $K\_{n}\varphi$                       |
+| `Ex`       | everybody knows formula `x`                               | E`x`             | $C\varphi$                            |
+| `Cx`       | there is common knowledge of formula `x`                  | C`x`             | $E\varphi$                            |
+| `[x]y`     | announcement of `x` followed by `y`                       | [`x`]`y`         | $\[\varphi\]\psi$                     |
 
 If only one atom, formula or agent is needed in the user's proof, the user can omit the integer `n` without issue.
 
