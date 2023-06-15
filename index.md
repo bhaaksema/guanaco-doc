@@ -103,7 +103,7 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 | Necessitation of announcements        | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                     | $R4$         |
 | Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$                   | $R5$         |
 
-All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2008). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $A1$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. If we work on Guanaco in the future, we can give Guanaco a way to check whether something is a propositional tautology. But for now, this responsibility lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
+All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $A1$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. If we work on Guanaco in the future, we can give Guanaco a way to check whether something is a propositional tautology. But for now, this responsibility lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
 
 Now, the axiom systems $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in them.
 
@@ -251,13 +251,11 @@ Except for the limitation that Guanaco only support the bottom-up strategy, each
 
 ## Results
 
-## Conclusion
-
 ## References
 
 Meyer, J. C., & Van Der Hoek, W. (1995). _Epistemic Logic for AI and Computer Science._ Cambridge University Press.
 
-Van Ditmarsch, H., Van Der Hoek, W., & Kooi, B. (2008). _Dynamic Epistemic Logic._ Springer.
+Van Ditmarsch, H., Van Der Hoek, W., & Kooi, B. (2007). _Dynamic Epistemic Logic._ Springer.
 
 
 
