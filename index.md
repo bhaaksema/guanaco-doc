@@ -230,11 +230,12 @@ So what we think is that Guanaco helps the teacher quickly check whether a proof
 
 ### Limitations
 
-- Kan alleen 1e fout ontdekken
+- As discussed before, **Guanaco cannot check whether a formula is a propositional tautology.** So Guanaco will count any application of $A1$ as correct.
 
-- Alleen korte formules op telefoon
+- As mentioned before, **Guanaco does not support HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ for more than two premises.** This is not a problem, but is it inconvenient for the user, because it makes certain proofs somewhat longer.
 
-- Rules met meer dan 2 premises
+- **If used on small devices, Guanaco can only render short formulas.** Guanaco cannot break off lines, so longer formulas will be rendered off-screen. So if a device is particularly small (e.g. a smartphone), Guanaco is only useful for deriving relatively short formulas. On computers, this is less of a problem, since computer screens are significantly larger. But there are still many theorems that are too long on a computer too.
+For example, think about the theorem $p\to(p\to ... (p\to p)$, where $p$ occurs at least 1000 times. Guanaco cannot render it on a regular computer screen because it is way too large. But we do not believe that this is a limitation in practice. Formulas that are too long to render on a computer screen (like $p\to(p\to ... (p\to p)$) are often also too long to write down. And the syntactic proofs students make are always short enough so that they can write them down. Therefore, Guanaco can probably render all proofs that students would realistically make by hand.
 
 ## Results
 
