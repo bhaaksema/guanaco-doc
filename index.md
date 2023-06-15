@@ -237,13 +237,27 @@ So what we think is that Guanaco helps the teacher quickly check whether a proof
 - **If used on small devices, Guanaco can only render short formulas.** Guanaco cannot break off lines, so longer formulas will be rendered off-screen. So if a device is particularly small (e.g. a smartphone), Guanaco is only useful for deriving relatively short formulas. On computers, this is less of a problem, since computer screens are significantly larger. But there are still many theorems that are too long on a computer too.
 For example, think about the theorem $p\to(p\to ... (p\to p)$, where $p$ occurs at least 1000 times. Guanaco cannot render it on a regular computer screen because it is way too large. But we do not believe that this is a limitation in practice. Formulas that are too long to render on a computer screen (like $p\to(p\to ... (p\to p)$) are often also too long to write down. And the syntactic proofs students make are always short enough so that they can write them down. Therefore, Guanaco can probably render all proofs that students would realistically make by hand.
 
+- **Guanaco only supports the bottom-up strategy.** As should be clear by now, there is no way in Guanaco to make proofs top-down. Sometimes making proofs top-down is desirable, and in those cases Guanaco might not be the best tool to use.
+
+- As discussed before, **Guanaco only spots the first mistake in hand written proofs bottom-up.** Therefore it cannot always be used to fix incorrect proofs (even though it can reliably be used as a proof checker).
+
+- **Guanaco cannot remember previously made proofs.** There is no way to save proofs. This also means that users cannot use theorems they have derived before as justifications in their proofs. This is often done in hand-written proofs, and sometimes it makes proof-writing significantly easier. If we will ever expand on this project, we can see whether such a feature is possible.
+
+- **Conjunctions and disjunctions cannot be chained.** For example, the conjunction $p\wedge q\wedge r$ can only be parsed as $(p\wedge q)\wedge r$ or $p\wedge (q\wedge r)$. Chaining conjunctions and disjunctions is quite useful for rules such as CO, CO $\leftrightarrow$ and LR. This is not a problem, but it can be inconvenient for the user at times.
+In an earlier version of Guanaco, we did facilitate conjunction/disjunction chaining. We removed this feature when we realized that we could not facilitate rules with more than two premises. For example, if a user wants to apply CO to $(p\wedge q\wedge r)\rightarrow($p\wedge q\wedge r$)$ with two premises, Guanaco cannot determine which two biconditionals are the premises. There are two possibilities: either the premises are (p\wedge q)\to(p\wedge q)$ and $r\to r$, or they are $p\to p$ and $(q\wedge r)\to(q\wedge r)$. But applying CO to $((p\wedge q)\wedge r)\to((p\wedge q)\wedge r)$ works;
+Guanaco can determine that the premises in this case must be $(p\wedge q)\to(p\wedge q)$ and $r\to r$.
+
+Except for the limitation that Guanaco only support the bottom-up strategy, each of these limitations could be resolved if we work on Guanaco somewhere in the future.
+
 ## Results
 
 ## Conclusion
 
-## Discussion
-
 ## References
+
+Meyer, J. C., & Van Der Hoek, W. (1995). _Epistemic Logic for AI and Computer Science._ Cambridge University Press.
+
+Van Ditmarsch, H., Van Der Hoek, W., & Kooi, B. (2008b). _Dynamic Epistemic Logic._ Springer.
 
 
 
