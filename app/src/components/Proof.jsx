@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ListGroup from "react-bootstrap/ListGroup";
 
 import Tree from "../utils/Tree";
 import Line from "./Line";
@@ -11,11 +10,11 @@ function Proof() {
   return (
     <>
       {tree &&
-        tree.toArray().map((node, index) => (
-          <ListGroup.Item as="li" key={index} className="mb-1">
-            <Line {...{ node, index, setTree }} />
-          </ListGroup.Item>
-        ))}
+        tree
+          .toArray()
+          .map((node, index) => (
+            <Line key={index} {...{ node, index, setTree }} />
+          ))}
       <Goal {...{ setTree }} />
     </>
   );

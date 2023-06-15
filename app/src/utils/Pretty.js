@@ -1,8 +1,8 @@
 const bin = {
-  conjunction: "&",
-  disjunction: "|",
-  implication: "->",
-  equivalence: "<->",
+  conjunction: "∧",
+  disjunction: "∨",
+  implication: "→",
+  equivalence: "↔",
 };
 
 const un = { negation: "!", K: "K", M: "M" };
@@ -19,7 +19,6 @@ function pretty(formula, top = true) {
     case "negation":
       return `${un[formula.type]} ${pretty(formula.formula, false)}`;
     case "K":
-    case "M":
       return knowledge(formula);
     case "proposition":
     case "formula":
@@ -38,7 +37,7 @@ function binary(top, formula) {
 
 function knowledge(formula) {
   const subformula = pretty(formula.formula, false);
-  return `${un[formula.type]}{${formula.agent}} ${subformula}`;
+  return `${un[formula.type]}_${formula.agent} ${subformula}`;
 }
 
 export default pretty;

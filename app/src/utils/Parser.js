@@ -6,7 +6,7 @@ class FormulaParser extends EmbeddedActionsParser {
   constructor() {
     super(tokens);
 
-    // formula ::= binary | unary | atom
+    // formula ::= binary | unary | knowledge | atom
     this.RULE("formula", () => {
       return this.OR([
         {
@@ -14,11 +14,12 @@ class FormulaParser extends EmbeddedActionsParser {
           ALT: () => { return this.SUBRULE(this.binary); }
         },
         { ALT: () => { return this.SUBRULE(this.unary); } },
+        { ALT: () => { return this.SUBRULE(this.knowledge); } },
         { ALT: () => { return this.SUBRULE(this.atom); } },
       ]);
     });
 
-    // subformula ::= ( binary ) | unary | atom
+    // subformula ::= ( binary ) | unary | knowledge | atom
     this.RULE("subformula", () => {
       return this.OR([
         {
@@ -30,6 +31,7 @@ class FormulaParser extends EmbeddedActionsParser {
           },
         },
         { ALT: () => { return this.SUBRULE(this.unary); } },
+        { ALT: () => { return this.SUBRULE(this.knowledge); } },
         { ALT: () => { return this.SUBRULE(this.atom); } },
       ]);
     });
@@ -69,7 +71,7 @@ class FormulaParser extends EmbeddedActionsParser {
       return { type, left, right };
     });
 
-    // unary ::= ( ! | E | C ) subformula | ( K | M ) { agent } subformula
+    // unary ::= ( ! | E | C ) subformula
     this.RULE("unary", () => {
       const type = this.OR([
         {
@@ -78,21 +80,21 @@ class FormulaParser extends EmbeddedActionsParser {
             return "negation";
           }
         },
-        { ALT: () => { return this.CONSUME(tokens.K).tokenType.name; } },
-        { ALT: () => { return this.CONSUME(tokens.M).tokenType.name; } },
         { ALT: () => { return this.CONSUME(tokens.E).tokenType.name; } },
         { ALT: () => { return this.CONSUME(tokens.C).tokenType.name; } },
       ]);
 
-      if (type === "negation" || type === "E" || type === "C") {
-        return { type: type, formula: this.SUBRULE(this.subformula) };
-      }
+      return { type: type, formula: this.SUBRULE(this.subformula) };
+    });
 
+    // knowledge ::= K { agent } subformula
+    this.RULE("knowledge", () => {
+      this.CONSUME(tokens.K);
       this.CONSUME(tokens.LA);
       const agent = this.CONSUME(tokens.Agent).image;
       this.CONSUME(tokens.RA);
-      const formula = this.SUBRULE1(this.subformula);
-      return { type, agent, formula };
+      const formula = this.SUBRULE(this.subformula);
+      return { type: "K", agent, formula };
     });
 
     // atom ::= proposition | variable

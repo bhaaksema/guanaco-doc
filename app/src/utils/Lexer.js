@@ -14,7 +14,6 @@ let tokensByPriority = [
   // Unary operators
   createToken({ name: "Not", pattern: /!/ }),
   createToken({ name: "K", pattern: /K/ }),
-  createToken({ name: "M", pattern: /M/ }),
   createToken({ name: "E", pattern: /E/ }),
   createToken({ name: "C", pattern: /C/ }),
 
@@ -25,8 +24,6 @@ let tokensByPriority = [
   createToken({ name: "RA", pattern: /}/ }),
   createToken({ name: "LSay", pattern: /\[/ }),
   createToken({ name: "RSay", pattern: /]/ }),
-  createToken({ name: "LHear", pattern: /</ }),
-  createToken({ name: "RHear", pattern: />/ }),
 
   // Variables and constants
   createToken({ name: "Proposition", pattern: /p(0|[1-9]\d*)?/ }),

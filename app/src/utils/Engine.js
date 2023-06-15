@@ -1,6 +1,6 @@
 import equal from "fast-deep-equal";
 
-function check(formula, base, isAxiom) {
+export function check(formula, base, isAxiom) {
   let [result, agents, holes] = [
     true,
     new Array(base.agents),
@@ -8,8 +8,9 @@ function check(formula, base, isAxiom) {
   ];
 
   if (isAxiom) {
-    return checkFormula(formula, base.formula, agents, holes)[0];
+    return noHoles(formula) && checkFormula(formula, base.formula, agents, holes)[0];
   } else {
+    if (!noHoles(formula)) return false;
     [result, agents, holes] = checkFormula(
       formula,
       base.conclusion,
@@ -17,14 +18,12 @@ function check(formula, base, isAxiom) {
       holes
     );
 
-    if (!result) return [];
+    if (!result) return false;
     return base.premises.map((premise) => initPremise(premise, agents, holes));
   }
 }
 
 function checkFormula(formula, ref, agents, holes) {
-  if (formula.type === "hole") return [false, agents, holes];
-
   if (ref.type === "hole") {
     if (holes[ref.hole] === undefined) {
       holes[ref.hole] = formula;
@@ -97,4 +96,57 @@ function initPremise(premise, agents, holes) {
   }
 }
 
-export default check;
+function noHoles(f) {
+  switch (f.type) {
+    case "hole":
+      return false;
+    case "conjunction":
+    case "disjunction":
+    case "implication":
+    case "equivalence":
+      return noHoles(f.left) && noHoles(f.right);
+    case "negation":
+      return noHoles(f.formula);
+    case "K":
+    case "M":
+      return noHoles(f.formula);
+    case "proposition":
+    case "formula":
+      return true;
+    default:
+      throw new Error("Invalid formula type");
+  }
+}
+
+export function fill(formula, hole) {
+  switch (formula.type) {
+    case "hole":
+      return hole;
+    case "conjunction":
+    case "disjunction":
+    case "implication":
+    case "equivalence":
+      return {
+        type: formula.type,
+        left: fill(formula.left, hole),
+        right: fill(formula.right, hole),
+      };
+    case "negation":
+      return {
+        type: formula.type,
+        formula: fill(formula.formula, hole),
+      };
+    case "K":
+    case "M":
+      return {
+        type: formula.type,
+        agent: formula.agent,
+        formula: fill(formula.formula, hole),
+      };
+    case "proposition":
+    case "formula":
+      return formula;
+    default:
+      throw new Error("Invalid formula type");
+  }
+}

@@ -16,12 +16,10 @@ function Goal({ setTree }) {
   function handleTyping(target) {
     try {
       setTree(new Tree(parse(target.value)));
-      console.log(parse(target.value));
       target.setCustomValidity("");
     } catch (e) {
       setTree(new Tree({ type: "hole" }));
       target.setCustomValidity("invalid formula");
-      console.log(e);
     }
     setValidated(target.value !== "");
   }
@@ -33,6 +31,10 @@ function Goal({ setTree }) {
           placeholder="enter goal"
           onChange={(e) => handleTyping(e.target)}
         />
+
+        <Form.Control.Feedback type="invalid">
+          This formula is not well-formed
+        </Form.Control.Feedback>
       </FloatingLabel>
     </Form>
   );
