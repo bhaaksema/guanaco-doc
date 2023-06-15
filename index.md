@@ -155,7 +155,7 @@ When a user provides written input, the program needs to know what formula the u
 | `x & y`    | conjunction of the formulas `x` and `y`                   | `x` ∧&#xFE0E; `y`| $\varphi\wedge\psi$                   |
 | `x ⏐ y`    | disjunction of the formulas `x` and `y`                   | `x` ∨&#xFE0E; `y`| $\varphi\wedge\psi$                   |
 | `x -> y`   | implication of `x` to `y`                                 | `x` →&#xFE0E; `y`| $\varphi\to\psi$                      |
-| <code>x&nbsp;<->&nbsp;y</code>  | biimplication of `x` and `y`                              | `x` ↔&#xFE0E; `y`| $\varphi\leftrightarrow\psi$          |
+| <code>x&nbsp;<—>&nbsp;y</code>  | biimplication of `x` and `y`         | `x` ↔&#xFE0E; `y`| $\varphi\leftrightarrow\psi$          |
 | `K{an}x`   | agent `an` (where `n` is an integer) knows formula `x`    | K<sub>an</sub>`x`| $K\_{i}\varphi$                       |
 | `K{n}x`    | the agent `n`$\in \mathbf{A}$ knows formula `x`           | K<sub>n</sub>`x` | $K\_{n}\varphi$                       |
 | `Ex`       | everybody knows formula `x`                               | E`x`             | $C\varphi$                            |
