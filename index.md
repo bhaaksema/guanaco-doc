@@ -20,10 +20,10 @@ In this project, we present a program that helps users write syntactic proofs. W
 
 The strategy that Guanaco employs is building proofs _bottom-up_. This means that users start with the formula that they wish to derive. If this formula can only be derived by a rule, then Guanaco exploits the properties of this formula to extract new formulas the relevant rule is applied to. If the formula is an instantiation of an axiom, no new formulas are extracted. The same process is then applied until each formula has a justification and no new ones are produced. At that point, the proof is complete. We explain this bottom-up strategy in detail further on this website.
 
-The intended goal of this program is mostly educational. We hope that students will be able to use the tool to guide them with making syntactic proofs correctly, and we hope that the tool aids teachers with teaching syntactic proofs. To fully facilitate this kind of use, we may need to revise the program in the future with usability in mind. For now, we aim to make the tool work correctly for the variety of logics taught in the course _Logical Aspects of Multi-Agent Systems_.
+The intended goal of this program is mostly educational. We hope that students will be able to use Guanaco to guide them with making syntactic proofs correctly, and we hope that Guanaco aids teachers with teaching syntactic proofs. To fully facilitate this kind of use, we may need to revise Guanaco in the future with usability in mind. For now, we aim to make Guanaco work correctly for the variety of logics taught in the course _Logical Aspects of Multi-Agent Systems_.
 
 ### Overview
-The website is structured as follows. Under _Syntactic Proofs_, we briefly explain syntactic proofs and what they look like. We discuss the rules and axioms of the logics $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Under _Implementation_, we discuss Guanaco in more detail. We explain the bottom-up strategy that Guanaco employs. We then discuss technical details of the program. We end with a detailed explanation of how Guanaco generates proofs. Under _Results_, we provide multiple examples of derivations made with Guanaco. Moreover, we test Guanaco by entering syntactic proofs provided in Meyer & Hoek (1995) to show that they are indeed correct. Finally, we wrap up our presentation under _Conclusion_, discuss Guanaco's limitations and perspectives for further research under _Discussion_ and provide a list of the relevant literature under _References_.
+The website is structured as follows. Under _Syntactic Proofs_, we briefly explain syntactic proofs and what they look like. We discuss the rules and axioms of the logics $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Under _Implementation_, we discuss Guanaco in more detail. We explain the bottom-up strategy that Guanaco employs. We then discuss some technical details of the program. Furthermore, we provide a detailed explanation of how Guanaco generates proofs. Under _Results_, we provide multiple examples of derivations made with Guanaco. Moreover, we test Guanaco by entering syntactic proofs provided in Meyer & Hoek (1995) to show that they are indeed correct. Finally, we wrap up our presentation under _Conclusion_, discuss Guanaco's limitations and perspectives for further research under _Discussion_ and provide a list of the relevant literature under _References_.
 
 ## Syntactic proofs
 
@@ -206,18 +206,22 @@ Finally, when all lines have been justified and Guanaco gives a green check mark
 
 In this way, users can never make mistakes; every axiom or rule they can select is applicable, and every premise is generated automatically by Guanaco. And for rules that require input, Guanaco accepts the input only if it is well-formed. Moreover, if a user does not provide input when required, justification drop down menu is not available for lines that contain a question mark. So the user cannot apply axioms or rules incorrectly (except for $A1$), and the proof is only complete if all lines are justified.
 
+## Results
+
+## Discussion
+
+We believe that Guanaco can actually used by students and teachers for educational purposes, just like the program _Fitch_ is used in first-year and minor introductions in logic. In this section, we present the educational advantages and uses we see for Guanaco. Afterwards, we discuss what Guanaco _cannot_ do and what further work on Guanaco would look like.
+
 ### Educational advantages
 
-We believe that this tool has a number of educational advantages, and we believe that the tool can be used in multiple ways. We discuss these advantages and uses in this section.
-
-The educational advantages of the tool we see are the following:
+We believe that Guanaco has a number of educational advantages:
 
 - **The user must enter well-formed formulas.** Users can never attempt to derive formulas that are not well-formed, because Guanaco will never print formulas that are not well-formed. So users will never get stuck with proving a formula that is not well-formed, because Guanaco won't allow the user to enter it in the first place. Therefore, the user is forced to understand the syntax of the languages Guanaco knows.
 
 - **The user can never make mistakes.** As decribed above, there is no way for users to apply a formula inccorectly without them knowing. Axioms cannot be applied incorrectly because they are only available to the user if they are applicable. Premises of rules are always automatically generated by Guanaco. So whatever Guanaco generates, it will be correct. The users role here is to _make the right choices_.
 The user has to select the axioms or rules that lets them finish the proof most efficiently. This coincides with the next advantage:
 
-- **The user can focus on the logic and proof instead of on the notation.** If the user just wants to develop their intuition by making a lot of proofs, Guanaco is a perfect fit. Guanaco removes the obstacle of notation and writing, and this significantly increases the speed of proof-making. This is particularly effective when there are multiple ways to derive a given formula. This means that the user has multiple choices between axioms or rules to justify the same line. The choice they make on that line will affect what new lines are generated and thereby how the rest of the proof is completed. This allows users to quickly make multiple proof attempts and explore what a proof would look like if they use different rules. It is even more effective when users have to use modus ponens; because the antecedent of the conditional premise is not part of the conclusion, the user has to come up with a formula. Whatever formula they enter here will affect how they can complete the proof. This in combination with $A1$, the user cannot mindlessly apply rules; they have to think about what premises they need to justify the relevant line. Of course, this advantage is a double-edged sword; if the user uses this tool _only_, they will have difficulty making the proofs by hand. So users should not restrict their practice with syntactic proofs to using Guanaco.
+- **The user can focus on the logic and proof instead of on the notation.** If the user just wants to develop their intuition by making a lot of proofs, Guanaco is a perfect fit. Guanaco removes the obstacle of notation and writing, and this significantly increases the speed of proof-making. This is particularly effective when there are multiple ways to derive a given formula. This means that the user has multiple choices between axioms or rules to justify the same line. The choice they make on that line will affect what new lines are generated and thereby how the rest of the proof is completed. This allows users to quickly make multiple proof attempts and explore what a proof would look like if they use different rules. It is even more effective when users have to use modus ponens; because the antecedent of the conditional premise is not part of the conclusion, the user has to come up with a formula. Whatever formula they enter here will affect how they can complete the proof. This in combination with $A1$, the user cannot mindlessly apply rules; they have to think about what premises they need to justify the relevant line. Of course, this advantage is a double-edged sword; if the user uses Guanaco _only_, they will have difficulty making the proofs by hand. So users should not restrict their practice with syntactic proofs to using Guanaco.
 
 We see the following uses for Guanaco:
 
@@ -248,8 +252,6 @@ In an earlier version of Guanaco, we did facilitate conjunction/disjunction chai
 Guanaco can determine that the premises in this case must be $(p\wedge q)\to(p\wedge q)$ and $r\to r$.
 
 Except for the limitation that Guanaco only support the bottom-up strategy, each of these limitations could be resolved if we work on Guanaco somewhere in the future.
-
-## Results
 
 ## References
 
