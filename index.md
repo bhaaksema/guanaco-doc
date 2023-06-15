@@ -10,7 +10,7 @@ description: Final Project for Logical Aspects of Multi-Agent Systems
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 
-# Guanaco: A Syntactic Proof Guide
+# Guanaco: A Syntactic Proof Guide for Epistemic Logic
 
 You can find the current version of the program [here](https://github.com/bhaaksema/rug-lamas).
 
@@ -178,21 +178,31 @@ Our parser recognizes this flexibility of rules and axioms. For all axioms, it t
 
 ### Bottom-up strategy
 
-In many cases, syntactic proofs are finished by applying rules. For example, suppose we try to derive $K\_i(p\wedge q)\to K\_ip$. We may then start with the propositional tautology $(p\wedge q)\to p$ and apply $K$-distribution (KD) to it. In our program, we do it the opposite way. We start with the formula we aim to derive ($K\_i(p\wedge q)\to K\_ip$) and then we generate the premise on which we would apply KD to get to this formula. We call this strategy a _bottom-up strategy_. So, in this case, justifying a line with KD means that (1) the line is a conditional, (2) the conditional has $K\_i$ before both the antecedent and consequent, and (3) its premise is the same conditional without the $K\_i$ before the antecedent and consequent.
+In many cases, syntactic proofs are finished by applying rules. Guanaco employs a _bottom-up_ strategy for rules. For any formula $\varphi$ of the relevant language, there is a set of rules of which the conclusion has the same formulaic structure as $\varphi$. Only those rules are available to justify $\varphi$. The premises for these rules can then be automatically generated. 
 
-We apply this strategy in general. For any formula $\varphi$ of the relevant language, there is a set of rules of which the conclusion has the same formulaic structure as $\varphi$. Only those rules are available to justify $\varphi$. The premises for these rules can then be automatically generated. Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. If the user wants more lines, they always need to select a rule that generates new lines.
+For example, suppose we try to derive $K\_i(p\wedge q)\to K\_ip$. Normally, we would start with the propositional tautology $(p\wedge q)\to p$ and apply $K$-distribution (KD) to it. With the bottom-up strategy, we do it the opposite way. We start with the formula we aim to derive ($K\_i(p\wedge q)\to K\_ip$) and then we generate the premise on which we would apply KD to get to this formula. So, in this case, justifying a line with KD means that (1) the line is a conditional, (2) the conditional has $K\_i$ before both the antecedent and consequent, and (3) its premise is the same conditional without the $K\_i$ before the antecedent and consequent. So if the user justifies a line with KD, Guanaco automatically generates a new line above with the same conditional but without the $K\_i$ before the antecedent and consequent.
 
-There are a few exceptions here. The premises of the rules HS and HS $\leftrightarrow$ contain formulas that are not in the conclusion. For example, if we try to derive $\varphi \to \psi$ with HS, then we would generate two premises: $\varphi \to \chi$ and $\chi \to \psi$. But what should $\chi$ be? Our program cannot determine this by itself. The user has to provide input for $\chi$ to make the rule work.
+Note that with this bottom-up strategy, the user cannot add lines to the proof by themselves. If the user wants more lines, they always need to select a rule that generates new lines.
 
-Note also that in Meyer & Hoek (1995), the rules HS, HS $\leftrightrrow$, CO and CO $\leftrightarrow$ allow for more than two premises. But the program cannot determine how many premises they should generate. For example, we can justify $\varphi \to \psi$ with HS with two premises, but also three, four or more. For instance, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
+There are a few rules that need more user input. The premises of the rules HS and HS $\leftrightarrow$ contain formulas that are not in the conclusion. For example, if we try to derive $\varphi \to \psi$ with HS, then we would generate two premises: $\varphi \to \chi$ and $\chi \to \psi$. But what should $\chi$ be? Our program cannot determine this by itself. The user has to provide input for $\chi$ to make the rule work.
+
+Note also that in Meyer & Hoek (1995), the rules HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ allow for more than two premises. But the program cannot determine how many premises they should generate. For example, we can justify $\varphi \to \psi$ with HS with two premises, but also three, four or more. For instance, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
 But this is not problematic. If we can use these rules with $n$ premises, we can also use them with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from the premises $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once using all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\varphi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
-So due to time constraints for this project, we do not facilitate HS, HS $\leftrightrrow$, CO and CO $\leftrightarrow$ with more than two premises. If we are to expand this project in the future, we will for sure make such a feature available. For now, this will not entail issues for the program (except for some user inconvenience).
-
-### Other implementation details
-
-...
+So due to time constraints for this project, we do not facilitate HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ with more than two premises. If we are to expand this project in the future, we will aim to make such a feature available. For now, this will not entail issues for the program (except for some user inconvenience).
 
 ### Generating syntactic proofs
+
+In this section, we discuss the user's perspective using Guanaco to derive a particular formula $\varphi$.
+
+First, the user selects the axiom system $\Gamma$ they want to work with. There is a drop down menu on the left for this.
+
+Second, the user provides the formula $\phi$ they wish to derive in the 'goal' box. They must use our unicode representation of the formula in order for Guanaco to parse it accurately. While the user is typing, Guanaco prints the user input on the first (and only) line. Guanaco will also check whether whatever is typed it is well-formed. As soon as it is well-formed, the goal box will light up green and give a check mark.
+
+Third, the user must now choose a justification for the printed line. There is a drop down menu to the right of the line. The items of the drop down menu are the available axioms and rules. An axiom or rule is available if and only if (1) the chosen axiom system $\Gamma$ contains it and (2) the line that the user is trying to justify has the same formulaic structure as the axiom or as the conclusion of the rule. For example, $K\_i(p\wedge q)\to K\_ip$ has the same formulaic structure as the conclusion of KD, but not as the conclusion of R2. So KD will be available to justify this line, but R2 will not. So KD will be an item of the drop down menu, and R2 will not.
+
+If the user then selects a rule In this way, users can never make mistakes; every axiom or rule they can select is applicable, and every premise is generated automatically by Guanaco. To confirm that things went right, Guanaco gives a green check mark.
+
+Fourth, if the user selects either HS or HS $\leftrightarrow$, the user needs to provide a formula. Next to the justification drop down menu, there is an input box where the user can write down this formula. The user needs to use our unicode representation of the language again. Whatever the user writes, Guanaco will print it. Guanaco will also give a green check mark here, but does so only if the provided user input is a well-formed formula.
 
 So if a rule $\dfrac{\varphi}{\psi}$ is used as a justifcation for some line with $\psi$, then Guanaco prints one or two new lines above (depending on whether the chosen justification has one or two premises) and prints the relevant premise formula(s) $\varphi$. If a rule requires user input, then Guanaco prints a question mark (?) where user input is required. When the user provides the input, Guanaco replaces the question mark with the provided input. For example, if one uses HS to justify $\varphi\to\psi$, then Guanaco prints $\varphi\to\ ?$ and $? \to \psi$ on two new lines above. If the user provides $\chi$ as input, then it updates the two new lines to $\varphi\to \chi$ and $\chi \to \psi$.
 
