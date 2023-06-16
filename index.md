@@ -1,8 +1,3 @@
----
-title: Guanaco
-description: A Syntactic Proof Guide for Epistemic Logic
----
-
 <script>
   MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
 </script>
