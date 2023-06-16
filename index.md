@@ -1,6 +1,6 @@
 ---
 title: Guanaco
-description: Final Project for Logical Aspects of Multi-Agent Systems
+description: A Syntactic Proof Guide for Epistemic Logic
 ---
 
 <script>
@@ -10,22 +10,20 @@ description: Final Project for Logical Aspects of Multi-Agent Systems
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 
-# Guanaco: A Syntactic Proof Guide for Epistemic Logic
-
 You can find the current version of the program [here](https://github.com/bhaaksema/rug-lamas).
 
-## Introduction
+# Introduction
 
-In this project, we present a program that helps users write syntactic proofs. We name it _Guanaco_. If you have completed or taught one of the courses _Introduction to Logic_, _Reasoning and Arguing_ or _Logica en Argumentatieleer_ at University of Groningen, then you probably recall the program Fitch. Guanaco is much like Fitch, except that it concerns syntactic proofs instead of natural deduction. Just like in Fitch, users of Guanaco enter formulas on lines and provide a justification for those formulas. The justifications are the rules and axioms of the logic ($\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ or $\mathbf{PAC}$) in which the users aims to derive the chosen formula. Guanaco then evaluates whether the justification is applied correctly. This helps users successfully complete syntactic proofs.
+In this project, we present a program that helps users write syntactic proofs. We name it _Guanaco_. If you have completed or taught one of the courses _Introduction to Logic_, _Reasoning and Arguing_ or _Logica en Argumentatieleer_ at University of Groningen, then you probably recall the program Fitch. Guanaco is much like Fitch, except that it concerns syntactic proofs instead of natural deduction. Just like in Fitch, users of Guanaco enter formulas on lines and provide a justification for those formulas. The justifications are the rules and axioms of the logic ($\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$, $\mathbf{PA}$ or $\mathbf{PAC}$) in which the users aims to derive the chosen formula. Guanaco then evaluates whether the justification is applied correctly. This helps users successfully complete syntactic proofs.
 
 The strategy that Guanaco employs is building proofs _bottom-up_. This means that users start with the formula that they wish to derive. If this formula can only be derived by a rule, then Guanaco exploits the properties of this formula to extract new formulas the relevant rule is applied to. If the formula is an instantiation of an axiom, no new formulas are extracted. The same process is then applied until each formula has a justification and no new ones are produced. At that point, the proof is complete. We explain this bottom-up strategy in detail further on this website.
 
 The intended goal of this program is mostly educational. We hope that students will be able to use Guanaco to guide them with making syntactic proofs correctly, and we hope that Guanaco aids teachers with teaching syntactic proofs. To fully facilitate this kind of use, we may need to revise Guanaco in the future with usability in mind. For now, we aim to make Guanaco work correctly for the variety of logics taught in the course _Logical Aspects of Multi-Agent Systems_.
 
-### Overview
-The website is structured as follows. Under _Syntactic Proofs_, we briefly explain syntactic proofs and what they look like. We discuss the rules and axioms of the logics $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Under _Implementation_, we discuss Guanaco in more detail. We explain the bottom-up strategy that Guanaco employs. We then discuss some technical details of the program. Furthermore, we provide a detailed explanation of how Guanaco generates proofs. Under _Results_, we provide multiple examples of derivations made with Guanaco. Moreover, we test Guanaco by entering syntactic proofs provided in Meyer & Hoek (1995) to show that they are indeed correct. Finally, we wrap up our presentation under _Conclusion_, discuss Guanaco's limitations and perspectives for further research under _Discussion_ and provide a list of the relevant literature under _References_.
+## Overview
+The website is structured as follows. Under _Syntactic Proofs_, we briefly explain syntactic proofs and what they look like. We discuss the rules and axioms of the logics $\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Under _Implementation_, we discuss Guanaco in more detail. We explain the bottom-up strategy that Guanaco employs. We then discuss some technical details of the program. Furthermore, we provide a detailed explanation of how Guanaco generates proofs. Under _Results_, we provide multiple examples of derivations made with Guanaco. Moreover, we test Guanaco by entering syntactic proofs provided in Meyer & Hoek (1995) to show that they are indeed correct. Finally, we wrap up our presentation under _Conclusion_, discuss Guanaco's limitations and perspectives for further research under _Discussion_ and provide a list of the relevant literature under _References_.
 
-## Syntactic proofs
+# Syntactic proofs
 
 Syntactic proofs are done using axiom systems. An axiom system $\Gamma$ is a set of axioms and derivation rules. Given a formula $\varphi$, if we want to show that $\varphi$ is $\Gamma$-provable, we have to give a derivation. A derivation of a formula $\varphi$ is a finite sequence of formulas $\varphi_1, \varphi_2, \dots, \varphi_n=\varphi$, where each $\varphi_i$ for $1 \leq i \leq n$ is either an instance of one of the axioms or the conclusion of a derivation rule of which the premises have been derived already, i.e. the premises appear as $\varphi_j$ in the sequence with $j < i$. When we can derive an epistemic formula $\varphi$ using the axioms and derivation rules of $\Gamma$, we write $\Gamma \vdash \varphi$. In this case, $\varphi$ is called a $\Gamma$-theorem.
 
@@ -41,7 +39,7 @@ Visually, a syntactic proof is presented like this:
 
 So each member of the sequence of formulas has its own line, specifying the used axiom system $\Gamma$, the formula itself and the justification for that formula (an axiom $A$ or rule $R$ of $\Gamma$). If the justification is a rule, then the premises to which the rule is applied are cited too.
 
-### The language: Epistemic Formulas
+## The language: Epistemic Formulas
 
 In syntactic proofs, each formula $\varphi$ is a formula of a _language_. In Guanaco, there are four available languages: $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$, $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$, $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$ and $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$. When we present axiom systems later, we specify for which language it is an axiom system.
 
@@ -75,11 +73,11 @@ Now, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is an extension of $\mathcal{
 5. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $E\varphi, C\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ for $B \subseteq \mathbf{A}$.
 
 Note that in Van Ditmarsch et al. (2007), the $C$ and $E$ operators are followed by a subscript $B$, which signifies the group that has common knowledge or mutual knowledge. In Meyer & Hoek (1995), it is assumed that $B=\mathbf{A}$. We adopt the same strategy here. So the language $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ and the logic $\mathbf{PAC}$ we present here is not identical to the language and logic presented in Van Ditmarsch (2007). The language and logic presented in Van Ditmarsch (2007) are able to express 'mixed' theorems, namely theorems with multiple operators $C$ and $E$ where group $B$ differs between these operators. What we present here cannot express those theorems.
-We chose to adopt this limitation due to time constraints; now that we drop the subscript $B$, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ and $\mathbf{PAC}$ are straightforward extensions of $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ and $\mathbf{S5EC(m)}$ respectively.
+We chose to adopt this limitation due to time constraints; now that we drop the subscript $B$, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ and $\mathbf{PAC}$ are straightforward extensions of $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ and $\mathbf{S5EC\_{(m)}}$ respectively.
 
-### Axiom Systems
+## Axiom Systems
 
-In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Each of these logics provides a set of rules and axioms to make syntactic proofs with. Here is a list of all rules and axioms Guanaco knows:
+In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Each of these logics provides a set of rules and axioms to make syntactic proofs with. Here is a list of all rules and axioms Guanaco knows:
 
 | Axiom or rule name                    | Rule or axiom                                                                                          | Abbreviation |
 | ------------                          | ----------                                                                                             | :------:     |
@@ -108,18 +106,18 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 
 All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $A1$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. For now, the responsibility to check whether a formula is a propositional tautology lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
 
-Now, the axiom systems $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in them.
+Now, the axiom systems $\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in them.
 
 | Axiom system       | Axioms and rules                | Relations between systems            | Language                                        |
 | ----------         | ----------------                | -----------------------              | --------                                        |
-| $\mathbf{K(m)}$    | $A1-A2'$ and $R1-R2$            |                                      | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
-| $\mathbf{S5(m)}$   | $A1-A5$ and $R1-R2$             | $\mathbf{K(m)} + A4-A5$              | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
-| $\mathbf{KEC(m)}$  | $A1-A2'$, $A6-A10$ and $R1-R3$  | $\mathbf{K(m)} + A6-A10 + R3$        | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
-| $\mathbf{S5EC(m)}$ | $A1-A10$ and $R1-R3$            | $\mathbf{S5(m)} + A6-A10 + R3$       | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
-| $\mathbf{PA}$      | $A1-A5$, $A11-A15$ and $R1-R2$  | $\mathbf{S5(m)} + A11-A15$           | $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$     | 
-| $\mathbf{PAC}$     | $A1-A15$ and $R1-R5$            | $\mathbf{S5EC(m)} + A11-A15 + R4-R5$ | $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$   |
+| $\mathbf{K\_{(m)}}$    | $A1-A2'$ and $R1-R2$            |                                      | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
+| $\mathbf{S5\_{(m)}}$   | $A1-A5$ and $R1-R2$             | $\mathbf{K\_{(m)}} + A4-A5$              | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
+| $\mathbf{KEC\_{(m)}}$  | $A1-A2'$, $A6-A10$ and $R1-R3$  | $\mathbf{K\_{(m)}} + A6-A10 + R3$        | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
+| $\mathbf{S5EC\_{(m)}}$ | $A1-A10$ and $R1-R3$            | $\mathbf{S5\_{(m)}} + A6-A10 + R3$       | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
+| $\mathbf{PA}$      | $A1-A5$, $A11-A15$ and $R1-R2$  | $\mathbf{S5\_{(m)}} + A11-A15$           | $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$     | 
+| $\mathbf{PAC}$     | $A1-A15$ and $R1-R5$            | $\mathbf{S5EC\_{(m)}} + A11-A15 + R4-R5$ | $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$   |
 
-### Shortcut rules
+## Shortcut rules
 
 Below is a table with the shortcut rules that Guanaco knows. Each of these rules is available in all axiom systems, except for ED and CD, which are available only in axiom systems for languages with the $E$ and $C$ operators.
 
@@ -142,11 +140,11 @@ Below is a table with the shortcut rules that Guanaco knows. Each of these rules
 | $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                  | ED                     |
 | $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                  | CD                     |
 
-## Implementation
+# Implementation
 
 In this section, we cover the important details of the implementation strategy. We first present the parsing process of our program, followed by our employed strategies for the implementation of axioms and rules.
 
-### Input parsing
+## Input parsing
 
 When a user provides written input, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output. Whenever Guanaco prints a formula, it uses the unicode symbols for the usual operators and uses subscripts instead of accolades. Guanaco also automatically prints disambiguating brackets if necessary. Our idea here is that entering a formula should be easy, so we chose symbols that are on the keyboard for the input language, but printed formulas should look like the formulas of the books Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). That is why the input language and printing language are different, even though they represent the same formula.
 
@@ -173,13 +171,13 @@ To avoid ambiguity, the user is required to place brackets around binary operato
 
 White spaces are ignored, so users may use white spaces in the way they like.
 
-### Schemes
+## Schemes
 
-The rules and axioms of the available logics are _schemes_; they represent not one theorem, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom A3 ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a theorem of $\mathbf{S5(m)}$. For example, $K\_ip\to p$ is a theorem of $\mathbf{S5(m)}$, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of A3, even though it is a scheme.
+The rules and axioms of the available logics are _schemes_; they represent not one theorem, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom A3 ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a theorem of $\mathbf{S5\_{(m)}}$. For example, $K\_ip\to p$ is a theorem of $\mathbf{S5\_{(m)}}$, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of A3, even though it is a scheme.
 
 Our parser recognizes this flexibility of rules and axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `K{a1}!!f1 -> !!f1` as an input, when it encounters `!!f1` in the first hole, it checks whether `!!f1` is also in the second hole. In this case, it is, so the parser recognizes it as an instantiation of A3.
 
-### Bottom-up strategy
+## Bottom-up strategy
 
 In many cases, syntactic proofs are finished by applying rules. Guanaco employs a _bottom-up_ strategy for rules. For any formula $\varphi$ of the relevant language, there is a set of rules of which the conclusion has the same formulaic structure as $\varphi$. Only those rules are available to justify $\varphi$. The premises for these rules can then be automatically generated. 
 
@@ -193,7 +191,7 @@ Note also that in Meyer & Hoek (1995), the rules HS, HS $\leftrightarrow$, CO an
 But this is not problematic. If we can use these rules with $n$ premises, we can also use them with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from the premises $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once using all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\varphi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
 So due to time constraints for this project, we do not facilitate HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ with more than two premises. This will not entail issues for the program, except for some user inconvenience.
 
-### Generating syntactic proofs
+## Generating syntactic proofs
 
 In this section, we discuss the user's perspective using Guanaco to derive a particular formula $\varphi$.
 
@@ -209,13 +207,13 @@ Finally, when all lines have been justified and Guanaco gives a green check mark
 
 In this way, users can never make mistakes; every axiom or rule they can select is applicable, and every premise is generated automatically by Guanaco. And for rules that require input, Guanaco accepts the input only if it is well-formed. Moreover, if a user does not provide input when required, justification drop down menu is not available for lines that contain a question mark. So the user cannot apply axioms or rules incorrectly (except for $A1$), and the proof is only complete if all lines are justified.
 
-## Results
+# Results
 
-## Discussion
+# Discussion
 
 We believe that Guanaco can actually be used by students and teachers for educational purposes, just like the program _Fitch_ is used in first-year and minor introductions in logic. In this section, we present the educational advantages and uses we see for Guanaco. Afterwards, we discuss what Guanaco _cannot_ do and what further work on Guanaco would look like.
 
-### Educational advantages
+## Educational advantages
 
 We believe that Guanaco has a number of educational advantages:
 
@@ -235,7 +233,7 @@ We see the following uses for Guanaco:
 - **Teachers can use Guanaco to check students' hand-written proofs.** In the same way as described above, teachers can check whether a student's proof is correct. There is a limitation here; teachers can only find the first mistake bottom-up, because Guanaco will not allow the teacher to proceed entering the student's proof if there is a mistake in it. In that case, the teacher has to fix the mistake and continue. But it is not guaranteed that other mistakes the student made will still emerge when the teacher continues entering the proof in Guanaco.
 So what we think is that Guanaco helps the teacher quickly check whether a proof is correct if it looks promising at first glance. If there is a subtle mistake that the teacher might not find with grading by hand, Guanaco will automatically spot it. But if the student's proof is obviously incorrect, even at first glance, then grading by hand will probably be more accurate. So teachers can use Guanaco as grading aid, but cannot rely on it.
 
-### Limitations
+## Limitations
 
 - **Guanaco cannot check whether a formula is a propositional tautology.** So Guanaco will count any application of $A1$ as correct.
 
@@ -254,11 +252,11 @@ For example, think about the theorem $p\to(p\to ... (p\to p))$, where $p$ occurs
 In an earlier version of Guanaco, we did facilitate conjunction/disjunction chaining. We removed this feature when we realized that we could not facilitate rules with more than two premises. For example, if the user wants to apply CO to $(p\wedge q\wedge r)\rightarrow(p\wedge q\wedge r)$ with two premises, Guanaco cannot determine which two biconditionals are the premises. There are two possibilities: either the premises are $(p\wedge q)\to(p\wedge q)$ and $r\to r$, or they are $p\to p$ and $(q\wedge r)\to(q\wedge r)$. But applying CO to $((p\wedge q)\wedge r)\to((p\wedge q)\wedge r)$ works;
 Guanaco can determine that the premises in this case must be $(p\wedge q)\to(p\wedge q)$ and $r\to r$.
   
-- **Guanaco cannot express and derive mixed theorems for common knowledge and mutual knowledge.** We dropped subscript $B$ for operators $C$ and $E$. Conveniently, this means that $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is straightforward extensions of $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$, and $\mathbf{PAC}$ is a straightforward extension of $\mathbf{S5EC(m)}$. 
+- **Guanaco cannot express and derive mixed theorems for common knowledge and mutual knowledge.** We dropped subscript $B$ for operators $C$ and $E$. Conveniently, this means that $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is straightforward extensions of $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$, and $\mathbf{PAC}$ is a straightforward extension of $\mathbf{S5EC\_{(m)}}$. 
 
 Except for the limitation that Guanaco only support the bottom-up strategy, each of these limitations could be resolved if we work on Guanaco somewhere in the future.
 
-## References
+# References
 
 Meyer, J. C., & Van Der Hoek, W. (1995). _Epistemic Logic for AI and Computer Science._ Cambridge University Press.
 
