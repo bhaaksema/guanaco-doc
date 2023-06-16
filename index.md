@@ -74,6 +74,9 @@ Now, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is an extension of $\mathcal{
 4. If $\varphi,\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $[\varphi]\psi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, for all $i \in \mathbf{A}$.
 5. If $\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$, then $E\varphi, C\varphi \in \mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ for $B \subseteq \mathbf{A}$.
 
+Note that in Van Ditmarsch et al. (2007), the $C$ and $E$ operators are followed by a subscript $B$, which signifies the group that has common knowledge or mutual knowledge. In Meyer & Hoek (1995), it is assumed that $B=\mathbf{A}$. We adopt the same strategy here. So the language $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ and the logic $\mathbf{PAC}$ we present here is not identical to the language and logic presented in Van Ditmarsch (2007). The language and logic presented in Van Ditmarsch (2007) are able to express 'mixed' theorems, namely theorems with multiple operators $C$ and $E$ where group $B$ differs between these operators. What we present here cannot express those theorems.
+We chose to adopt this limitation due to time constraints; now that we drop the subscript $B$, $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ and $\mathbf{PAC}$ are straightforward extensions of $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$ and $\mathbf{S5EC(m)}$ respectively.
+
 ### Axiom Systems
 
 In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Each of these logics provides a set of rules and axioms to make syntactic proofs with. Here is a list of all rules and axioms Guanaco knows:
@@ -103,7 +106,7 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 | Necessitation of announcements        | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                     | $R4$         |
 | Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$                   | $R5$         |
 
-All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $A1$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. If we work on Guanaco in the future, we can give Guanaco a way to check whether something is a propositional tautology. But for now, this responsibility lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
+All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $A2$ and $A2'$ are propositionally equivalent, and so are $A9$ and $A9'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $A1$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. For now, the responsibility to check whether a formula is a propositional tautology lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
 
 Now, the axiom systems $\mathbf{K(m)}$, $\mathbf{KEC(m)}$, $\mathbf{S5(m)}$, $\mathbf{S5EC(m)}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in them.
 
@@ -188,7 +191,7 @@ There are a few rules that need more user input. The premises of the rules $R1$,
 
 Note also that in Meyer & Hoek (1995), the rules HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ allow for more than two premises. But the program cannot determine how many premises they should generate. For example, we can justify $\varphi \to \psi$ with HS with two premises, but also three, four or more. For instance, we could use $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$ (this is three premises).
 But this is not problematic. If we can use these rules with $n$ premises, we can also use them with 2 premises $n-1$ times. For example, suppose we want to prove $\varphi\to\psi$ from the premises $\varphi \to \chi$, $\chi \to \chi'$ and $\chi'\to\psi$. Instead of applying HS once using all three premises, we can also apply HS twice ($3-1=2$) to get the same result. In this case we get $\varphi\to\chi'$ by applying HS to $\varphi \to \chi$ and $\chi \to \chi'$, and then we get $\varphi\to\psi$ by applying HS to $\varphi \to \chi'$ and $\chi'\to\psi$.
-So due to time constraints for this project, we do not facilitate HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ with more than two premises. If we are to expand this project in the future, we will aim to make such a feature available. For now, this will not entail issues for the program (except for some user inconvenience).
+So due to time constraints for this project, we do not facilitate HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ with more than two premises. This will not entail issues for the program, except for some user inconvenience.
 
 ### Generating syntactic proofs
 
@@ -234,22 +237,24 @@ So what we think is that Guanaco helps the teacher quickly check whether a proof
 
 ### Limitations
 
-- As discussed before, **Guanaco cannot check whether a formula is a propositional tautology.** So Guanaco will count any application of $A1$ as correct.
+- **Guanaco cannot check whether a formula is a propositional tautology.** So Guanaco will count any application of $A1$ as correct.
 
-- As mentioned before, **Guanaco does not support HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ for more than two premises.** This is not a problem, but is it inconvenient for the user, because it makes certain proofs somewhat longer.
+- **Guanaco does not support HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ for more than two premises.** This is not a problem, but is it inconvenient for the user, because it makes certain proofs somewhat longer.
 
 - **If used on small devices, Guanaco can only render short formulas.** Guanaco cannot break off lines, so longer formulas will be rendered off-screen. So if a device is particularly small (e.g. a smartphone), Guanaco is only useful for deriving relatively short formulas. On computers, this is less of a problem, since computer screens are significantly larger. But there are still many theorems that are too long on a computer too.
 For example, think about the theorem $p\to(p\to ... (p\to p))$, where $p$ occurs at least 1000 times. Guanaco cannot render it on a regular computer screen because it is way too large. But we do not believe that this is a limitation in practice. Formulas that are too long to render on a computer screen (like $p\to(p\to ... (p\to p)$) are often also too long to write down. And the syntactic proofs students make are always short enough so that they can write them down. Therefore, Guanaco can probably render all proofs that students would realistically make by hand.
 
 - **Guanaco only supports the bottom-up strategy.** As should be clear by now, there is no way in Guanaco to make proofs top-down. Sometimes making proofs top-down is desirable, and in those cases Guanaco might not be the best tool to use.
 
-- As discussed before, **Guanaco only spots the first mistake in hand written proofs bottom-up.** Therefore it cannot always be used to fix incorrect proofs (even though it can reliably be used as a proof checker).
+- **Guanaco only spots the first mistake in hand written proofs bottom-up.** Therefore it cannot always be used to fix incorrect proofs (even though it can reliably be used as a proof checker).
 
 - **Guanaco cannot remember previously made proofs.** There is no way to save proofs. This also means that users cannot use theorems they have derived before as justifications in their proofs. This is often done in hand-written proofs, and sometimes it makes proof-writing significantly easier. If we will ever expand on this project, we can see whether such a feature is possible.
 
 - **Conjunctions and disjunctions cannot be chained.** For example, the conjunction $p\wedge q\wedge r$ can only be parsed as $(p\wedge q)\wedge r$ or $p\wedge (q\wedge r)$. Chaining conjunctions and disjunctions is quite useful for rules such as CO, CO $\leftrightarrow$ and LR. This is not a problem, but it can be inconvenient for the user at times.
 In an earlier version of Guanaco, we did facilitate conjunction/disjunction chaining. We removed this feature when we realized that we could not facilitate rules with more than two premises. For example, if the user wants to apply CO to $(p\wedge q\wedge r)\rightarrow(p\wedge q\wedge r)$ with two premises, Guanaco cannot determine which two biconditionals are the premises. There are two possibilities: either the premises are $(p\wedge q)\to(p\wedge q)$ and $r\to r$, or they are $p\to p$ and $(q\wedge r)\to(q\wedge r)$. But applying CO to $((p\wedge q)\wedge r)\to((p\wedge q)\wedge r)$ works;
 Guanaco can determine that the premises in this case must be $(p\wedge q)\to(p\wedge q)$ and $r\to r$.
+  
+- **Guanaco cannot express and derive mixed theorems for common knowledge and mutual knowledge.** We dropped subscript $B$ for operators $C$ and $E$. Conveniently, this means that $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ is straightforward extensions of $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$, and $\mathbf{PAC}$ is a straightforward extension of $\mathbf{S5EC(m)}$. 
 
 Except for the limitation that Guanaco only support the bottom-up strategy, each of these limitations could be resolved if we work on Guanaco somewhere in the future.
 
