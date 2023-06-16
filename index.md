@@ -4,7 +4,7 @@ description: A Syntactic Proof Guide for Epistemic Logic
 ---
 
 <script>
-  MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+  MathJax = { tex: { inlineMath: [['$', '$']] } };
 </script>
 <script id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">

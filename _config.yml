@@ -6,4 +6,5 @@ exclude: [README.md]
 github:
   repository_name: Guanaco
   repository_url: https://github.com/bhaaksema/guanaco
+  website_url: https://bhaaksema.github.io/guanaco
   zip_url: https://github.com/bhaaksema/guanaco/zipball/main
