@@ -5,6 +5,5 @@ plugins:
 exclude: [README.md]
 github:
   repository_name: Guanaco
-  project_tagline: "A Syntactic Proof Guide for Epistemic Logic"
   repository_url: https://github.com/bhaaksema/guanaco
   zip_url: https://github.com/bhaaksema/guanaco/zipball/main
