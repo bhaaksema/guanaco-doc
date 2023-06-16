@@ -80,7 +80,7 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 | Axiom or rule name                    | Rule or axiom                                                                                          | Abbreviation |
 | ------------                          | ----------                                                                                             | :------:     |
 | Propositional tautologies             | All (instances of) propositional tautologies                                                           | $A1$         |
-| Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$         | $\$         |
+| Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$         | $A2$         |
 | Distribution of $K$ over implication  | $K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi\to K_i \psi)$ for $i = 1, \dots, m$            | $A2'$        |
 | Knowledge implies truth               | $K_i\varphi \rightarrow \varphi$ for $(i=1, \dots m)$                                                  | $A3$         |
 | Positive introspection                | $K_i\varphi \rightarrow K_iK_i\varphi$ for $i = 1, \dots, m$                                           | $A4$         |
@@ -233,7 +233,7 @@ So what we think is that Guanaco helps the teacher quickly check whether a proof
 
 ## Limitations
 
-- **Guanaco cannot check whether a formula is a propositional tautology.** So Guanaco will count any application of $A1$ as correct.
+- **Guanaco cannot check whether a formula is a propositional tautology.** So Guanaco will count any application of $A1$ as correct. The user must use an external service to check whether a formula is indeed a propositional tautology.
 
 - **Guanaco does not support HS, HS $\leftrightarrow$, CO and CO $\leftrightarrow$ for more than two premises.** This is not a problem, but is it inconvenient for the user, because it makes certain proofs somewhat longer.
 
