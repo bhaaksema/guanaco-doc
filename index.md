@@ -147,19 +147,19 @@ In this section, we cover the important details of the implementation strategy. 
 
 When a user provides written input, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output. Whenever Guanaco prints a formula, it uses the unicode symbols for the usual operators and uses subscripts instead of accolades. Guanaco also automatically prints disambiguating brackets if necessary. Our idea here is that entering a formula should be easy, so we chose symbols that are on the keyboard for the input language, but printed formulas should look like the formulas of the books Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). That is why the input language and printing language are different, even though they represent the same formula.
 
-| Input      | Interpretation                                            | Printed formula  | Formula of the language               |
+| Input      | Interpretation                                            | Printed formula  | Formula of the relevant language      |
 | --------   | --------------------------------------------              | ----             | --------------------------            |
 | `pn`       | propositional atom `n`, where `n` is an integer           | p<sub>n</sub>    | $p\_n$                                |
 | `fn`       | formula `n`, where `n` is an integer                      | f<sub>n</sub>    | $\varphi\_n$                          |
 | `!x`       | negation of the formula `x`                               | ¬`x`             | $\neg\varphi$                         |
 | `x & y`    | conjunction of the formulas `x` and `y`                   | `x` ∧&#xFE0E; `y`| $\varphi\wedge\psi$                   |
-| `x ⏐ y`    | disjunction of the formulas `x` and `y`                   | `x` ∨&#xFE0E; `y`| $\varphi\wedge\psi$                   |
+| `x ⏐ y`    | disjunction of the formulas `x` and `y`                   | `x` ∨&#xFE0E; `y`| $\varphi\vee\psi$                     |
 | `x -> y`   | implication of `x` to `y`                                 | `x` →&#xFE0E; `y`| $\varphi\to\psi$                      |
-| <code>x&nbsp;<&#8209;>&nbsp;y</code>  | biimplication of `x` and `y`         | `x` ↔&#xFE0E; `y`| $\varphi\leftrightarrow\psi$          |
+| <code>x&nbsp;<&#8209;>&nbsp;y</code>  | biimplication of `x` and `y`   | `x` ↔&#xFE0E; `y`| $\varphi\leftrightarrow\psi$          |
 | `K{an}x`   | agent `an` (where `n` is an integer) knows formula `x`    | K<sub>an</sub>`x`| $K\_{i}\varphi$                       |
 | `K{n}x`    | the agent `n`$\in \mathbf{A}$ knows formula `x`           | K<sub>n</sub>`x` | $K\_{n}\varphi$                       |
-| `Ex`       | everybody knows formula `x`                               | E`x`             | $C\varphi$                            |
-| `Cx`       | there is common knowledge of formula `x`                  | C`x`             | $E\varphi$                            |
+| `Ex`       | everybody knows formula `x`                               | E`x`             | $E\varphi$                            |
+| `Cx`       | there is common knowledge of formula `x`                  | C`x`             | $C\varphi$                            |
 | `[x]y`     | announcement of `x` followed by `y`                       | [`x`]`y`         | $\[\varphi\]\psi$                     |
 
 If only one atom, formula or agent is needed in the user's proof, the user can omit the integer `n` without issue.
@@ -174,7 +174,7 @@ White spaces are ignored, so users may use white spaces in the way they like.
 
 The rules and axioms of the available logics are _schemes_; they represent not one theorem, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom A3 ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a theorem of $\mathbf{S5(m)}$. For example, $K\_ip\to p$ is a theorem of $\mathbf{S5(m)}$, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of A3, even though it is a scheme.
 
-Our parser recognizes this flexibility of rules and axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `K{a1}!!f1 -> !!f1` as an input, when it encounters `!!f1` in the first hole, it checks whether `!!f1` is also in the second hole. In this case, it is, so the parses recognizes it as an instantiation of A3.
+Our parser recognizes this flexibility of rules and axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `K{a1}!!f1 -> !!f1` as an input, when it encounters `!!f1` in the first hole, it checks whether `!!f1` is also in the second hole. In this case, it is, so the parser recognizes it as an instantiation of A3.
 
 ### Bottom-up strategy
 
@@ -210,7 +210,7 @@ In this way, users can never make mistakes; every axiom or rule they can select 
 
 ## Discussion
 
-We believe that Guanaco can actually used by students and teachers for educational purposes, just like the program _Fitch_ is used in first-year and minor introductions in logic. In this section, we present the educational advantages and uses we see for Guanaco. Afterwards, we discuss what Guanaco _cannot_ do and what further work on Guanaco would look like.
+We believe that Guanaco can actually be used by students and teachers for educational purposes, just like the program _Fitch_ is used in first-year and minor introductions in logic. In this section, we present the educational advantages and uses we see for Guanaco. Afterwards, we discuss what Guanaco _cannot_ do and what further work on Guanaco would look like.
 
 ### Educational advantages
 
@@ -248,7 +248,7 @@ For example, think about the theorem $p\to(p\to ... (p\to p))$, where $p$ occurs
 - **Guanaco cannot remember previously made proofs.** There is no way to save proofs. This also means that users cannot use theorems they have derived before as justifications in their proofs. This is often done in hand-written proofs, and sometimes it makes proof-writing significantly easier. If we will ever expand on this project, we can see whether such a feature is possible.
 
 - **Conjunctions and disjunctions cannot be chained.** For example, the conjunction $p\wedge q\wedge r$ can only be parsed as $(p\wedge q)\wedge r$ or $p\wedge (q\wedge r)$. Chaining conjunctions and disjunctions is quite useful for rules such as CO, CO $\leftrightarrow$ and LR. This is not a problem, but it can be inconvenient for the user at times.
-In an earlier version of Guanaco, we did facilitate conjunction/disjunction chaining. We removed this feature when we realized that we could not facilitate rules with more than two premises. For example, if a user wants to apply CO to $(p\wedge q\wedge r)\rightarrow($p\wedge q\wedge r$)$ with two premises, Guanaco cannot determine which two biconditionals are the premises. There are two possibilities: either the premises are $(p\wedge q)\to(p\wedge q)$ and $r\to r$, or they are $p\to p$ and $(q\wedge r)\to(q\wedge r)$. But applying CO to $((p\wedge q)\wedge r)\to((p\wedge q)\wedge r)$ works;
+In an earlier version of Guanaco, we did facilitate conjunction/disjunction chaining. We removed this feature when we realized that we could not facilitate rules with more than two premises. For example, if the user wants to apply CO to $(p\wedge q\wedge r)\rightarrow(p\wedge q\wedge r)$ with two premises, Guanaco cannot determine which two biconditionals are the premises. There are two possibilities: either the premises are $(p\wedge q)\to(p\wedge q)$ and $r\to r$, or they are $p\to p$ and $(q\wedge r)\to(q\wedge r)$. But applying CO to $((p\wedge q)\wedge r)\to((p\wedge q)\wedge r)$ works;
 Guanaco can determine that the premises in this case must be $(p\wedge q)\to(p\wedge q)$ and $r\to r$.
 
 Except for the limitation that Guanaco only support the bottom-up strategy, each of these limitations could be resolved if we work on Guanaco somewhere in the future.
