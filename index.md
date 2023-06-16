@@ -10,8 +10,6 @@ description: A Syntactic Proof Guide for Epistemic Logic
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 
-You can find the current version of the program [here](https://github.com/bhaaksema/rug-lamas).
-
 # Introduction
 
 In this project, we present a program that helps users write syntactic proofs. We name it _Guanaco_. If you have completed or taught one of the courses _Introduction to Logic_, _Reasoning and Arguing_ or _Logica en Argumentatieleer_ at University of Groningen, then you probably recall the program Fitch. Guanaco is much like Fitch, except that it concerns syntactic proofs instead of natural deduction. Just like in Fitch, users of Guanaco enter formulas on lines and provide a justification for those formulas. The justifications are the rules and axioms of the logic ($\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$, $\mathbf{PA}$ or $\mathbf{PAC}$) in which the users aims to derive the chosen formula. Guanaco then evaluates whether the justification is applied correctly. This helps users successfully complete syntactic proofs.
@@ -82,7 +80,7 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 | Axiom or rule name                    | Rule or axiom                                                                                          | Abbreviation |
 | ------------                          | ----------                                                                                             | :------:     |
 | Propositional tautologies             | All (instances of) propositional tautologies                                                           | $A1$         |
-| Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$         | $A2$         |
+| Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$         | $\$         |
 | Distribution of $K$ over implication  | $K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi\to K_i \psi)$ for $i = 1, \dots, m$            | $A2'$        |
 | Knowledge implies truth               | $K_i\varphi \rightarrow \varphi$ for $(i=1, \dots m)$                                                  | $A3$         |
 | Positive introspection                | $K_i\varphi \rightarrow K_iK_i\varphi$ for $i = 1, \dots, m$                                           | $A4$         |
@@ -173,9 +171,9 @@ White spaces are ignored, so users may use white spaces in the way they like.
 
 ## Schemes
 
-The rules and axioms of the available logics are _schemes_; they represent not one theorem, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom A3 ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a theorem of $\mathbf{S5\_{(m)}}$. For example, $K\_ip\to p$ is a theorem of $\mathbf{S5\_{(m)}}$, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of A3, even though it is a scheme.
+The rules and axioms of the available logics are _schemes_; they represent not one theorem, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom $A3$ ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a theorem of $\mathbf{S5\_{(m)}}$. For example, $K\_ip\to p$ is a theorem of $\mathbf{S5\_{(m)}}$, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of $A3$, even though it is a scheme.
 
-Our parser recognizes this flexibility of rules and axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `K{a1}!!f1 -> !!f1` as an input, when it encounters `!!f1` in the first hole, it checks whether `!!f1` is also in the second hole. In this case, it is, so the parser recognizes it as an instantiation of A3.
+Our parser recognizes this flexibility of rules and axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `K{a1}!!f1 -> !!f1` as an input, when it encounters `!!f1` in the first hole, it checks whether `!!f1` is also in the second hole. In this case, it is, so the parser recognizes it as an instantiation of $A3$.
 
 ## Bottom-up strategy
 
