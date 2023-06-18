@@ -109,7 +109,7 @@ Now, the axiom systems $\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_
 | Axiom system       | Axioms and rules                | Relations between systems            | Language                                        |
 | ----------         | ----------------                | -----------------------              | --------                                        |
 | $\mathbf{K\_{(m)}}$    | $\mathbf{A1}-\mathbf{A2}'$ and $\mathbf{R1}-\mathbf{R2}$            |                                      | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
-| $\mathbf{S5\_{(m)}}$   | $\mathbf{A1}-\mathbf{A5}$ and $\mathbf{R1}-\mathbf{R2}$             | $\mathbf{K\_{(m)}} + \mathbf{A4}-\mathbf{A5}$              | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
+| $\mathbf{S5\_{(m)}}$   | $\mathbf{A1}-\mathbf{A5}$ and $\mathbf{R1}-\mathbf{R2}$             | $\mathbf{K\_{(m)}} + \mathbf{A3}-\mathbf{A5}$              | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
 | $\mathbf{KEC\_{(m)}}$  | $\mathbf{A1}-\mathbf{A2}'$, $\mathbf{A6}-A10$ and $\mathbf{R1}-\mathbf{R3}$  | $\mathbf{K\_{(m)}} + \mathbf{A6}-\mathbf{A10} + \mathbf{R3}$        | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
 | $\mathbf{S5EC\_{(m)}}$ | $\mathbf{A1}-\mathbf{A10}$ and $\mathbf{R1}-\mathbf{R3}$            | $\mathbf{S5\_{(m)}} + \mathbf{A6}-\mathbf{A10} + \mathbf{R3}$       | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
 | $\mathbf{PA}$      | $\mathbf{A1}-\mathbf{A5}$, $\mathbf{A1}1-A15$ and $\mathbf{R1}-\mathbf{R2}$  | $\mathbf{S5\_{(m)}} + \mathbf{A11}-\mathbf{A15}$           | $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$     | 
