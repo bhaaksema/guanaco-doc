@@ -27,13 +27,13 @@ Syntactic proofs are done using axiom systems. An axiom system $\Gamma$ is a set
 
 Visually, a syntactic proof is presented like this:
 
-| Line number    | Axiom system  |          | Formula     | Justification |
-| :------------: | :-----------: | :------: | :---------: | :-----------: |  
-| $1$            | $\Gamma$      | $\vdash$ | $\varphi_1$ | $\mathbf{A}/\mathbf{R}$         | 
-| $...$          | $\Gamma$      | $\vdash$ | $...$       | $\mathbf{A}/\mathbf{R}$         |
-| $i$            | $\Gamma$      | $\vdash$ | $\varphi_i$ | $\mathbf{A}/\mathbf{R}$         |
-| $...$          | $\Gamma$      | $\vdash$ | $...$       | $\mathbf{A}/\mathbf{R}$         |
-| $n$            | $\Gamma$      | $\vdash$ | $\varphi_n$ | $\mathbf{A}/\mathbf{R}$         |
+| Line number | Axiom system |          |   Formula   |      Justification      |
+| :---------: | :----------: | :------: | :---------: | :---------------------: |
+|     $1$     |   $\Gamma$   | $\vdash$ | $\varphi_1$ | $\mathbf{A}/\mathbf{R}$ |
+|    $...$    |   $\Gamma$   | $\vdash$ |    $...$    | $\mathbf{A}/\mathbf{R}$ |
+|     $i$     |   $\Gamma$   | $\vdash$ | $\varphi_i$ | $\mathbf{A}/\mathbf{R}$ |
+|    $...$    |   $\Gamma$   | $\vdash$ |    $...$    | $\mathbf{A}/\mathbf{R}$ |
+|     $n$     |   $\Gamma$   | $\vdash$ | $\varphi_n$ | $\mathbf{A}/\mathbf{R}$ |
 
 So each member of the sequence of formulas has its own line, specifying the used axiom system $\Gamma$, the formula itself and the justification for that formula (an axiom $\mathbf{A}$ or rule $\mathbf{R}$ of $\Gamma$). If the justification is a rule, then the premises to which the rule is applied are cited too.
 
@@ -77,66 +77,66 @@ We chose to adopt this limitation due to time constraints; now that we drop the 
 
 In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$, $\mathbf{PA}$ and $\mathbf{PAC}$. Each of these logics provides a set of rules and axioms to make syntactic proofs with. Here is a list of all rules and axioms Guanaco knows:
 
-| Axiom or rule name                    | Rule or axiom                                                                                          | Abbreviation |
-| ------------                          | ----------                                                                                             | :------:     |
-| Propositional tautologies             | All (instances of) propositional tautologies                                                           | $\mathbf{A1}$         |
-| Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$         | $\mathbf{A2}$         |
-| Distribution of $K$ over implication  | $K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi\to K_i \psi)$ for $i = 1, \dots, m$            | $\mathbf{A2}'$        |
-| Knowledge implies truth               | $K_i\varphi \rightarrow \varphi$ for $i=1, \dots m$                                                    | $\mathbf{A3}$         |
-| Positive introspection                | $K_i\varphi \rightarrow K_iK_i\varphi$ for $i = 1, \dots, m$                                           | $\mathbf{A4}$         |
-| Negative introspection                | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi$ for $i=1, \dots m$                                | $\mathbf{A5}$         |
-| Definition of $E$                     | $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$                                   | $\mathbf{A6}$         |
-| Common knowledge implies truth        | $C\varphi \rightarrow \varphi$                                                                         | $\mathbf{A7}$         |
-| Mix of common knowledge               | $C\varphi \rightarrow EC\varphi$                                                                       | $\mathbf{A8}$         |
-| Modus ponens for common knowledge     | $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$                                       | $\mathbf{A9}$         |
-| Distribution of $C$ over implication  | $C(\varphi \rightarrow \psi) \rightarrow (C\varphi\to C\psi)$                                          | $\mathbf{A9}'$        |
-| Induction of common knowledge         | $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$                           | $\mathbf{A10}$        |
-| Atomic permanence                     | $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p)$                                                 | $\mathbf{A11}$        |
-| Announcement and negation             | $\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $                     | $\mathbf{A12}$        |
-| Announcement and conjunction          | $\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $                | $\mathbf{A13}$        |
-| Announcement and knowledge            | $\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) $ for $i = 1, \dots, m$   | $\mathbf{A14}$        |
-| Announcement composition              | $\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $                       | $\mathbf{A15}$        |
-| Modus ponens                          | $\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi}$                                                 | $\mathbf{R1}$         |
-| Necessitation of knowledge            | $\dfrac{\varphi}{K\_i\varphi}$ for $i = 1, \dots, m$                                                   | $\mathbf{R2}$         |
-| Necessitation of common knowledge     | $\dfrac{\varphi}{C\varphi}$                                                                            | $\mathbf{R3}$         |
-| Necessitation of announcements        | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                     | $\mathbf{R4}$         |
-| Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi \quad \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$              | $\mathbf{R5}$         |
+| Axiom or rule name                   | Rule or axiom                                                                                        |  Abbreviation  |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------- | :------------: |
+| Propositional tautologies            | All (instances of) propositional tautologies                                                         | $\mathbf{A1}$  |
+| Modus ponens for knowledge           | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$       | $\mathbf{A2}$  |
+| Distribution of $K$ over implication | $K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi\to K_i \psi)$ for $i = 1, \dots, m$          | $\mathbf{A2}'$ |
+| Knowledge implies truth              | $K_i\varphi \rightarrow \varphi$ for $i=1, \dots m$                                                  | $\mathbf{A3}$  |
+| Positive introspection               | $K_i\varphi \rightarrow K_iK_i\varphi$ for $i = 1, \dots, m$                                         | $\mathbf{A4}$  |
+| Negative introspection               | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi$ for $i=1, \dots m$                              | $\mathbf{A5}$  |
+| Definition of $E$                    | $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$                                 | $\mathbf{A6}$  |
+| Common knowledge implies truth       | $C\varphi \rightarrow \varphi$                                                                       | $\mathbf{A7}$  |
+| Mix of common knowledge              | $C\varphi \rightarrow EC\varphi$                                                                     | $\mathbf{A8}$  |
+| Modus ponens for common knowledge    | $(C\varphi \land C(\varphi \rightarrow \psi)) \rightarrow C\psi$                                     | $\mathbf{A9}$  |
+| Distribution of $C$ over implication | $C(\varphi \rightarrow \psi) \rightarrow (C\varphi\to C\psi)$                                        | $\mathbf{A9}'$ |
+| Induction of common knowledge        | $C(\varphi \rightarrow E\varphi) \rightarrow (\varphi \rightarrow C\varphi)$                         | $\mathbf{A10}$ |
+| Atomic permanence                    | $\[\varphi\]p \leftrightarrow (\varphi \rightarrow p)$                                               | $\mathbf{A11}$ |
+| Announcement and negation            | $\[\varphi\]\lnot\psi \leftrightarrow (\varphi \rightarrow \lnot\[\varphi\]\psi) $                   | $\mathbf{A12}$ |
+| Announcement and conjunction         | $\[\varphi\](\psi \land \chi) \leftrightarrow (\[\varphi\]\psi \land \[\varphi\]\chi) $              | $\mathbf{A13}$ |
+| Announcement and knowledge           | $\[\varphi\]K_i\psi \leftrightarrow (\varphi \rightarrow K_i\[\varphi\]\psi) $ for $i = 1, \dots, m$ | $\mathbf{A14}$ |
+| Announcement composition             | $\[\varphi\]\[\psi\]\chi \leftrightarrow \[\varphi \land \[\varphi\]\psi\]\chi $                     | $\mathbf{A15}$ |
+| Modus ponens                         | $\dfrac{\varphi \quad \varphi \rightarrow \psi}{\psi}$                                               | $\mathbf{R1}$  |
+| Necessitation of knowledge           | $\dfrac{\varphi}{K\_i\varphi}$ for $i = 1, \dots, m$                                                 | $\mathbf{R2}$  |
+| Necessitation of common knowledge    | $\dfrac{\varphi}{C\varphi}$                                                                          | $\mathbf{R3}$  |
+| Necessitation of announcements       | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                   | $\mathbf{R4}$  |
+| Announcement and common knowledge    | $\dfrac{\chi\to[\varphi]\psi \quad \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$            | $\mathbf{R5}$  |
 
 All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $\mathbf{A2}$ and $\mathbf{A2}'$ are propositionally equivalent, and so are $\mathbf{A9}$ and $\mathbf{A9}'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $\mathbf{A1}$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. For now, the responsibility to check whether a formula is a propositional tautology lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
 
 Now, the axiom systems $\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$, $\mathbf{PA}$ and $\mathbf{PAC}$ are defined in terms of which axioms and rules hold in them.
 
-| Axiom system       | Axioms and rules                | Relations between systems            | Language                                        |
-| ----------         | ----------------                | -----------------------              | --------                                        |
-| $\mathbf{K\_{(m)}}$    | $\mathbf{A1}-\mathbf{A2}'$ and $\mathbf{R1}-\mathbf{R2}$            |                                      | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
-| $\mathbf{S5\_{(m)}}$   | $\mathbf{A1}-\mathbf{A5}$ and $\mathbf{R1}-\mathbf{R2}$             | $\mathbf{K\_{(m)}} + \mathbf{A3}-\mathbf{A5}$              | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$       |
-| $\mathbf{KEC\_{(m)}}$  | $\mathbf{A1}-\mathbf{A2}'$, $\mathbf{A6}-A10$ and $\mathbf{R1}-\mathbf{R3}$  | $\mathbf{K\_{(m)}} + \mathbf{A6}-\mathbf{A10} + \mathbf{R3}$        | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
-| $\mathbf{S5EC\_{(m)}}$ | $\mathbf{A1}-\mathbf{A10}$ and $\mathbf{R1}-\mathbf{R3}$            | $\mathbf{S5\_{(m)}} + \mathbf{A6}-\mathbf{A10} + \mathbf{R3}$       | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$     |
-| $\mathbf{PA}$      | $\mathbf{A1}-\mathbf{A5}$, $\mathbf{A1}1-A15$ and $\mathbf{R1}-\mathbf{R2}$  | $\mathbf{S5\_{(m)}} + \mathbf{A11}-\mathbf{A15}$           | $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$     | 
-| $\mathbf{PAC}$     | $\mathbf{A1}-\mathbf{A15}$ and $\mathbf{R1}-\mathbf{R5}$            | $\mathbf{S5EC\_{(m)}} + \mathbf{A11}-\mathbf{A15} + \mathbf{R4}-\mathbf{R5}$ | $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$   |
+| Axiom system           | Axioms and rules                                                            | Relations between systems                                                    | Language                                      |
+| ---------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | --------------------------------------------- |
+| $\mathbf{K\_{(m)}}$    | $\mathbf{A1}-\mathbf{A2}'$ and $\mathbf{R1}-\mathbf{R2}$                    |                                                                              | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$     |
+| $\mathbf{S5\_{(m)}}$   | $\mathbf{A1}-\mathbf{A5}$ and $\mathbf{R1}-\mathbf{R2}$                     | $\mathbf{K\_{(m)}} + \mathbf{A3}-\mathbf{A5}$                                | $\mathcal{L}\_{\mathbf{K}}^m(\mathbf{P})$     |
+| $\mathbf{KEC\_{(m)}}$  | $\mathbf{A1}-\mathbf{A2}'$, $\mathbf{A6}-A10$ and $\mathbf{R1}-\mathbf{R3}$ | $\mathbf{K\_{(m)}} + \mathbf{A6}-\mathbf{A10} + \mathbf{R3}$                 | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$   |
+| $\mathbf{S5EC\_{(m)}}$ | $\mathbf{A1}-\mathbf{A10}$ and $\mathbf{R1}-\mathbf{R3}$                    | $\mathbf{S5\_{(m)}} + \mathbf{A6}-\mathbf{A10} + \mathbf{R3}$                | $\mathcal{L}\_{\mathbf{KEC}}^m(\mathbf{P})$   |
+| $\mathbf{PA}$          | $\mathbf{A1}-\mathbf{A5}$, $\mathbf{A1}1-A15$ and $\mathbf{R1}-\mathbf{R2}$ | $\mathbf{S5\_{(m)}} + \mathbf{A11}-\mathbf{A15}$                             | $\mathcal{L}\_{\mathbf{K[]}}(\mathbf{A,P})$   |
+| $\mathbf{PAC}$         | $\mathbf{A1}-\mathbf{A15}$ and $\mathbf{R1}-\mathbf{R5}$                    | $\mathbf{S5EC\_{(m)}} + \mathbf{A11}-\mathbf{A15} + \mathbf{R4}-\mathbf{R5}$ | $\mathcal{L}\_{\mathbf{KEC[]}}(\mathbf{A,P})$ |
 
 ## Shortcut rules
 
 Below is a table with the shortcut rules that Guanaco knows. Each of these rules is available in all axiom systems, except for ED and CD, which are available only in axiom systems for languages with the $E$ and $C$ operators.
 
-| Rule name                                  | Rule                                                                                            | Abbreviation                    |
-| ---------                                  | :----------------------------------------------------:                                          | ----------------------          |
-| $K$-distribution                           | $\dfrac{\varphi\to\psi}{K\_i\varphi\to K\_i\psi}$                                               | $\mathbf{KD}$                   |
-| Equivalence-introduction                   | $\dfrac{\varphi\to\psi \quad \psi \to \varphi}{\varphi\leftrightarrow\psi}$                     | $\mathbf{EI}$                   |
-| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\varphi\to\psi}$                                            | $\mathbf{EE}$                   |
-| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                            | $\mathbf{EE}'$                  |
-| $K$-distribution ($\leftrightarrow$)       | $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                       | $\mathbf{KD} \leftrightarrow$   |
-| Hypothetical syllogism                     | $\dfrac{\varphi\to\chi \quad \chi \to \psi}{\varphi\to\psi}$                                    | $\mathbf{HS}$                   |
-| Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$    | $\mathbf{HS} \leftrightarrow$   |
-| Left-right strengthening                   | $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                                | $\mathbf{LR}$                   |
-| Contra-position                            | $\dfrac{\varphi\to\psi}{\neg\psi\to\neg\varphi}$                                                | $\mathbf{CP}$                   |
-| No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\varphi\to\psi}$                                        | $\mathbf{NC}$                   |
-| Combining                                  | $\dfrac{\varphi\_1\to\psi\_1 \quad \varphi\_2\to\psi\_2}{(\varphi\_1\wedge\varphi\_2)\to(\psi\_1\wedge\psi_2)}$  | $\mathbf{CO}$  |
-| Combining  ($\leftrightarrow$)             | $\dfrac{\varphi\_1\leftrightarrow\psi\_1 \quad \varphi\_2\leftrightarrow\psi\_2}{(\varphi\_1\wedge\varphi\_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$                                                                        | $\mathbf{CO} \leftrightarrow$                                                                   |
-| Substitution                               | $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$ | $\mathbf{SUB}$                  |
-| No contradiction                           | $\dfrac{(\varphi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                        | $\mathbf{NC}'$                  |
-| $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                     | $\mathbf{ED}$                   |
-| $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                     | $\mathbf{CD}$                   |
+| Rule name                                  |                                                                        Rule                                                                         | Abbreviation                  |
+| ------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------: | ----------------------------- |
+| $K$-distribution                           |                                                  $\dfrac{\varphi\to\psi}{K\_i\varphi\to K\_i\psi}$                                                  | $\mathbf{KD}$                 |
+| Equivalence-introduction                   |                                     $\dfrac{\varphi\to\psi \quad \psi \to \varphi}{\varphi\leftrightarrow\psi}$                                     | $\mathbf{EI}$                 |
+| Equivalence-elimination                    |                                                $\dfrac{\varphi\leftrightarrow\psi}{\varphi\to\psi}$                                                 | $\mathbf{EE}$                 |
+| Equivalence-elimination                    |                                                $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                                 | $\mathbf{EE}'$                |
+| $K$-distribution ($\leftrightarrow$)       |                                      $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                                      | $\mathbf{KD} \leftrightarrow$ |
+| Hypothetical syllogism                     |                                            $\dfrac{\varphi\to\chi \quad \chi \to \psi}{\varphi\to\psi}$                                             | $\mathbf{HS}$                 |
+| Hypothetical syllogism ($\leftrightarrow$) |                            $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$                             | $\mathbf{HS} \leftrightarrow$ |
+| Left-right strengthening                   |                                          $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                                           | $\mathbf{LR}$                 |
+| Contra-position                            |                                                  $\dfrac{\varphi\to\psi}{\neg\psi\to\neg\varphi}$                                                   | $\mathbf{CP}$                 |
+| No contradiction                           |                                              $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\varphi\to\psi}$                                               | $\mathbf{NC}$                 |
+| Combining                                  |                   $\dfrac{\varphi\_1\to\psi\_1 \quad \varphi\_2\to\psi\_2}{(\varphi\_1\wedge\varphi\_2)\to(\psi\_1\wedge\psi_2)}$                   | $\mathbf{CO}$                 |
+| Combining  ($\leftrightarrow$)             | $\dfrac{\varphi\_1\leftrightarrow\psi\_1 \quad \varphi\_2\leftrightarrow\psi\_2}{(\varphi\_1\wedge\varphi\_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$ | $\mathbf{CO} \leftrightarrow$ |
+| Substitution                               |                           $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$                           | $\mathbf{SUB}$                |
+| No contradiction                           |                                              $\dfrac{(\varphi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                               | $\mathbf{NC}'$                |
+| $E$-distribution                           |                                                     $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                     | $\mathbf{ED}$                 |
+| $C$-distribution                           |                                                     $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                     | $\mathbf{CD}$                 |
 
 # Implementation
 
@@ -146,20 +146,20 @@ In this section, we cover the important details of the implementation strategy. 
 
 When a user provides written input, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output. Whenever Guanaco prints a formula, it uses the unicode symbols for the usual operators and uses subscripts instead of accolades. Guanaco also automatically prints disambiguating brackets if necessary. Our idea here is that entering a formula should be easy, so we chose symbols that are on the keyboard for the input language, but printed formulas should look like the formulas of the books Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). That is why the input language and printing language are different, even though they represent the same formula.
 
-| Input      | Interpretation                                            | Printed formula  | Formula of the relevant language      |
-| --------   | --------------------------------------------              | ----             | --------------------------            |
-| `pn`       | propositional atom `n`, where `n` is an integer           | pn               | $p\_n$                                |
-| `fn`       | formula `n`, where `n` is an integer                      | fn               | $\varphi\_n$                          |
-| `!x`       | negation of the formula `x`                               | ¬`x`             | $\neg\varphi$                         |
-| `x & y`    | conjunction of the formulas `x` and `y`                   | `x` ∧&#xFE0E; `y`| $\varphi\wedge\psi$                   |
-| `x ⏐ y`    | disjunction of the formulas `x` and `y`                   | `x` ∨&#xFE0E; `y`| $\varphi\vee\psi$                     |
-| `x -> y`   | implication of `x` to `y`                                 | `x` →&#xFE0E; `y`| $\varphi\to\psi$                      |
-| <code>x&nbsp;<&#8209;>&nbsp;y</code>  | biimplication of `x` and `y`   | `x` ↔&#xFE0E; `y`| $\varphi\leftrightarrow\psi$          |
-| `Kan x`   | agent `an` (where `n` is an integer) knows formula `x`     | Kan`x`           | $K\_{i}\varphi$                       |
-| `Kn x`    | the agent `n`$\in \mathbf{A}$ knows formula `x`            | Kn`x`            | $K\_{n}\varphi$                       |
-| `Ex`       | everybody knows formula `x`                               | E`x`             | $E\varphi$                            |
-| `Cx`       | there is common knowledge of formula `x`                  | C`x`             | $C\varphi$                            |
-| `[x]y`     | announcement of `x` followed by `y`                       | [`x`]`y`         | $\[\varphi\]\psi$                     |
+| Input                                | Interpretation                                         | Printed formula   | Formula of the relevant language |
+| ------------------------------------ | ------------------------------------------------------ | ----------------- | -------------------------------- |
+| `pn`                                 | propositional atom `n`, where `n` is an integer        | pn                | $p\_n$                           |
+| `fn`                                 | formula `n`, where `n` is an integer                   | fn                | $\varphi\_n$                     |
+| `!x`                                 | negation of the formula `x`                            | ¬`x`              | $\neg\varphi$                    |
+| `x & y`                              | conjunction of the formulas `x` and `y`                | `x` ∧&#xFE0E; `y` | $\varphi\wedge\psi$              |
+| `x ︱ y`                              | disjunction of the formulas `x` and `y`                | `x` ∨&#xFE0E; `y` | $\varphi\vee\psi$                |
+| `x -> y`                             | implication of `x` to `y`                              | `x` →&#xFE0E; `y` | $\varphi\to\psi$                 |
+| <code>x&nbsp;<&#8209;>&nbsp;y</code> | biimplication of `x` and `y`                           | `x` ↔&#xFE0E; `y` | $\varphi\leftrightarrow\psi$     |
+| `Kan x`                              | agent `an` (where `n` is an integer) knows formula `x` | Kan`x`            | $K\_{i}\varphi$                  |
+| `Kn x`                               | the agent `n`$\in \mathbf{A}$ knows formula `x`        | Kn`x`             | $K\_{n}\varphi$                  |
+| `Ex`                                 | everybody knows formula `x`                            | E`x`              | $E\varphi$                       |
+| `Cx`                                 | there is common knowledge of formula `x`               | C`x`              | $C\varphi$                       |
+| `[x]y`                               | announcement of `x` followed by `y`                    | [`x`]`y`          | $\[\varphi\]\psi$                |
 
 If only one atom, formula or agent is needed in the user's proof, the user can omit the integer `n` without issue. For atoms without integers we support `p`, `q`, `r` and `s`, whereras for formulas without integers we support `f`, `g`, and `h`.
 
