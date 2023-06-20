@@ -100,7 +100,7 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 | Necessitation of knowledge            | $\dfrac{\varphi}{K\_i\varphi}$ for $i = 1, \dots, m$                                                   | $\mathbf{R2}$         |
 | Necessitation of common knowledge     | $\dfrac{\varphi}{C\varphi}$                                                                            | $\mathbf{R3}$         |
 | Necessitation of announcements        | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                     | $\mathbf{R4}$         |
-| Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi, \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$                   | $\mathbf{R5}$         |
+| Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi \quad \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$                   | $\mathbf{R5}$         |
 
 All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $\mathbf{A2}$ and $\mathbf{A2}'$ are propositionally equivalent, and so are $\mathbf{A9}$ and $\mathbf{A9}'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $\mathbf{A1}$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. For now, the responsibility to check whether a formula is a propositional tautology lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
 
