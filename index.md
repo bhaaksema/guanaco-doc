@@ -82,9 +82,9 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 | Propositional tautologies             | All (instances of) propositional tautologies                                                           | $\mathbf{A1}$         |
 | Modus ponens for knowledge            | $(K_i \varphi \land K_i(\varphi \rightarrow \psi)) \rightarrow K_i \psi$ for $i = 1, \dots, m$         | $\mathbf{A2}$         |
 | Distribution of $K$ over implication  | $K_i(\varphi \rightarrow \psi) \rightarrow (K_i \varphi\to K_i \psi)$ for $i = 1, \dots, m$            | $\mathbf{A2}'$        |
-| Knowledge implies truth               | $K_i\varphi \rightarrow \varphi$ for $(i=1, \dots m)$                                                  | $\mathbf{A3}$         |
+| Knowledge implies truth               | $K_i\varphi \rightarrow \varphi$ for $i=1, \dots m$                                                    | $\mathbf{A3}$         |
 | Positive introspection                | $K_i\varphi \rightarrow K_iK_i\varphi$ for $i = 1, \dots, m$                                           | $\mathbf{A4}$         |
-| Negative introspection                | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi$ for $(i=1, \dots m)$                              | $\mathbf{A5}$         |
+| Negative introspection                | $\lnot K_i \varphi \rightarrow K_i \lnot K_i\varphi$ for $i=1, \dots m$                                | $\mathbf{A5}$         |
 | Definition of $E$                     | $E\varphi \leftrightarrow (K_1\varphi \land \dots \land K_m\varphi)$                                   | $\mathbf{A6}$         |
 | Common knowledge implies truth        | $C\varphi \rightarrow \varphi$                                                                         | $\mathbf{A7}$         |
 | Mix of common knowledge               | $C\varphi \rightarrow EC\varphi$                                                                       | $\mathbf{A8}$         |
@@ -100,7 +100,7 @@ In Guanaco, there are six available axiom systems $\Gamma$ available: $\mathbf{K
 | Necessitation of knowledge            | $\dfrac{\varphi}{K\_i\varphi}$ for $i = 1, \dots, m$                                                   | $\mathbf{R2}$         |
 | Necessitation of common knowledge     | $\dfrac{\varphi}{C\varphi}$                                                                            | $\mathbf{R3}$         |
 | Necessitation of announcements        | $\dfrac{\varphi}{\[\psi\]\varphi}$                                                                     | $\mathbf{R4}$         |
-| Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi \quad \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$                   | $\mathbf{R5}$         |
+| Announcement and common knowledge     | $\dfrac{\chi\to[\varphi]\psi \quad \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$              | $\mathbf{R5}$         |
 
 All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $\mathbf{A2}$ and $\mathbf{A2}'$ are propositionally equivalent, and so are $\mathbf{A9}$ and $\mathbf{A9}'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $\mathbf{A1}$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. For now, the responsibility to check whether a formula is a propositional tautology lies with the user. However, the user can simply use another tautology checker; there are other checkers available online.
 
@@ -119,24 +119,24 @@ Now, the axiom systems $\mathbf{K\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{S5\_
 
 Below is a table with the shortcut rules that Guanaco knows. Each of these rules is available in all axiom systems, except for ED and CD, which are available only in axiom systems for languages with the $E$ and $C$ operators.
 
-| Rule name                                  | Rule                                                                                         | Abbreviation           |
-| ---------                                  | :----------------------------------------------------:                                       | ---------------------- |
-| $K$-distribution                           | $\dfrac{\varphi\to\psi}{K\_i\varphi\to K\_i\psi}$                                            | $\mathbf{KD}$                   |
-| Equivalence-introduction                   | $\dfrac{\varphi\to\psi \quad \psi \to \varphi}{\varphi\leftrightarrow\psi}$                  | $\mathbf{EI}$                   |
-| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\varphi\to\psi}$                                         | $\mathbf{EE}$                   |
-| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                         | $\mathbf{EE}'$                  |
-| $K$-distribution ($\leftrightarrow$)       | $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                    | $\mathbf{KD} \leftrightarrow$   |
-| Hypothetical syllogism                     | $\dfrac{\varphi\to\chi \quad \chi \to \psi}{\varphi\to\psi}$                                 | $\mathbf{HS}$                   |
-| Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$ | $\mathbf{HS} \leftrightarrow$   |
-| Left-right strengthening                   | $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                             | $\mathbf{LR}$                   |
-| Contra-position                            | $\dfrac{\varphi\to\psi}{\neg\psi\to\neg\varphi}$                                             | $\mathbf{CP}$                   |
-| No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\varphi\to\psi}$                                     | $\mathbf{NC}$                   |
-| Combining                                  | $\dfrac{\varphi\_1\to\psi\_1 \quad \varphi\_2\to\psi\_2}{(\varphi\_1\wedge\varphi\_2)\to(\psi\_1\wedge\psi_2)}$       | $\mathbf{CO}$  |
-| Combining  ($\leftrightarrow$)             | $\dfrac{\varphi\_1\leftrightarrow\psi\_1 \quad \varphi\_2\leftrightarrow\psi\_2}{(\varphi\_1\wedge\varphi\_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$                                                                         | $\mathbf{CO} \leftrightarrow$   |
-| Substitution                               | $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$  | $\mathbf{SUB}$              |
-| No contradiction                           | $\dfrac{(\varphi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                     | $\mathbf{NC}'$                  |
-| $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                  | $\mathbf{ED}$                   |
-| $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                  | $\mathbf{CD}$                   |
+| Rule name                                  | Rule                                                                                            | Abbreviation                    |
+| ---------                                  | :----------------------------------------------------:                                          | ----------------------          |
+| $K$-distribution                           | $\dfrac{\varphi\to\psi}{K\_i\varphi\to K\_i\psi}$                                               | $\mathbf{KD}$                   |
+| Equivalence-introduction                   | $\dfrac{\varphi\to\psi \quad \psi \to \varphi}{\varphi\leftrightarrow\psi}$                     | $\mathbf{EI}$                   |
+| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\varphi\to\psi}$                                            | $\mathbf{EE}$                   |
+| Equivalence-elimination                    | $\dfrac{\varphi\leftrightarrow\psi}{\psi\to\varphi}$                                            | $\mathbf{EE}'$                  |
+| $K$-distribution ($\leftrightarrow$)       | $\dfrac{\varphi\leftrightarrow\psi}{K\_i\varphi\leftrightarrow K\_i\psi}$                       | $\mathbf{KD} \leftrightarrow$   |
+| Hypothetical syllogism                     | $\dfrac{\varphi\to\chi \quad \chi \to \psi}{\varphi\to\psi}$                                    | $\mathbf{HS}$                   |
+| Hypothetical syllogism ($\leftrightarrow$) | $\dfrac{\varphi\leftrightarrow\chi\quad\chi\leftrightarrow\psi}{\varphi\leftrightarrow\psi}$    | $\mathbf{HS} \leftrightarrow$   |
+| Left-right strengthening                   | $\dfrac{\varphi\to\psi}{(\varphi\wedge\chi)\to(\psi\wedge\chi)}$                                | $\mathbf{LR}$                   |
+| Contra-position                            | $\dfrac{\varphi\to\psi}{\neg\psi\to\neg\varphi}$                                                | $\mathbf{CP}$                   |
+| No contradiction                           | $\dfrac{(\varphi\wedge\neg\psi)\to\bot}{\varphi\to\psi}$                                        | $\mathbf{NC}$                   |
+| Combining                                  | $\dfrac{\varphi\_1\to\psi\_1 \quad \varphi\_2\to\psi\_2}{(\varphi\_1\wedge\varphi\_2)\to(\psi\_1\wedge\psi_2)}$  | $\mathbf{CO}$  |
+| Combining  ($\leftrightarrow$)             | $\dfrac{\varphi\_1\leftrightarrow\psi\_1 \quad \varphi\_2\leftrightarrow\psi\_2}{(\varphi\_1\wedge\varphi\_2)\leftrightarrow(\psi\_1\wedge\psi_2)}$                                                                        | $\mathbf{CO} \leftrightarrow$                                                                   |
+| Substitution                               | $\dfrac{\varphi\_1\leftrightarrow\varphi\_2}{\psi\leftrightarrow\psi\[\varphi\_1/\varphi\_2\]}$ | $\mathbf{SUB}$                  |
+| No contradiction                           | $\dfrac{(\varphi\wedge\psi)\to\bot}{\psi\to\neg\varphi}$                                        | $\mathbf{NC}'$                  |
+| $E$-distribution                           | $\dfrac{\varphi\to\psi}{E\varphi\to E\psi}$                                                     | $\mathbf{ED}$                   |
+| $C$-distribution                           | $\dfrac{\varphi\to\psi}{C\varphi\to C\psi}$                                                     | $\mathbf{CD}$                   |
 
 # Implementation
 
