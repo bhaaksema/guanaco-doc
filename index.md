@@ -160,8 +160,10 @@ When a user provides written input, the program needs to know what formula the u
 | `Ex`                                 | everybody knows formula `x`                            | E`x`              | $E\varphi$                       |
 | `Cx`                                 | there is common knowledge of formula `x`               | C`x`              | $C\varphi$                       |
 | `[x]y`                               | announcement of `x` followed by `y`                    | [`x`]`y`          | $\[\varphi\]\psi$                |
+| `T`                                  | tautology                                              | ⊤                 | $\top$                           |
+| `F`                                  | contradiction                                          | ⊥                 | $\bot$                           |
 
-If only one atom, formula or agent is needed in the user's proof, the user can omit the integer `n` without issue. For atoms without integers we support `p`, `q`, `r` and `s`, whereras for formulas without integers we support `f`, `g`, and `h`.
+If only one atom, formula or agent is needed in the user's proof, the user can omit the integer `n` without issue. Furthermore, we support the alternative letters `p`, `q`, `r` and `s` for propositional atoms, `f`, `g`, and `h` for formulas, and `a`, `i` and `j` for agents.
 
 In order to facilitate infinitely many possible inputs, the parser is able to distinguish between inputs for all integers. For example, the parser recognizes that `p1` and `p2` are two different propositional atoms, that `f1` and `f2` are two different formulas, and that `a1` and `a2` are different agents.
 
