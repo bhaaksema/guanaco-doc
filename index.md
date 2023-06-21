@@ -252,7 +252,7 @@ For example, think about the theorem $p\to(p\to ... (p\to p))$, where $p$ occurs
 
 - **Guanaco only spots the first mistake in hand written proofs bottom-up.** Therefore it cannot always be used to fix incorrect proofs (even though it can reliably be used as a proof checker).
 
-- **Guanaco cannot remember previously made proofs.** There is no way to save proofs. This also means that users cannot use theorems they have derived before as justifications in their proofs. This is often done in hand-written proofs, and sometimes it makes proof-writing significantly easier.
+- **Guanaco cannot remember previously made proofs.** There is currently no way to save proofs. This also means that users cannot use theorems they have derived before as justifications in their proofs. This is often done in hand-written proofs, and sometimes it makes proof-writing significantly easier.
 
 - **Conjunctions and disjunctions cannot be chained.** For example, the conjunction $p\wedge q\wedge r$ can only be parsed as $(p\wedge q)\wedge r$ or $p\wedge (q\wedge r)$. Chaining conjunctions and disjunctions is quite useful for rules such as $\mathbf{CO}$, $\mathbf{CO}\leftrightarrow$ and $\mathbf{LR}$. This is not a problem, but it can be inconvenient for the user at times.
 In an earlier version of Guanaco, we did facilitate conjunction/disjunction chaining. We removed this feature when we realized that we could not facilitate rules with more than two premises. For example, if the user wants to apply $\mathbf{CO}$ to $(p\wedge q\wedge r)\rightarrow(p\wedge q\wedge r)$ with two premises, Guanaco cannot determine which two biconditionals are the premises. There are two possibilities: either the premises are $(p\wedge q)\to(p\wedge q)$ and $r\to r$, or they are $p\to p$ and $(q\wedge r)\to(q\wedge r)$. But applying $\mathbf{CO}$ to $((p\wedge q)\wedge r)\to((p\wedge q)\wedge r)$ works;
@@ -267,7 +267,3 @@ Except for the limitation that Guanaco only supports the bottom-up strategy, eac
 Meyer, J. C., & Van Der Hoek, W. (1995). _Epistemic Logic for AI and Computer Science._ Cambridge University Press.
 
 Van Ditmarsch, H., Van Der Hoek, W., & Kooi, B. (2007). _Dynamic Epistemic Logic._ Springer.
-
-
-
-
