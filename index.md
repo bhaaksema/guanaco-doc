@@ -148,9 +148,9 @@ In this section, we cover the important details of the implementation strategy. 
 
 ## Input parsing
 
-When a user provides written input, the program needs to know what formula the user is trying to write. We made a parser that takes lines of unicode symbols as its input and provides an abstract syntax tree as its output. Whenever Guanaco prints a formula, it uses the unicode symbols for the usual operators and uses subscripts instead of accolades. Guanaco also automatically prints disambiguating brackets if necessary. Our idea here is that entering a formula should be easy, so we chose symbols that are on the keyboard for the input language, but printed formulas should look like the formulas of the books Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). That is why the input language and printing language are different, even though they represent the same formula.
+For a user to be able to provide a syntactic proof, the user needs to be able to enter formulas. For this purpose, we developed an easy to type input language for formulas. The program interprets formulas in this language using a lexer and a parser, together they take a string of symbols as input and provide an abstract syntax tree representation as output. Often, the program has to display formulas stored in this format to the user, so we also developed an easy to read display language with Unicode symbols for the usual operators, in the translation to this display language, disambiguating brackets are added automatically. The goal of these different languages is that entering a formula should be easy, so we chose symbols that are on the keyboard for the input language, but displayed formulas should look like the formulas of the books Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). That is why the input language and display language are different, even though they represent the same formula.
 
-| Input                                | Interpretation                                         | Printed formula   | Formula of the relevant language |
+| Input                                | Interpretation                                         | Displayed formula | Formula of the relevant language |
 | ------------------------------------ | ------------------------------------------------------ | ----------------- | -------------------------------- |
 | `pn`                                 | propositional atom `n`, where `n` is an integer        | pn                | $p\_n$                           |
 | `fn`                                 | formula `n`, where `n` is an integer                   | fn                | $\varphi\_n$                     |
@@ -167,19 +167,15 @@ When a user provides written input, the program needs to know what formula the u
 | `T`                                  | tautology                                              | ⊤                 | $\top$                           |
 | `F`                                  | contradiction                                          | ⊥                 | $\bot$                           |
 
-If only one atom, formula or agent is needed in the user's proof, the user can omit the integer `n` without issue. Furthermore, we support the alternative letters `p`, `q`, `r` and `s` for propositional atoms, `f`, `g`, and `h` for formulas, and `a`, `i` and `j` for agents.
+If only one atom, formula or agent is needed in the user's proof, the user can omit the integer `n` without issue. Furthermore, we support the alternative letters `p`, `q`, `r` and `s` for propositional atoms, `f`, `g`, and `h` for formulas, and `a`, `i` and `j` for agents. In order to facilitate infinitely many possible inputs, the parser is able to distinguish between inputs for all integers. For example, the parser recognizes that `p1` and `p2` are two different propositional atoms, that `f1` and `f2` are two different formulas, and that `a1` and `a2` are different agents.
 
-In order to facilitate infinitely many possible inputs, the parser is able to distinguish between inputs for all integers. For example, the parser recognizes that `p1` and `p2` are two different propositional atoms, that `f1` and `f2` are two different formulas, and that `a1` and `a2` are different agents.
-
-To avoid ambiguity, the user is required to place brackets around binary operators if and only if the binary operator is part of a _subformula_. For example, the parser does not recognize the input `f & g | h`, but it does recognize `(f & g) | h` and `f & (g | h)`.
-
-White spaces are ignored, so users may use white spaces in the way they like.
+To avoid ambiguity, the user is required to place brackets around binary operators if and only if the binary operator is a _subformula_. For example, the parser does not recognize the input `f & g | h`, but it does recognize `(f & g) | h` and `f & (g | h)`. The parser ignores any white spaces in the input, so the user can use white spaces in the way they like.
 
 ## Schemes
 
 The rules and axioms of the available logics are _schemes_; they represent not one theorem, but infinitely many. This is because an axiom is defined on formulas $\varphi$, which can represent any formula of the respective language. For example, take the axiom $\mathbf{A3}$, ($K\_i\varphi\to\varphi$). We can instantiate this axiom on any formula of our language to get a theorem of $\mathbf{T\_{(m)}}$. For example, $K\_ip\to p$ is a theorem of $\mathbf{T\_{(m)}}$, but so are $K\_i\neg p\to\neg p$ and $K\_i(p\to q)\to(p\to q)$. Moreover, schemes can instantiate schemes: $K\_i\neg\varphi\to\neg\varphi$ is also an instantiation of $\mathbf{A3}$, even though it is a scheme.
 
-Our parser recognizes this flexibility of rules and axioms. For all axioms, it treats the formulas on which they are defined as 'holes', which are any formula or scheme of the language. For example, if the users provides the line `Ka1!!f -> !!f` as an input, when it encounters `!!f` in the first hole, it checks whether `!!f` is also in the second hole. In this case, it is, so the parser recognizes it as an instantiation of $\mathbf{A3}$.
+Our program's processing engine is built to handle this flexibility of rules and axioms. For all axioms, it treats the formulas on which they are defined as indexed 'holes', which are any formula or scheme of the language. For example, axiom $\mathbf{A3}$ is roughly encoded as `K agent0 hole0 -> hole0`. Then, if the users provides the line `Ka1!!f -> !!f` as an input, when it encounters `!!f` in the first occurrence of `hole0`, it checks whether `!!f` is also in the second occurrence. In this case, it is, so the program recognizes it as an instantiation of $\mathbf{A3}$. This strategy is generalized for axioms with multiple 'holes' and extended to remember the structure of formulas to generate the premises of rules.
 
 ## Bottom-up strategy
 
