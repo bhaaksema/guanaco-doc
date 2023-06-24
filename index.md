@@ -215,7 +215,7 @@ In this way, users can never make mistakes; every axiom or rule they can select 
 
 # Results
 
-We have collected multiple [proofs written in Guanaco](https://github.com/bhaaksema/guanaco-doc/tree/main/examples "Guanaco Examples on GitHub"). These examples cover most of the important axioms and rules, so you can see how to use each of them are used in practice. When using Guanaco for the first time, it is useful to look at these examples, especially to learn how the input parsing works.
+We have collected multiple **[proofs written in Guanaco](https://github.com/bhaaksema/guanaco-doc/tree/main/examples "Guanaco Examples on GitHub")**. These examples cover most of the important axioms and rules, so you can see how to use each of them are used in practice. When using Guanaco for the first time, it is useful to look at these examples, especially to learn how the input parsing works.
 
 Note: In the proofs of Cf → K1f and ¬Cf → C¬Cf, there is no justification for the first line. For the former, this proof is also included in the list of proofs and for the latter, the proof can be found in _Epistemic Logic for AI and Computer Science, Exercise 2.1.2.1(viii)._
 
