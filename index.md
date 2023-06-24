@@ -75,7 +75,7 @@ We chose to adopt this limitation due to time constraints; now that we drop the 
 
 ## Axiom Systems
 
-In Guanaco, there are ten available axiom systems $\Gamma$ available: $\mathbf{K\_{(m)}}$, $\mathbf{T\_{(m)}}$, $\mathbf{S4EC\_{(m)}}$ $\mathbf{S5\_{(m)}}$, $\mathbf{PA\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{TEC\_{(m)}}$, $\mathbf{S4EC\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$ and $\mathbf{PAC\_{(m)}}$. Each of these logics provides a set of rules and axioms to make syntactic proofs with. Optionally, the user can enter the amount of agents $m$. Here is a list of all rules and axioms Guanaco knows:
+In Guanaco, there are ten available axiom systems $\Gamma$ available: $\mathbf{K\_{(m)}}$, $\mathbf{T\_{(m)}}$, $\mathbf{S4\_{(m)}}$, $\mathbf{S5\_{(m)}}$, $\mathbf{PA\_{(m)}}$, $\mathbf{KEC\_{(m)}}$, $\mathbf{TEC\_{(m)}}$, $\mathbf{S4EC\_{(m)}}$, $\mathbf{S5EC\_{(m)}}$ and $\mathbf{PAC\_{(m)}}$. Each of these logics provides a set of rules and axioms to make syntactic proofs with. Optionally, the user can enter the amount of agents $m$. Here is a list of all rules and axioms encoded into Guanaco:
 
 | Axiom or rule name                   |                                            Rule or axiom                                             |  Abbreviation  |
 | ------------------------------------ | :--------------------------------------------------------------------------------------------------: | :------------: |
@@ -102,7 +102,7 @@ In Guanaco, there are ten available axiom systems $\Gamma$ available: $\mathbf{K
 | Necessitation of announcements       |                                  $\dfrac{\varphi}{\[\psi\]\varphi}$                                  | $\mathbf{R4}$  |
 | Announcement and common knowledge    |      $\dfrac{\chi\to[\varphi]\psi \quad \chi \wedge \varphi \to E\chi}{\chi\to[\varphi]C\psi}$       | $\mathbf{R5}$  |
 
-All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $\mathbf{A2}$ and $\mathbf{A2}'$ are propositionally equivalent, and so are $\mathbf{A9}$ and $\mathbf{A9}'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $\mathbf{A1}$, but if they do so, Guanaco will always say that the justification is correct. We opted for this limitation due to time constraints. For now, the responsibility to check whether a formula is a propositional tautology lies with the user. However, the user can simply use another tautology checker; there are other checkers available online. Finally, $A6$ is available only if the amount of $m$ is specified by the user.
+All axioms and rules are from Meyer & Hoek (1995) and Van Ditmarsch et al. (2007). Note that $\mathbf{A2}$ and $\mathbf{A2}'$ are propositionally equivalent, and so are $\mathbf{A9}$ and $\mathbf{A9}'$. Also note that Guanaco cannot check whether a formula is a propositional tautology. Users can select $\mathbf{A1}$, but if they do so, Guanaco will not validate this justification. This limitation is due to time constraints, and to keep our focus on the Epistemic challenges. For now, the responsibility to check whether a formula is a propositional tautology lies with the user. There are several tautology checkers available online, though the user may have to translate their formula to a scheme that the tautology checker understands. Finally, $A6$ is available only if the amount of $m$ is specified by the user.
 
 Now, the axiom systems are defined in terms of which axioms and rules hold in them.
 
@@ -121,7 +121,7 @@ Now, the axiom systems are defined in terms of which axioms and rules hold in th
 
 ## Shortcut rules
 
-Below is a table with the shortcut rules that Guanaco knows. Each of these rules is available in all axiom systems, except for ED and CD, which are available only in axiom systems for languages with the $E$ and $C$ operators.
+The table below shows the shortcut rules encoded into Guanaco. Each of these rules is available in all axiom systems, except for ED and CD, which are available only in axiom systems for languages with the $E$ and $C$ operators.
 
 | Rule name                                  |                                                                        Rule                                                                         | Abbreviation                  |
 | ------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------: | ----------------------------- |
